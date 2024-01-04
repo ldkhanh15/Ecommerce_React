@@ -42,6 +42,7 @@
     display: flex;
    justify-content: center;
    align-items: center;
+   width: fit-content;
  }
  .primary {
     background-color: var(--primary);
@@ -81,7 +82,7 @@
     padding: 0rem 1.5rem;
  }
  .large {
-    min-width: 13rem;
-    padding: 1.4rem 1.6rem;
+    min-width: 10rem;
+    padding: 1rem 1.6rem;
  }
  

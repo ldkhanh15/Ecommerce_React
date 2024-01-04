@@ -4,9 +4,12 @@ import styles from './Footer.module.scss'
 import { FaFacebook } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
+import useWindowDimensions from '@/hooks/useWindowDimensions ';
 
 const cx = classNames.bind(styles)
 const Footer = () => {
+  const { width } = useWindowDimensions()
+
   return (
     <div className={cx('container')}>
       <div className={cx('contact')}>
@@ -15,7 +18,7 @@ const Footer = () => {
           Hi, we are always open for cooperation and suggestions, contact us in one of the ways below:
         </span>
         <div className={cx('box')}>
-          <div>
+          <div className={cx('subBox')}>
             <div className={cx('item')}>
               <div className={cx('label')}>
                 PHONE NUMBER
@@ -34,7 +37,7 @@ const Footer = () => {
             </div>
 
           </div>
-          <div>
+          <div className={cx('subBox')}>
             <div className={cx('item')}>
               <div className={cx('label')}>
                 EMAIL ADDRESS
@@ -82,9 +85,11 @@ const Footer = () => {
         <div className={cx('follow')}>
           <div className={cx('text')}>Follow us on social network</div>
           <div className={cx('icon')}>
-          <FaFacebook />
-          <FaInstagram />
-          <FaTwitter />
+            <span className={cx('hover')}> <FaFacebook /></span>
+            <span className={cx('hover')}><FaInstagram /></span>
+            <span className={cx('hover')}> <FaTwitter /></span>
+
+
           </div>
         </div>
       </div>
