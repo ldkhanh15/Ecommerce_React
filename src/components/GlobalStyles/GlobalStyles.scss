@@ -5,6 +5,10 @@
     --btn-color: #E11D48;
     --bgColorCart: #111827;
     --bgColorCartHover:#220c0f;
+    --primary: #fe2c55;
+    --black: #000;
+    --text-color: #161823;
+    --white: #fff;
 
 }
 *{
@@ -22,3 +26,19 @@ body{
     line-height: inherit;
     text-rendering: optimizeSpeed;
 }
+a{
+    text-decoration: none;
+    color: black;
+}
+input,button{
+    border: none;
+    outline: none;
+}
+.slick-prev {
+    display: none !important;
+
+  }
+
+  .slick-next {
+    display: none !important;
+  }

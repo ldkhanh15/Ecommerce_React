@@ -1,0 +1,60 @@
+.header{
+    border-bottom: 1px solid black;
+    padding: 0rem 10rem;
+    padding-bottom: 2rem;
+    .top{
+        display: flex;
+        justify-content: space-between;
+        padding-top: 2rem;
+        min-height: 2rem;
+        .logo{
+            display: flex;
+            .icon{
+                font-size: 5rem;
+                color: aqua;      
+            }
+            .title{
+                font-size: 4rem;
+                font-weight: 500;
+                margin: auto;
+            }
+        }
+
+        .right{
+            padding: 1rem 0;
+            display: flex;
+            .icon{
+                padding: 0 1.5rem;
+                font-size: 2rem;
+                cursor: pointer;
+                margin: auto;
+            }
+            .line{
+                height: 3rem;
+                width: 0.1rem;
+                background-color: rgb(110, 104, 104);
+                margin: auto;
+            }
+            
+        }
+    }
+
+    .bottom{
+        margin-left: 27rem;
+        font-size: 1.3rem;
+        text-transform: capitalize;
+        .top-search{
+            width: 60rem;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            display: flex;
+            list-style: none;
+            li{
+                padding: 0.2rem 0.5rem;
+                cursor: pointer;
+            }
+        }
+    }
+
+}

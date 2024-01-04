@@ -1,13 +1,13 @@
 import React from 'react'
-import Footer from '../DefaultLayout/Footer'
+import Footer from '../components/Footer'
 import Header from './Header'
 
-const SpecialLayout = ({children}) => {
+const SpecialLayout = ({ children }) => {
   return (
     <div>
-        <Header/>
-        {children}
-        <Footer/>
+      <Header />
+      {children}
+      <Footer />
     </div>
   )
 }

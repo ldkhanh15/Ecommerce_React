@@ -1,11 +1,11 @@
 import React from 'react'
 import Header from '../components/Header'
-import Footer from '../DefaultLayout/Footer'
+import Footer from '../components/Footer'
 import styles from './AccountLayout.module.scss'
-import SideBar from './SideBar'
+import SideBar from '../components/SideBar'
 import classNames from 'classnames/bind'
 
-const cx=classNames.bind(styles)
+const cx = classNames.bind(styles)
 const AccountLayout = ({ children }) => {
   return (
     <>

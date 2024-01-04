@@ -5,24 +5,13 @@ import SuggestProduct from '../Product/SuggestProduct'
 import Introduce from './Introduce'
 import DetailCate from './Category/DetailCate'
 import Banner from './Banner'
-import { getUser } from '@/services/userService'
-
+import classNames from 'classnames/bind'
+import styles from './Home.module.scss'
+const cx=classNames.bind(styles)
 const Home = () => {
-  const [data, setData] = useState([]);
 
-  const getData = async () => {
-    try {
-      const res = await getUser();
-      console.log(res);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  console.log(data);
   return (
-    <div>
-      <button onClick={getData}>Click me</button>
+    <div className={cx('container')}>
       <Banner />
       <Category />
       <FlashSale />
