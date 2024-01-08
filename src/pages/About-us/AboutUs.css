@@ -1,0 +1,38 @@
+/* .yourList {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .parentLink {
+    position: relative;
+    margin-bottom: 10px;
+  }
+  
+  .childDiv {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .parentLink.hovered .childDiv {
+    display: block;
+  }
+  
+  .childChildDiv {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 100%;
+    background-color: #eee;
+    border: 1px solid #999;
+    padding: 10px;
+  }
+  
+  .childDiv:hover .childChildDiv {
+    display: block;
+  }
+   */

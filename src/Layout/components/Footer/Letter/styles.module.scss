@@ -1,0 +1,94 @@
+.container{
+    background: url('~/public/foot-back.png');
+    border-radius: 2rem;
+    position: relative;
+    width: 100%;
+    .main{
+        min-height: 40rem;
+        padding: 8.4rem 7.8rem;
+        h2{
+            font-size: 4rem;
+            color: rgb(37, 61, 78);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .text{
+            margin-top: 2rem;
+            color: rgb(126, 126, 126);
+            font-size: 1.8rem;
+            font-weight: 400;
+            span{
+                color: rgb(59, 183, 126);
+            }
+        }
+        form{
+            margin-top: 2rem;
+            display: flex;
+            .input{
+                position: relative;
+                border-top-left-radius: 5rem;
+                border-bottom-left-radius: 5rem;
+                background-color: #fff;
+                .icon{
+                    margin-left: 2.3rem;
+                    color: #7e7e7e;
+                    font-size: 1.6rem;
+                }
+                input{
+                    padding:2rem;
+                    font-size: 1.6rem;
+                    background-color: #fff;
+                }
+            }
+            .btn{
+                background-color: #fff;
+                border-top-right-radius: 5rem;
+                border-bottom-right-radius: 5rem;
+                button{
+                    color: #fff;
+                    background-color: rgb(59, 183, 126);
+                    padding: 2.2rem 4rem;
+                    border-radius: 5rem;
+                    cursor: pointer;
+                    font-size: 1.6rem;
+                }
+            }
+        }
+
+    }
+    .image{
+        position: absolute;
+        right: 5rem;
+        bottom: 0;
+        max-width: 40%;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+@media (width <768px){
+    .container{
+        .main{
+            padding: 8.4rem 4rem;
+            form{
+                .input{
+                    .icon{
+                        font-size: 1.3rem;
+                    }
+                    input{
+                        padding:1.5rem;
+                        font-size: 1.4rem;
+                    }
+                }
+                .btn{
+                    button{
+                        padding: 1.7rem 3rem;
+                        font-size: 1.4rem;
+                    }
+                }
+            }
+        }
+    }
+}

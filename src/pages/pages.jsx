@@ -1,0 +1,5 @@
+export {default as AboutUs} from './About-us/AboutUs'
+export {default as Home} from './Home/Home'
+export {default as MyAccount} from './MyAccount/MyAccount'
+export {default as WishList} from './WishList/WishList'
+export {default as OrderTracking} from './OrderTracking/OrderTracking'
