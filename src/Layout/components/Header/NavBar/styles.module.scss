@@ -1,102 +1,110 @@
-.container{
-    display: flex;
-    justify-content: space-between;
-    padding: 2rem 1rem;
-    border-bottom: 0.2rem solid #ececec;
-    position: relative;
-    .left{
+.nav{
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background-color: #fff;
+    .container{
         display: flex;
-        gap: 1rem;
-        padding: 1rem 0.5rem;
-        background-color: #3bb77e;
-        border-radius: 0.5rem;
-        align-items: center;
-        text-align: center;
-        cursor: pointer;
-        color: #fff;
-        &:hover{
-            background-color: #29a56c;
-        }
-        .icon{
-            font-size: 2rem;
-            margin-top: 0.3rem;
-        }
-        .text{
-            font-weight: 700;
-            font-size: 1.5rem;
-        }
-    }
-    .mid{
-        margin-right: 5rem;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        .btnDeal{
-            margin:0 3rem;
-            padding: 1rem;
+        justify-content: space-between;
+        padding: 2rem 1rem;
+        border-bottom: 0.2rem solid #ececec;
+        position: relative;
+        .left{
             display: flex;
-            gap: 0.5rem;
+            gap: 1rem;
+            padding: 1rem 0.5rem;
+            background-color: var(--primary);
+            border-radius: 0.5rem;
             align-items: center;
+            text-align: center;
+            cursor: pointer;
+            color: #fff;
             &:hover{
-                .text{
-                    a{
-                        color: #3bb77e;
-                    }
-                }
+                background-color: #29a56c;
             }
-            .image{
-
+            .icon{
+                font-size: 2rem;
+                margin-top: 0.3rem;
             }
             .text{
-                font-size: 1.6rem;
-                color: #253d4e;
                 font-weight: 700;
+                font-size: 1.5rem;
+            }
+        }
+        .mid{
+            margin-right: 5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            .btnDeal{
+                padding: 1rem 2rem;
+                display: flex;
+                gap: 0.5rem;
+                align-items: center;
+                &:hover{
+                    .text{
+                        a{
+                            color: var(--primary);
+                        }
+                    }
+                }
+                .image{
+                    flex: 1;
+                }
+                a.hot-deal{
+                    font-size: 1.6rem;
+                    color: var(--text);
+                    font-weight: 700;
+                }
                 
             }
-            
-        }
-        .navbar{
-          
-        }
-    }
-    .right{
-        display: flex;
-        margin-left: 5rem;
-        gap: 1rem;
-        .icon{
-
-        }
-        .info{
-            .main{
-                font-size: 2.3rem;
-                color: #3bb77e;
-                font-weight: 700;
+            .navbar{
+              
             }
-            .sub{
-                font-size: 1.2rem;
-                color: #7e7e7e;
-                font-weight: 500;
-                margin-top: 0.3rem;
+        }
+        .right{
+            display: flex;
+            margin-left: 5rem;
+            gap: 1rem;
+            .icon{
+    
+            }
+            .info{
+                .main{
+                    font-size: 2.3rem;
+                    color: var(--primary);
+                    font-weight: 700;
+                }
+                .sub{
+                    font-size: 1.2rem;
+                    color: #7e7e7e;
+                    font-weight: 500;
+                    margin-top: 0.3rem;
+                }
             }
         }
     }
 }
 
 @media (width < 1200px){
-    .container{
-        .left{
-            font-size: 1.5rem;
-        }
-        .mid{
-            margin-right: -5rem;
-        }
-        .right{
-            display: none;
+    .nav{
+        .container{
+            .left{
+                font-size: 1.5rem;
+            }
+            .mid{
+                margin-right: -5rem;
+            }
+            .right{
+                display: none;
+            }
         }
     }
 }
 @media (width < 992px) {
-    .container{
-        display: none;
-    }
+   .nav{
+        .container{
+            display: none;
+        }
+   }
 }

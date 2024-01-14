@@ -3,13 +3,13 @@
     gap: 4rem;
     .title {
       position: relative;
-      color: #253d4e;
+      color: var(--text);
       font-size: 1.6rem;
       font-weight: 700;
       padding: 1rem 0;
       &:hover{
         a{
-          color: #3bb77e;
+          color: var(--primary);
         }
       }
       .nav{
@@ -55,7 +55,7 @@
         h2{
           font-size: 1.9rem;
           font-weight: 700;
-          color: #3bb77e;
+          color: var(--primary);
           cursor: pointer;
         }
         ul{
@@ -67,7 +67,7 @@
             color: #7e7e7e;
             cursor: pointer;
             &:hover{
-              color: #3bb77e;
+              color: var(--primary);
             }
           }
         }
@@ -110,7 +110,7 @@
             padding: 1.4rem 1rem;
             border-radius: 2.6rem;
             font-size: 1.6rem;
-            background-color: #3bb77e;
+            background-color: var(--primary);
             text-align: center;
             color: #fff;
             font-weight: 700;
@@ -160,7 +160,7 @@
     transition: 0.5s;
     animation: up forwards 0.5s;
     &:hover{
-      color: #3bb77e;
+      color: var(--primary);
     }
     ul{
       display: flex;
@@ -178,7 +178,7 @@
         padding: 1rem;
         font-size: 1.4rem;
         &:hover{
-          color: #3bb77e;
+          color: var(--primary);
         }
       }
       .icon{
@@ -219,7 +219,7 @@
         padding: 1rem;
         font-size: 1.4rem;
         &:hover{
-          color: #3bb77e;
+          color: var(--primary);
         }
       }
     }

@@ -73,7 +73,7 @@ const cate = [
     },
     {
         title:'Mega Menu',
-        path:'/',
+        path:'/mega-menu',
         list:[
             {
                 title:'Fruit & Vegetables',
@@ -173,7 +173,7 @@ const cate = [
     },
     {
         title:'Blog',
-        path:'/',
+        path:'/blog',
         children:[
             {
                 title:'Blog Category Gird',
@@ -213,7 +213,7 @@ const cate = [
     },
     {
         title:'Pages',
-        path:'/',
+        path:'/pages',
         children:[
             {
                 title:'About Us',

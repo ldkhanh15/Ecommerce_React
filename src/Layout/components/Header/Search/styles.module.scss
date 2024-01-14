@@ -17,13 +17,13 @@
         .search{
             width: 45%;
             padding: 0.5rem;
-            border: 0.2rem solid #ececec;
+            // border: 0.2rem solid #ececec;
             display: flex;
             gap: 1rem;
             position: relative;
-            border: 0.2rem solid #bce3c9;
             border-radius: 0.5rem;
-    
+            border: 0.2rem solid #bce3c9;
+
             select{
                 border: none;
                 padding: 1rem 2rem;
@@ -34,14 +34,11 @@
                 text-indent: 1px;
                 text-overflow: '';
                 cursor: pointer;
-                &:checked,
-                &:focus{
-                    border: none;
-                }
             }
             .input{
                 padding: 1rem;
                 font-size: 1.5rem;
+                width: 70%;
             }
     
             .icon{
@@ -91,7 +88,7 @@
                         text-align: center;
                         font-weight: 500;
                         color: #fff;
-                        background-color: #3bb77e;
+                        background-color: var(--primary);
                     }
                 }
                 .text{
@@ -106,7 +103,12 @@
 }
 @media (width > 768px ) and (width < 992px){
     .search{
+        margin-top: 3.6rem;
+        position: fixed;
+        z-index: 999;
+        background-color: #fff;
         box-shadow: 0 2px 5px rgba(0,0,0,.07);
+        width: 100%;
         .container{
             width: 90%;
             margin: auto;

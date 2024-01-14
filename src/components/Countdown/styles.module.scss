@@ -1,0 +1,28 @@
+.container{
+    display: flex;
+    gap: 1rem;
+    .box{
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 1;
+        padding: 3rem;
+        background-color: #fff;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 0.5rem;
+        width: 5rem;
+        height: 5rem;
+        span{
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        .text{
+            color: #7e7e7e;
+            font-size: 1.6rem;
+        }
+    }
+}

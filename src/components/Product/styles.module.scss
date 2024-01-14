@@ -1,0 +1,276 @@
+.container{
+    border: 0.1rem solid #ececec;
+    border-radius: 1.5rem;
+    padding: 1rem 2rem;
+    box-sizing: border-box;
+    background-color: #fff;
+    width: 100%;
+    &:hover{
+        box-shadow: 0.5rem 0.5rem 1.5rem rgba(0,0,0,.05);
+         border: 0.1rem solid #bce3c9;
+         box-sizing: border-box;
+        .top{
+            .image-product{
+                .image1{
+                    display: none;
+                }
+                .image2{
+                    display: block;
+
+                }
+            }
+            .action{
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(-50%) translateY(-3rem);
+            }
+            
+        }
+    }
+    .top{
+        width: 100%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        .image-product{
+            position: relative;
+            max-width: 25rem;
+            min-height: 28rem;
+
+            img{
+                object-fit: contain;
+                width: 100%;
+                height: 100%;
+            }
+            .image1,
+            .image2{
+                transition: transform 0.5s ease-in-out;
+            }
+            .image1{
+            }
+            .image2{
+                display: none;
+            }
+        }
+        .info{
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            gap: 1rem;
+            .tooltip{
+                padding: 0.5rem 1.1rem;
+                width: fit-content;
+                border-radius: 5rem;
+                font-size: 1.3rem;
+                color: #fff;
+            }
+            .hot,
+            .discount{
+                background-color: #f74b81;
+            }
+            .sale{
+                background-color: #67bcee;
+            }
+            .new{
+                background-color: var(--primary);
+            }
+        }
+        .action{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            opacity: 0;
+            visibility: hidden;
+            transition: all .3s ease 0s;
+            z-index: 9;
+            box-shadow: 2rem 2rem 4rem rgba(0,0,0,.07);
+            background-color: #fff;
+            border-radius: 0.5rem;
+            transition: 0.5s;
+            .box{
+                width: 3.5rem;
+                height: 3.6rem;
+                text-align: center;
+                position: relative;
+                display: inline-block;
+                border-right: 0.1rem solid #bce3c9;
+                line-height: 4rem;
+                &::before{
+                     bottom:3.5rem;
+                     left: 50%;
+                     position: absolute;
+                     white-space: nowrap;
+                     border-radius: 0.5rem;
+                     font-size: 1.1rem;
+                     padding: 0.7rem 1rem;
+                     color: #fff;
+                     background-color: var(--primary);
+                     content: attr(aria-label);
+                     line-height: 1.3;
+                     transition-delay: .1s;
+                     box-shadow: 0.4rem 0.4rem 0.8rem rgba(0,0,0,.1);
+                     transition: opacity .3s ease,visibility .3s ease,transform .3s cubic-bezier(.71,1.7,.77,1.24);
+                     transform: translateX(-50%) translateY(0);
+                    opacity: 0;
+                    visibility: hidden;
+                }
+                &::after{
+                    content: "";
+                    position: absolute;
+                    left: calc(50% - 0.7rem);
+                    bottom: 100%;
+                    border: 0.7rem solid transparent;
+                    border-top-color: var(--primary);
+                    z-index: 9;
+                    margin-bottom: -1.3rem;
+                    transition-delay: .1s;
+                    transition: opacity .3s ease,visibility .3s ease,transform .3s cubic-bezier(.71,1.7,.77,1.24);
+                    opacity: 0;
+                    visibility: hidden;
+                }
+                &:hover{
+                    &::before{
+                        opacity: 1;
+                        visibility: visible;
+                        transform: translateX(-50%) translateY(-1rem);
+                    }
+                    &::after{
+                        opacity: 1;
+                        visibility: visible;
+                        transform: translateY(-1rem);
+                    }
+               }
+                .icon{
+                    color: var(--primary);
+                    transition: 0.5s;
+                    &:hover{
+                        color: var(--bgBtn);
+                        transform: translateY(-0.4rem);
+                    }
+                   
+                }
+            }
+        }
+    }
+    .bottom{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        .cate{
+            font-size: 1.2rem;
+            color: #adadad;
+            cursor: pointer;
+            &:hover{
+                color: var(--primary);
+            }
+        }
+        .name{
+            color:var(--text);
+            line-height: 1.2;
+            font-size: 1.6rem;
+            font-weight: 700;
+            cursor: pointer;
+            &:hover{
+                color: var(--primary);
+            }
+        }
+        .rating{
+            background: url('~/public/rating-star.png');
+            height: 1.2rem;
+            width: 6rem;
+            background-repeat: repeat-x;
+            background-position: 0 -1.2rem;
+            .star{
+                background: url('~/public/rating-star.png');
+                height: 1.2rem;
+                background-repeat: repeat-x;
+            }
+        }
+        .author{
+            font-size: 1.4rem;
+            color: #b6b6b6!important;
+            &:hover{
+                span{
+                    color: var(--bgBtn);
+                }
+            }
+            span{
+                color: var(--primary);
+                cursor: pointer;
+            }
+        }
+        .sale{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            .price{
+                display: flex;
+                justify-content: space-between;
+                .new-price{
+                    font-size: 1.8rem;
+                    color: var(--primary);
+                    font-weight: 700;
+                    line-height: 1.2;
+                }
+                .old-price{
+                    font-size: 1.4rem;
+                    color: #adadad;
+                    text-decoration: line-through;
+                    font-weight: 600;
+                }
+            }
+            .sold{
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                .total{
+                    width: 100%;
+                    height: 0.4rem;
+                    background-color: #e9ecef;
+                    .remain{
+                        background-color: var(--primary);
+                        height: 100%;
+                    }
+                }
+                .text{
+                    font-size: 1.5rem;
+                    font-weight: 500;
+                }
+            }
+            .disabled{
+                pointer-events: none;
+                cursor: not-allowed;
+                opacity: 0.5;
+            }
+        }
+        .info{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+            .new-price{
+                font-size: 1.8rem;
+                color: var(--primary);
+                font-weight: 700;
+                line-height: 1.2;
+            }
+            .old-price{
+                font-size: 1.4rem;
+                color: #adadad;
+                text-decoration: line-through;
+                font-weight: 600;
+            }
+            .btn{
+
+                button{
+
+                }
+            }
+        }
+
+    }
+}
+

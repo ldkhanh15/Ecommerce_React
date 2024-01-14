@@ -16,7 +16,7 @@ const Section = () => {
           </div>
           <div className={cx('detail')}>
             {info.map((item,index)=>(
-              <div className={cx('item')}>
+              <div key={index} className={cx('item')}>
                 <span className={cx('icon')}>
                   <img src={item.icon} alt="" />
                 </span>

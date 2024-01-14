@@ -4,6 +4,7 @@ import styles from './styles.module.scss'
 import { IoSearchOutline } from "react-icons/io5";
 import Modal from '../Mobile/Modal/Modal';
 import { BsList } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles)
 const Search = () => {
@@ -11,9 +12,9 @@ const Search = () => {
   return (
     <div className={cx('search')}>
       <div className={cx('container')}>
-        <div className={cx('logo')}>
+        <Link to={'/'} className={cx('logo')}>
           <img src="/logo.svg" alt="" />
-        </div>
+        </Link>
         <div className={cx('search')}>
           <select className={cx('cate')} name="category" id="">
             <option value="">All Categories</option>
@@ -24,18 +25,11 @@ const Search = () => {
           <input className={cx('input')} type="text" placeholder='Search' />
           <IoSearchOutline className={cx('icon')} />
         </div>
-        {/* <select name="location" className={cx('location')} id="">
-          <option value="">Your Location</option>
-          <option value="">Hồ Chí Minh</option>
-          <option value="">Hà Nội</option>
-          <option value="">Đà Nẵng</option>
-          <option value="">New York</option>
-        </select> */}
         <span className={cx('icon-nav')} onClick={() => setOpen(true)}>
           <BsList />
         </span>
         <div className={cx('action')}>
-          <div className={cx('item')} title='Compare'>
+          <Link to={'/compare'} className={cx('item')} title='Compare'>
             <span className={cx('icon')}>
               <img src="/icon-compare.svg" alt="" />
               <span className={cx('count')}>
@@ -46,8 +40,8 @@ const Search = () => {
               Compare
             </span>
 
-          </div>
-          <div className={cx('item')} title='WishList'>
+          </Link>
+          <Link to={'/wish-list'} className={cx('item')} title='WishList'>
             <span className={cx('icon')}>
               <img src="/icon-heart.svg" alt="" />
               <span className={cx('count')}>
@@ -58,8 +52,8 @@ const Search = () => {
               WishList
             </span>
 
-          </div>
-          <div className={cx('item')} title='Cart'>
+          </Link>
+          <Link to={'/cart'} className={cx('item')} title='Cart'>
             <span className={cx('icon')}>
               <img src="/icon-cart.svg" alt="" />
               <span className={cx('count')}>
@@ -70,7 +64,7 @@ const Search = () => {
               Cart
             </span>
 
-          </div>
+          </Link>
           <div className={cx('item')} title='Account'>
             <span className={cx('icon')}>
               <img src="/icon-user.svg" alt="" />

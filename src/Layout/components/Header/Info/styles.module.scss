@@ -38,7 +38,7 @@
         font-weight: 600;
         color: #7e7e7e;
         a{
-            color: #3bb77e;
+            color: var(--primary);
         }
     }
 
@@ -55,7 +55,7 @@
                     cursor: pointer;
                 }
                 .phone{
-                    color: #3bb77e;
+                    color: var(--primary);
                     font-weight: 600;
                 }
             }
@@ -63,8 +63,12 @@
     }
 }
 .top{
-    background-color: #3bb77e;
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    background-color: var(--primary);
     padding: 1rem;
+    margin-bottom: 5rem;
     .text{
         width: fit-content;
         margin: auto;

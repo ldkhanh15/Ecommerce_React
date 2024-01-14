@@ -7,7 +7,7 @@ const Feature = () => {
   return (
     <div className={cx('container')}>
       {data.map((item, index) => (
-        <div className={cx('item')}>
+        <div key={index} className={cx('item')}>
           <div className={cx('left')}>
             <img src={item.image} alt={item.title} />
           </div>

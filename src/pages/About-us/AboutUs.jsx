@@ -1,20 +1,23 @@
-import MenuHoverParent from '@/components/MenuHover/MenuHoveParent';
-import React, { useState } from 'react';
-import './AboutUs.css'; // Tên file CSS của bạn
+import React from 'react'
+import classNames from 'classnames/bind'
+import styles from './styles.module.scss'
+import Welcome from './components/Welcome/Welcome'
+import Provide from './components/Provide/Provide'
+import Performance from './components/Performance/Performance'
+import Statistical from './components/Statistical/Statistical'
+import OurTeam from './components/OurTeam/OurTeam'
 
-
+const cx = classNames.bind(styles)
 const AboutUs = () => {
-  const data = [
-    { id: 1, content: 'Thẻ cha 1', childContent: 'Nội dung thẻ con 1' },
-    { id: 2, content: 'Thẻ cha 2', childContent: 'Nội dung thẻ con 2' },
-    { id: 3, content: 'Thẻ cha 3', childContent: 'Nội dung thẻ con 3' },
-    // ...Thêm thêm dữ liệu nếu cần
-  ];
-
-
   return (
-    <MenuHoverParent data={data}/>
-  );
-};
+    <div className={cx('container')}>
+      <Welcome/>
+      <Provide/>
+      <Performance/>
+      <Statistical/>
+      <OurTeam/>
+    </div>
+  )
+}
 
-export default AboutUs;
+export default AboutUs

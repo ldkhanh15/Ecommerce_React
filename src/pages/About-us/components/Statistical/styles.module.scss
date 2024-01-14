@@ -1,0 +1,43 @@
+.container{
+    margin-top: 5rem;
+    width: 100%;
+    .data{
+        background: url('~/public//about-background.png') no-repeat 50%;
+        display: flex;
+        gap: 10rem;
+        padding: 10rem;
+        justify-content: center;
+        position: relative;
+        border-radius: 2rem;
+        text-align: center;
+        align-items: center;
+        &:after{
+            border-radius: 2rem;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #4b675a;
+            z-index: 2;
+            opacity: 0.8;
+        }
+        .item{
+            color: #ffffff;
+            position: relative;
+            z-index: 3;
+            h2{
+                font-size: 7.2rem;
+            }
+            p{
+                font-size: 2.4rem;
+            }
+        }
+    }
+}
+@media (width < 992px){
+    .container{
+        display: none;
+    }
+}

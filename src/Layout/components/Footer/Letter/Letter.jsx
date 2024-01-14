@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
-import { BsSend } from "react-icons/bs";
+import InputLetter from '@/components/InputLetter/InputLetter';
 
 const cx = classNames.bind(styles)
 const Letter = () => {
@@ -12,13 +12,7 @@ const Letter = () => {
         <div className={cx('text')}>
           Start You'r Daily Shopping with <span>Nest Mart</span>
         </div>
-        <form action="">
-          <div className={cx('input')}>
-            <span className={cx('icon')}><BsSend /></span>
-            <input type="text" placeholder='Your Email Address'/>
-          </div>
-          <div className={cx('btn')}><button>Subscribe</button></div>
-        </form>
+        <InputLetter/>
       </div>
       <div className={cx('image')}>
         <img src="/foot-banner.png" alt="" />
