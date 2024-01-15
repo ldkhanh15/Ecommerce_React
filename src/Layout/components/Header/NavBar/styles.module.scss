@@ -9,6 +9,59 @@
         padding: 2rem 1rem;
         border-bottom: 0.2rem solid #ececec;
         position: relative;
+        .modal{
+            position: absolute;
+            transition: 0.5s;
+            top: 100%;
+            left: 1rem;
+            box-shadow: 5px 5px 15px rgba(0,0,0,.05);
+            background-color: #fff;
+            border-radius: 2rem;
+            border: 0.1rem solid #bce3c9;
+            .main{
+                min-width: 4.2rem;
+                ul{
+                    display: grid;
+                    grid-template-columns: repeat(2,1fr);
+                    gap: 2rem;
+                    padding: 3rem;
+                    li{
+                        list-style: none;
+                        display: flex;
+                        gap: 1rem;
+                        align-items: center;
+                        padding: 0.9rem 1.8rem;
+                        border: 0.1rem solid #f2f3f4;
+                        border-radius: 0.5rem;
+                        cursor: pointer;
+                        height: 5rem;
+                        &:hover{
+                            border: 0.1rem solid #bce3c9;
+                            .content{
+                                color: var(--primary);
+                            }
+                        }
+                        .image{
+                            max-width: 3rem;
+                            img{
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                        .content{
+                            font-size: 1.4rem;
+                            line-height: 1.5;
+                            font-weight: 700;
+                            color: var(--text);
+                            &:hover{
+                                color: var(--text);
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
         .left{
             display: flex;
             gap: 1rem;
@@ -86,7 +139,7 @@
     }
 }
 
-@media (width < 1200px){
+@media (width <= 1200px){
     .nav{
         .container{
             .left{
@@ -101,7 +154,7 @@
         }
     }
 }
-@media (width < 992px) {
+@media (width <= 992px) {
    .nav{
         .container{
             display: none;

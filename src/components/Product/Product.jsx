@@ -74,7 +74,7 @@ const Product = ({ data, className }) => {
                                     ${data.newPrice}
                                 </span>
                                 <span className={cx('old-price')}>
-                                    ${data.oldPrice}
+                                    {data.oldPrice ? `$ ${data.oldPrice}` :''}
                                 </span>
                             </div>
                             <div className={cx('sold')}>
@@ -94,7 +94,7 @@ const Product = ({ data, className }) => {
                                 ${data.newPrice}
                             </span>
                             <span className={cx('old-price')}>
-                                ${data.oldPrice}
+                            {data.oldPrice ? `$${data.oldPrice}` :''}
                             </span>
                             <Button rightIcon={<CiShoppingCart />} outline small>Add</Button>
                         </div>

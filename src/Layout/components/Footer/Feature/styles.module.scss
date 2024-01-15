@@ -51,7 +51,7 @@
         }
     }
 }
-@media(width < 768px){
+@media(width <= 768px){
     .container{
         display: grid;
         grid-template-columns: repeat(2, 1fr);

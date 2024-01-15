@@ -62,12 +62,12 @@
     }
 }
 @media (width < 992px){
-    @media (width > 768px){
+    @media (width >= 768px){
         .container{
             padding: 5rem !important;
         }
     }
-    @media (width > 576px){
+    @media (width >= 576px){
         .container{
             padding: 3rem;
         }

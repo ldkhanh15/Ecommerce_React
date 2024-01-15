@@ -202,7 +202,7 @@
 .open{
     display: block;
 }
-@media (width <576px){
+@media (width <= 576px){
     .modal{
         .main-modal{
             width: 70%;

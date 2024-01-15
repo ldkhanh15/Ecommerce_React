@@ -31,7 +31,7 @@ form{
         }
     }
 }
-@media(width < 768px){
+@media(width <= 768px){
     form{
         .input{
             .icon{

@@ -17,7 +17,7 @@ const MenuHoverParent = ({ data }) => {
             onMouseEnter={() => setHoveredId(index)}
             onMouseLeave={() => setHoveredId(null)}
           >
-            <NavLink exact to={item.path} className={cx('nav')}>
+            <NavLink exact="true" to={item.path} className={cx('nav')}>
               <p>{item.title}</p>
               <span>{item.children && <MdKeyboardArrowDown />}</span>
             </NavLink>

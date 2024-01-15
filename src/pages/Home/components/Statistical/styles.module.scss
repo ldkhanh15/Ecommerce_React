@@ -36,7 +36,7 @@
         }
     }
 }
-@media (width < 768px) and (width > 576px){
+@media (width <= 768px) and (width > 576px){
     .container{
         .item{
             width: 50%;
@@ -47,7 +47,7 @@
         }
     }
 }
-@media  (width < 576px){
+@media  (width <= 576px){
     .container{
         .item{
             width: 100%;

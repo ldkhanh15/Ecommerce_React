@@ -12,7 +12,7 @@ const OurTeam = () => {
             <h2>Our Team</h2>
             <div className={cx('main')}>
                 <div className={cx('left')}>
-                    <span>Our Team</span>
+                    <span className={cx('our-team')}>Our Team</span>
                     <h3>Meet Our Expert Team</h3>
                     <p>
                         Proin ullamcorper pretium orci. Donec necscele risque leo. Nam massa dolor imperdiet neccon sequata congue idsem. Maecenas malesuada faucibus finibus.
@@ -27,13 +27,15 @@ const OurTeam = () => {
                             <img src="/about-6.png" alt="" />
                         </div>
                         <div className={cx('bottom')}>
-                            <h4>H. Merinda</h4>
-                            <span className={cx('desc')}>CEO & Co-Founder</span>
-                            <div className={cx('icon')}>
-                                <FaFacebookF />
-                                <FaTwitter />
-                                <FaInstagram />
-                                <FaYoutube />
+                            <div className={cx('box')}>
+                                <h4>H. Merinda</h4>
+                                <span className={cx('desc')}>CEO & Co-Founder</span>
+                                <div className={cx('icon')}>
+                                    <FaFacebookF />
+                                    <FaTwitter />
+                                    <FaInstagram />
+                                    <FaYoutube />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -42,13 +44,15 @@ const OurTeam = () => {
                             <img src="/about-8.png" alt="" />
                         </div>
                         <div className={cx('bottom')}>
-                            <h4>H. Merinda</h4>
-                            <span className={cx('desc')}>CEO & Co-Founder</span>
-                            <div className={cx('icon')}>
-                                <FaFacebookF />
-                                <FaTwitter />
-                                <FaInstagram />
-                                <FaYoutube />
+                            <div className={cx('box')}>
+                                <h4>H. Merinda</h4>
+                                <span className={cx('desc')}>CEO & Co-Founder</span>
+                                <div className={cx('icon')}>
+                                    <FaFacebookF />
+                                    <FaTwitter />
+                                    <FaInstagram />
+                                    <FaYoutube />
+                                </div>
                             </div>
                         </div>
                     </div>

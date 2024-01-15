@@ -3,8 +3,8 @@
     width: 100%;
     .data{
         background: url('~/public//about-background.png') no-repeat 50%;
-        display: flex;
-        gap: 10rem;
+        display: grid;
+        grid-template-columns: repeat(5,1fr);
         padding: 10rem;
         justify-content: center;
         position: relative;
@@ -32,12 +32,24 @@
             }
             p{
                 font-size: 2.4rem;
+                font-weight: 700;
             }
         }
     }
 }
-@media (width < 992px){
+@media (width < 992px) and (width >= 768px){
     .container{
-        display: none;
+        .data{
+            grid-template-columns: repeat(2,1fr);
+            gap: 10rem;
+        }
+    }
+}
+@media (width < 768px){
+    .container{
+        .data{
+            grid-template-columns: repeat(1,1fr);
+            gap: 10rem;
+        }
     }
 }
