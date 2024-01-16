@@ -101,6 +101,45 @@ input,button{
     background-color: #f2fce4!important
 }
 
+//input-range-customize
+.input-range {
+    width: 100%;
+    margin-bottom: 2rem;
+    padding: 1rem;
+  }
+  
+  .input-range__track--background {
+    background: #e0e0e0;
+  }
+  
+  .input-range__track--active {
+    background-color: #abe2fb;
+}
+
+.input-range__slider {
+    background: #fff;
+    border: 0.2rem solid #2196f3;
+    height: 1.4rem;
+    width: 1.4rem;
+    margin-top: -0.6rem;
+    cursor: grab;
+  }
+.input-range__slider:active{
+    box-shadow: 0 0 0.5rem #57c5f7;
+    transform: scale(1);
+}  
+
+  .input-range__label {
+    display: none;
+  }
+  
+  .input-range__label--value {
+    color: #2196f3;
+    font-weight: bold;
+    font-size: 1.6rem;
+    display: block;
+    top: -2.2rem;
+  }
   
   
   

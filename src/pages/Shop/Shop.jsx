@@ -6,19 +6,24 @@ import NewProduct from '@/components/NewProduct/NewProduct'
 import { BiCategory } from "react-icons/bi";
 import { FaSort } from "react-icons/fa";
 import Product from '@/components/Product/Product'
-
+import InputRange from 'react-input-range'
+import 'react-input-range/lib/css/index.css';
 
 const cx = classNames.bind(styles)
 
 const Shop = () => {
-  const [rangeValues, setRangeValues] = useState([0, 50]);
-
-  const handleRangeChange = (e) => {
-    setRangeValues([
-      parseInt(e.target.value.split(',')[0], 10),
-      parseInt(e.target.value.split(',')[1], 10),
-    ]);
-  };
+  const [con, setCon] = useState(0);
+  let initState = [];
+  // eslint-disable-next-line array-callback-return
+  color.map((value, index) => {
+    initState[index] = false;
+  })
+  const [col, setCol] = useState([initState]);
+  const [state, setState] = useState({ min: 0, max: 100 })
+  const handleCheckbox = (index) => {
+    col[index] = !col[index];
+    setCol([...col])
+  }
   return (
     <div className={cx('container')}>
       <div className={cx('side-bar')}>
@@ -47,10 +52,13 @@ const Shop = () => {
             Fill by price
           </h3>
           <div className={cx('price')}>
-            <input value={`${rangeValues[0]},${rangeValues[1]}`} onChange={handleRangeChange} type="range" name='max-price' min={0} max={500} step={1} />
-            <p>
-              Range Values: {rangeValues[0]} - {rangeValues[1]}
-            </p>
+            <InputRange
+              maxValue={500}
+              minValue={0}
+              value={state}
+              step={1}
+              onChange={value => setState({ ...value })}
+            />
           </div>
           <div className={cx('color')}>
             <p className={cx('title')}>
@@ -58,9 +66,9 @@ const Shop = () => {
             </p>
             <div className={cx('input')}>
               {color.map((item, index) => (
-                <div className={cx('input-checkbox')}>
-                  <input key={index} className={cx('item')} value={item.title} name="color" type="checkbox" />
-                  <label htmlFor="color">{item.title}</label>
+                <div key={index} className={cx('input-checkbox')}>
+                  <input onChange={(e) => console.log(e.target.value)} id={item.name} className={cx('item')} value={item.title} name="color" type="checkbox" />
+                  <label className={col[index] === true ? cx('active') : ''} onClick={() => handleCheckbox(index)} htmlFor={item.name}>{item.title}</label>
                 </div>
               ))}
             </div>
@@ -71,7 +79,7 @@ const Shop = () => {
             </p>
             <div className={cx('detail')}>
               {condition.map((item, index) => (
-                <div key={index} className={cx('item')} >{item.title}</div>
+                <div key={index} onClick={() => setCon(index)} className={con === index ? cx('item', 'active') : cx('item')} >{item.title}</div>
               ))}
             </div>
           </div>
@@ -120,7 +128,7 @@ const Shop = () => {
                 <option value="">15</option>
               </select>
             </div>
-            <div className={cx('sort')}>
+            <div className={cx('show')}>
               <div className={cx('content')}>
                 <FaSort className={cx('icon')} />
                 <div className={cx('text')}>
@@ -141,7 +149,13 @@ const Shop = () => {
           ))}
         </div>
         <div className={cx('navigation')}>
-
+            <ul>
+              <li className={cx('active')}>1</li>
+              <li>2</li>
+              <li>3</li>
+              <li>4</li>
+              <li>51</li>
+            </ul>
         </div>
       </div>
     </div>

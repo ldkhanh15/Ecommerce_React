@@ -29,7 +29,7 @@ const Search = () => {
           <BsList />
         </span>
         <div className={cx('action')}>
-          <Link to={'/compare'} className={cx('item')} title='Compare'>
+          <Link to={'/shop/compare'} className={cx('item')} title='Compare'>
             <span className={cx('icon')}>
               <img src="/icon-compare.svg" alt="" />
               <span className={cx('count')}>
@@ -41,7 +41,7 @@ const Search = () => {
             </span>
 
           </Link>
-          <Link to={'/wish-list'} className={cx('item')} title='WishList'>
+          <Link to={'/shop/wish-list'} className={cx('item')} title='WishList'>
             <span className={cx('icon')}>
               <img src="/icon-heart.svg" alt="" />
               <span className={cx('count')}>
@@ -53,7 +53,7 @@ const Search = () => {
             </span>
 
           </Link>
-          <Link to={'/cart'} className={cx('item')} title='Cart'>
+          <Link to={'/shop/cart'} className={cx('item')} title='Cart'>
             <span className={cx('icon')}>
               <img src="/icon-cart.svg" alt="" />
               <span className={cx('count')}>

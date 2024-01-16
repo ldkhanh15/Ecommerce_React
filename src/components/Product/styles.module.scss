@@ -273,4 +273,43 @@
 
     }
 }
+@media (width < 992px) and (width > 768px){
+    .container{
+        padding: 1rem;
+        .top{
+            .image-product{
+                max-width: 20rem;
+                min-height: 25rem;
+            }
+            .info{
+                gap: 0.5rem;
+                .tooltip{
+                    padding: 0.6rem 0.8rem;
+                    font-size: 1.3rem;
+                }
+            }
+        }
+        .bottom{
+            .name{
+                font-size: 1.5rem;
+            }
+            .author{
+                font-size: 1.35rem;
 
+            }
+            .sale{
+                gap: 0.5rem;
+            }
+            .info{
+                .new-price{
+                    font-size: 1.6rem;
+
+                }
+                .old-price{
+                    font-size: 1.4rem;
+                }
+            }
+            
+        }
+    }
+}
