@@ -2,9 +2,11 @@ import React from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import { GoTrash } from "react-icons/go";
+import useScrollToTop from '@/hooks/useScrollToTop';
 
 const cx = classNames.bind(styles)
 const WishList = () => {
+  useScrollToTop()
   return (
     <div className={cx('container')}>
       <div className={cx('main')}>
@@ -30,7 +32,7 @@ const WishList = () => {
                       Angie's Boomchickapop Sweet & Salty
                     </div>
                     <div className={cx('rating')}>
-                      <div className={cx('star')}></div>
+                      <div style={{width:'45%'}} className={cx('star')}></div>
                     </div>
 
                   </div>
@@ -65,7 +67,7 @@ const WishList = () => {
                       Angie's Boomchickapop Sweet & Salty
                     </div>
                     <div className={cx('rating')}>
-                      <div className={cx('star')}></div>
+                      <div className={cx('star')} style={{width:'75%'}}></div>
                     </div>
 
                   </div>

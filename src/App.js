@@ -1,10 +1,13 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, unstable_HistoryRouter } from 'react-router-dom'
 import { privateRoutes, publicRoutes } from '@/routes/routes'
 import DefaultLayout from './Layout/DefaultLayout/DefaultLayout';
+
 function App() {
+
   return (
     <Router>
       <div className="App">
+
         <Routes>
           {publicRoutes.map((route) => {
             const Page = route.component;

@@ -1,16 +1,48 @@
 .container{
-    padding: 5rem 10rem;
+    padding:5rem 10rem;
+    .header{
+        
+        .title{
+            margin-bottom: 2rem;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--text);
+
+        }
+        .sub-title{
+            display: flex;
+            margin-bottom: 3rem;
+            justify-content: space-between;
+            .left{
+                font-size: 1.6rem;
+                color: #7e7e7e;
+                font-weight: 600;
+            }
+            .right{
+                display: flex;
+                gap: 1rem;
+                color: #7e7e7e;
+                font-weight: 600;
+                cursor: pointer;
+                .icon{
+                    font-size: 2rem;
+                }
+                .text{
+                    font-size: 1.8rem;
+                }
+            }
+        }
+    }
     .main{
         width: 100%;
         overflow-x: auto;
         table{
             width: 100%;
             thead{
-
                 tr{
                     td{
                         text-align: center;
-                        font-size: 1.7rem;
+                        font-size: 1.8rem;
                         color: var(--text);
                         background-color: #ececec;
                         padding: 2rem;
@@ -53,7 +85,7 @@
                                 gap: 1rem;
                                 cursor: pointer;
                                 .name{
-                                    font-size: 1.6rem;
+                                    font-size: 1.8rem;
                                     font-weight: 700;
                                     color: var(--text);
                                 }
@@ -71,94 +103,139 @@
                         }
                     }
                     .price{
-                        font-size: 3.2rem;
+                        font-size: 3rem;
                         color: var(--primary);
                         font-weight: 700;
                     }
-                    .status-stock{
-                        font-size: 1.4rem;
-                        .in-stock,
-                        .out-stock{
-                            margin: auto;
-                            padding: 1rem;
-                            border: 0.1rem solid #ececec;
-                            width: fit-content;
+                    .quantity{
+                        input{
+                            text-align: center;
+                            width: 30%;
+                            padding: 1rem;  
                             border-radius: 0.5rem;
-                            font-weight: 600;
-                            cursor: pointer;
-                        }
-                        .in-stock{
-                            color: #3bb77e;
-                            background-color: #def9ec;
-                            &:hover{
-                                background-color: #cef7e2;
-                            }
-                        }
-                        .out-stock{
-                            color: #f74b81;
-                            background-color: #fde0e9;
-                            &:hover{
-                                background-color: #f7cedb;
-                            }
+                            border: 0.2rem  solid var(--primary);
+                            color: var(--primary);
+                            font-size: 1.6rem;
+                            font-weight: 700;
                         }
                     }
-                    .action{
-                        font-size: 1.4rem;
-                        .add,
-                        .contact{
-                            width: fit-content;
-                            padding: 1rem;
-                            border: 0.1rem solid #3bb77e;
-                            border-radius: 0.5rem;
-                            font-size: 1.3rem;
-                            font-weight: 700;
-                            color: #fff;
-                            cursor: pointer;
-                        }
-                        .add{
-                            background-color: var(--primary);
-                            border-color: var(--primary);
-                            &:hover{
-                                background-color: #399c6e;
-                            }
-                        }
-
-                        .contact{
-                            background-color: #3e5379;
-                            border-color: #3e5379;
-                            &:hover{
-                                background-color: #273b5f;
-                            }
-                        }
+                    .sub-total{
+                        font-size: 3rem;
+                        color: #7e7e7e;
+                        font-weight: 600;
                     }
                     .trash{
+                        font-size: 2rem;
                         cursor: pointer;
-                       .icon{
-                        font-size: 3rem;
-                       } 
                     }
+
                 }
             }
         }
+    }
+    .footer{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 2rem 0;
+        width: 100%;
         .clear{
+            display: flex;
+            gap: 1rem;
             color: #7e7e7e;
-            font-weight: 400;
-            font-size: 1.5rem;
             cursor: pointer;
+            .icon{
+                font-size: 1.5rem;
+                
+            }
+            .text{
+                font-size: 1.6rem;
+                font-weight: 600;
+            }
+        }
+        .shopping{
+            width: 20%;
+            
+        }
+        .line{
+            position: relative;
+            padding: 2rem 0;
+            width: 100%;
+            &::before{
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 48%;
+                height: 0.3rem;
+                background-color: #ececec;
+            }
+            &::after{
+                content: '';
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                width: 48%;
+                height: 0.3rem;
+                background-color: #ececec;
+            }
+            .icon{
+                width: 4%;
+                font-size: 2.5rem;
+                color: #7e7e7e;
+                position: absolute;
+                bottom: -0.5rem;
+                left: 48%;
+            }
         }
     }
 }
 @media (width < 992px) and (width > 768px){
     .container{
-        padding: 5rem;
+        padding: 5rem 3rem;
+        @media (width <= 576px){
+            .container{
+                padding: 5rem 1rem;
+            }
+        }
+        .header{
+        
+            .title{
+                font-size: 3.5rem;
+    
+            }
+            .sub-title{
+                .left{
+                    font-size: 1.6rem;
+                    width: 70%;
+                }
+                .right{
+                    gap: 0.8rem;
+                    .icon{
+                        font-size: 1.7rem;
+                    }
+                    .text{
+                        font-size: 1.7rem;
+                    }
+                }
+            }
+        }
         .main{
             table{
                 thead{
 
                     tr{
                         td{
-                            font-size: 1.6rem;
+                            font-size: 1.7rem;
                             padding: 1.3rem;
+                            &:nth-child(1){
+                                border-top-left-radius: 1.3rem;
+                                border-bottom-left-radius: 1.3rem;
+                            }
+                            &:nth-child(5){
+                                border-top-right-radius: 1.3rem;
+                                border-bottom-right-radius: 1.3rem;
+                            }
                         }
                     }
                 }
@@ -175,12 +252,20 @@
                                 }
                                 .right{
                                     .name{
-                                        font-size: 1.6rem;
+                                        font-size: 1.7rem;
                                     }
                                 }
                             }
                         }
                         .price{
+                            font-size: 2.5rem;
+                        }
+                        .quantity{
+                            input{
+                                width: 40%;
+                            }
+                        }
+                        .sub-total{
                             font-size: 2.5rem;
                         }
                     }
@@ -189,12 +274,34 @@
         }
     }
 }
-@media (width <=768px ){
+@media (width <= 768px){
     .container{
         padding: 5rem 3rem;
         @media (width <= 576px){
             .container{
-                padding:5rem 1rem !important;
+                padding: 5rem 1rem;
+            }
+        }
+        .header{
+        
+            .title{
+                font-size: 3.5rem;
+    
+            }
+            .sub-title{
+                .left{
+                    font-size: 1.45rem;
+                    width: 70%;
+                }
+                .right{
+                    gap: 0.5rem;
+                    .icon{
+                        font-size: 1.5rem;
+                    }
+                    .text{
+                        font-size: 1.5rem;
+                    }
+                }
             }
         }
         .main{
@@ -235,7 +342,15 @@
                             }
                         }
                         .price{
-                            font-size: 2.3rem;
+                            font-size: 2rem;
+                        }
+                        .quantity{
+                            input{
+                                width: 50%;
+                            }
+                        }
+                        .sub-total{
+                            font-size: 2rem;
                         }
                     }
                 }

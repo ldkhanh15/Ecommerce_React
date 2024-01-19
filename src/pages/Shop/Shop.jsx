@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import { thumbnail, color, condition, cate, product } from './data'
@@ -8,10 +8,12 @@ import { FaSort } from "react-icons/fa";
 import Product from '@/components/Product/Product'
 import InputRange from 'react-input-range'
 import 'react-input-range/lib/css/index.css';
+import useScrollToTop from '@/hooks/useScrollToTop'
 
 const cx = classNames.bind(styles)
 
 const Shop = () => {
+  useScrollToTop()
   const [con, setCon] = useState(0);
   let initState = [];
   // eslint-disable-next-line array-callback-return

@@ -22,7 +22,7 @@ const Info = () => {
                         <ul>
                             <li><Link to={'/about-us'}>About Us</Link></li>
                             <li><Link to={'/my-account'}>My Account</Link></li>
-                            <li><Link to={'/wish-list'}>WishList</Link></li>
+                            <li><Link to={'/shop/wish-list'}>WishList</Link></li>
                             <li><Link to={'/order-tracking'}>Order Tracking</Link></li>
                             <li><Link to={'/seller/login'}>Become Seller</Link></li>
                         </ul>

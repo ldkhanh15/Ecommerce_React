@@ -7,9 +7,11 @@ import Category from './components/Category/Category';
 import PopularProduct from './components/PopularProduct/PopularProduct';
 import BestSale from './components/BestSale/BestSale';
 import DealToday from './components/DealToday/DealToday';
+import useScrollToTop from '@/hooks/useScrollToTop';
 
 const cx=classNames.bind(styles);
 const Home = () => {
+  useScrollToTop()
   return (
     <div className={cx('container')}>
       <Banner/>

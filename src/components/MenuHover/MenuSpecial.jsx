@@ -3,7 +3,6 @@ import styles from './styles.module.scss'; // Import file CSS
 import classNames from 'classnames/bind';
 const cx = classNames.bind(styles)
 const MenuSpecial = ({ data }) => {
-    console.log(data);
     return (
         <>
             {data &&
@@ -14,7 +13,7 @@ const MenuSpecial = ({ data }) => {
                                 <h2>{item.title}</h2>
                                 <ul>
                                     {item.children.map((child, index) => (
-                                        <li>{child.title}</li>
+                                        <li key={index}>{child.title}</li>
                                     ))}
                                 </ul>
                             </div>
