@@ -29,11 +29,11 @@ const LoginBuy = () => {
             </div>
           </div>
           <div className={cx('action')}>
-            <div className={cx('left')}>
+            <div className={cx('left-action')}>
               <input type="checkbox" id='remember' />
               <label onClick={()=>setMember(!member)} className={member ? cx('active') : ''} htmlFor="remember">Remember me</label>
             </div>
-            <div className={cx('right')}>
+            <div className={cx('right-action')}>
               Forgot Password ?
             </div>
           </div>
