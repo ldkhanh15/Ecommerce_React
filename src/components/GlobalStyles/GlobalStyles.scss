@@ -41,6 +41,10 @@ input,button{
     border: none;
     outline: none;
 }
+::selection {
+    background:var(--primary);
+    color:rgb(245, 241, 241);
+    }
 .bg-1 {
     background-color: #fddde4!important
 }

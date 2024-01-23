@@ -5,7 +5,8 @@ import { IoSearchOutline } from "react-icons/io5";
 import Modal from '../Mobile/Modal/Modal';
 import { BsList } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-
+import MenuHoverChild from '@/components/MenuHover/MenuHoverChild';
+import data from './data'
 const cx = classNames.bind(styles)
 const Search = () => {
   const [open, setOpen] = useState(false)
@@ -72,6 +73,22 @@ const Search = () => {
             <span className={cx('text')}>
               Account
             </span>
+            <div className={cx('modal')}>
+              <Link to={'/my-account'} className={cx('main')}>
+                {
+                  data.map((item, index) => (
+                    <div key={index} className={cx('item-modal')}>
+                      <div className={cx('icon')}>
+                        {item.icon}
+                      </div>
+                      <div className={cx('text')}>
+                        {item.title}
+                      </div>
+                    </div>
+                  ))
+                }
+              </Link>
+            </div>
           </div>
         </div>
       </div>

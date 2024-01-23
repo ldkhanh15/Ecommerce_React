@@ -43,6 +43,9 @@ const RegisterSell = () => {
           <div className={cx('btn')}>
             <button type='submit'>Submit & Register</button>
           </div>
+          <div className={cx('note')}>
+            <span> Note:</span> Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy
+          </div>
         </form>
       </div>
       <div className={cx('right')}>

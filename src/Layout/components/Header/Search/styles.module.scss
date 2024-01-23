@@ -72,11 +72,23 @@
             display: flex;
             gap: 1rem;
             margin-left: 2rem;
+            position: relative;
+            padding: 1rem 0;
             .item{
-    
+
+                &:nth-child(4){
+                    cursor: pointer;
+                    padding-bottom: 1rem;
+                    &:hover{
+                        .modal{
+                            display: block;
+                        }
+                    }
+                }
                 .icon{
                     cursor: pointer;
                     position: relative;
+
                     .count{
                         position: absolute;
                         top: -1.7rem;
@@ -96,6 +108,50 @@
                     color: #7e7e7e;
                     font-weight: 500;
                     margin-left: 0.2rem;
+                }
+                .modal{
+                    display: none;
+                    top: 80%;;
+                    right: 0;
+                    position: absolute;
+                    z-index: 99999999;
+
+                    .main{
+                        box-shadow: 5px 5px 15px rgba(0,0,0,.05);
+                        padding: 2rem;
+                        border: 0.1rem solid #ececec;
+                        border-radius: 1rem;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1rem;
+                        background-color: #fff;
+                        box-sizing: border-box;
+                        .item-modal{
+                            display: flex;
+                            gap: 1.5rem;
+                            color: #7e7e7e;
+                            align-items: center;
+                            cursor: pointer;
+                            padding: 0.5rem 1.5rem;
+                            box-sizing: border-box;
+                            border: 0.1rem solid transparent;
+                            &:hover{
+                                border-color: #ececec;
+                                border-radius: 0.7rem;
+                                color: var(--primary);
+                                .text{
+                                    color: var(--primary);
+                                }
+                            }
+                            .icon{
+                                font-size: 2rem;
+                            }
+                            .text{
+                                font-weight: 500;
+
+                            }
+                        }
+                    }
                 }
             }
         }

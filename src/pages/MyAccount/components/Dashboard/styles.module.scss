@@ -1,0 +1,24 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 4rem;
+    .header{
+        font-size: 3.5rem;
+        font-weight: 700;
+        color:var(--text);
+    }
+    .footer{
+        width: 75%;
+        p{
+            color:#7e7e7e;
+            font-weight: 500;
+            font-size: 1.5rem;
+            line-height: 1.8;
+            strong{
+                font-weight: 500;
+                color: var(--primary);
+            }
+        }
+    }
+}

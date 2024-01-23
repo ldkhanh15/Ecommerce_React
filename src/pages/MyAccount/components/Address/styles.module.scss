@@ -1,0 +1,88 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    .header{
+        h3{
+            font-size: 700px;
+            color: var(--text);
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+        }
+        p{
+            color: #7e7e7e;
+            font-weight: 500;
+            font-size: 1.4rem;
+        }
+
+    }
+    table{
+        width: 100%;
+        thead{
+            font-weight: 700 ;
+            font-size: 1.4rem ;
+            color: #fff;
+            background-color: var(--primary);
+        }
+        tbody{
+            font-size: 1.3rem;
+            font-weight: 500 !important;
+            color: #7e7e7e;
+        }
+        tr,th{
+            border: 0.1rem solid #ececec;
+            padding: 1rem;
+            justify-content: center;
+            align-items: center;
+            label{
+                position: relative;
+                &::before,
+                &:after{
+                    content: '';
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    border-radius: 50%;
+                    border: 0.1rem solid var(--primary);
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    
+                }
+                &:before{
+                }
+                &:after{
+                    opacity: 0;
+                    transform: scale(0.75);
+                    background-color: var(--primary);
+                }
+            }
+            label.active{
+                &:after{
+                    opacity: 1;
+                }
+            }
+            input{
+                display: none;
+            }
+        }
+        .action{
+            display: flex;
+            gap: 0.5rem;
+            button{
+                padding: 0.5rem;
+                border: 0.1rem solid #ececec;
+                border-radius: 0.5rem;
+                cursor: pointer;
+                color: #fff;
+                font-weight: 700;
+                &:nth-child(1){
+                    background-color: var(--primary);
+                    
+                }
+                &:nth-child(2){
+                    background-color: red;
+                }
+            }
+        }
+    }
+}

@@ -42,6 +42,9 @@ const RegisterBuy = () => {
           <div className={cx('btn')}>
             <button type='submit'>Submit & Register</button>
           </div>
+          <div className={cx('note')}>
+            <span> Note:</span> Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy
+          </div>
         </form>
       </div>
       <div className={cx('right')}>
@@ -79,17 +82,18 @@ const RegisterBuy = () => {
           </p>
           <div className={cx('image')}>
             <div className={cx('item')} title="Login with Facebook">
-              <FaFacebook className={cx('icon')}/>
+              <FaFacebook className={cx('icon')} />
             </div>
             <div className={cx('item')} title="Login with Google">
               <img src="/logo-google.svg" alt="" />
             </div>
             <div className={cx('item')} title="Login with Apple">
-              <BsApple className={cx('icon')}/>
+              <BsApple className={cx('icon')} />
             </div>
           </div>
         </div>
       </div>
+
     </div>
   )
 }
