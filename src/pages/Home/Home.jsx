@@ -8,6 +8,7 @@ import PopularProduct from './components/PopularProduct/PopularProduct';
 import BestSale from './components/BestSale/BestSale';
 import DealToday from './components/DealToday/DealToday';
 import useScrollToTop from '@/hooks/useScrollToTop';
+import ModalProduct from '@/components/ModalProduct/ModalProduct';
 
 const cx=classNames.bind(styles);
 const Home = () => {

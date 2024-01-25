@@ -77,14 +77,14 @@ const Search = () => {
               <Link to={'/my-account'} className={cx('main')}>
                 {
                   data.map((item, index) => (
-                    <div key={index} className={cx('item-modal')}>
+                    <Link to={item.path} key={index} className={cx('item-modal')}>
                       <div className={cx('icon')}>
                         {item.icon}
                       </div>
                       <div className={cx('text')}>
                         {item.title}
                       </div>
-                    </div>
+                    </Link>
                   ))
                 }
               </Link>

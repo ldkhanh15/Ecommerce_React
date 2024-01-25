@@ -6,23 +6,29 @@ import { RiHome4Line } from "react-icons/ri";
 const data = [
     {
         icon: <FiUser />,
-        title: 'My Account'
+        title: 'My Account',
+        path:'/my-account'
     },
     {
         icon: <MdOutlineLocationOn />,
-        title: 'Order Tracking'
+        title: 'Order Tracking',
+        path:'/order-tracking'
     },
     {
         icon: <RiHome4Line />,
-        title: 'My Voucher'
+        title: 'My Voucher',
+        path:'/my-account/my-voucher'
     },
     {
         icon: <BiHeart />,
-        title: 'My WishList'
+        title: 'My WishList',
+        path:'/shop/wish-list'
     },
     {
         icon: <CiSettings />,
-        title: 'Settings'
+        title: 'Settings',
+        path:'/settings'
+
     },
     {
         icon: <MdLogout />,

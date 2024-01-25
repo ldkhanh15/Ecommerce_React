@@ -36,6 +36,7 @@
             align-items: center;
             label{
                 position: relative;
+                cursor: pointer;
                 &::before,
                 &:after{
                     content: '';
@@ -46,7 +47,6 @@
                     position: absolute;
                     top: 0;
                     left: 0;
-                    
                 }
                 &:before{
                 }

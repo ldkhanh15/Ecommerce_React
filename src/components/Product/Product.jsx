@@ -6,10 +6,11 @@ import { CiShoppingCart } from "react-icons/ci";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { FaRegHeart } from "react-icons/fa";
 import { FaRandom } from "react-icons/fa";
+import ModalProduct from '../ModalProduct/ModalProduct';
 
 const cx = classNames.bind(styles)
 const Product = ({ data, className }) => {
-
+    const [open,setOpen]=useState(false)
     return (
         <div className={cx('container', { [className]: className, })}>
             <div className={cx('top')}>
@@ -40,7 +41,7 @@ const Product = ({ data, className }) => {
                     }
                 </div>
                 <div className={cx('action')}>
-                    <a href='/' aria-label='Quick view' className={cx('box')}>
+                    <a onClick={()=>setOpen(true)} aria-label='Quick view' className={cx('box')}>
                         <MdOutlineRemoveRedEye className={cx('icon')} />
                     </a>
                     <a href='/' aria-label='Add to WishList' className={cx('box')}>
@@ -100,6 +101,7 @@ const Product = ({ data, className }) => {
                         </div>
                 }
             </div>
+            <ModalProduct open={open} setOpen={setOpen} />
         </div>
     )
 }
