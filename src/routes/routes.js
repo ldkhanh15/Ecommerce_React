@@ -20,6 +20,7 @@ import {
     MyVoucher,
     ThankYou,
     DetailBlog,
+    ProductDetail,
 } from '../pages/pages'
 
 
@@ -34,6 +35,10 @@ const publicRoutes = [
     { path: '/contact', component: Contact },
     { path: '/settings', component: Settings },
     
+    //product
+    { path: '/products/:name', component: ProductDetail },
+
+
     //shop
     { path: '/shop/compare', component: Compare },
     { path: '/shop/cart', component: Cart },

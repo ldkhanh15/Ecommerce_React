@@ -7,6 +7,7 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { FaRegHeart } from "react-icons/fa";
 import { FaRandom } from "react-icons/fa";
 import ModalProduct from '../ModalProduct/ModalProduct';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles)
 const Product = ({ data, className }) => {
@@ -41,9 +42,9 @@ const Product = ({ data, className }) => {
                     }
                 </div>
                 <div className={cx('action')}>
-                    <a onClick={()=>setOpen(true)} aria-label='Quick view' className={cx('box')}>
+                    <div  onClick={()=>setOpen(true)} aria-label='Quick view' className={cx('box')}>
                         <MdOutlineRemoveRedEye className={cx('icon')} />
-                    </a>
+                    </div>
                     <a href='/' aria-label='Add to WishList' className={cx('box')}>
                         <FaRegHeart className={cx('icon')} />
                     </a>
@@ -56,9 +57,9 @@ const Product = ({ data, className }) => {
                 <div className={cx('cate')}>
                     {data.author}
                 </div>
-                <div className={cx('name')}>
+                <Link to={`/products/${data.name}`} className={cx('name')}>
                     {data.name}
-                </div>
+                </Link>
                 <div className={cx('rating')}>
                     <div className={cx('star')} style={{ width: `${data.star}` }}>
 
@@ -101,7 +102,7 @@ const Product = ({ data, className }) => {
                         </div>
                 }
             </div>
-            <ModalProduct open={open} setOpen={setOpen} />
+            <ModalProduct open={open} setOpen={setOpen} modal={true}/>
         </div>
     )
 }

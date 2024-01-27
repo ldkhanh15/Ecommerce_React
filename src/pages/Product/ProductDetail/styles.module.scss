@@ -1,0 +1,27 @@
+.container{
+    padding: 10rem;
+    .modal{
+
+    }
+    .info{
+        margin-top: 5rem;
+        border: 0.1rem solid #ececec;
+        border-radius: 1.5rem;
+        padding: 4rem;
+        .header{
+            ul{
+                display: flex;
+                gap: 3rem;
+                li{
+                    list-style: none;
+                    .active{
+                        color: var(--primary);
+                    }
+                }
+            }
+        }
+    }
+    .related{
+
+    }
+}

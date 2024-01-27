@@ -17,4 +17,4 @@ export { default as  Cart} from './Shop/Cart/Cart'
 export { default as  CheckOut} from './Shop/CheckOut/CheckOut'
 export { default as  Compare} from './Shop/Compare/Compare'
 export { default as  WishList} from './Shop/WishList/WishList'
-
+export {default as ProductDetail} from './Product/ProductDetail/ProductDetail'
