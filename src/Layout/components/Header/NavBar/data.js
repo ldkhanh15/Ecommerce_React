@@ -69,6 +69,10 @@ const nav = [
                 title: 'Shop - Compare',
                 path: '/'
             },
+            {
+                title:'Shop - Vendor',
+                path:'/shop/vendors'
+            }
         ]
     },
     {

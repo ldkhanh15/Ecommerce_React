@@ -21,6 +21,7 @@ import {
     ThankYou,
     DetailBlog,
     ProductDetail,
+    Vendor,
 } from '../pages/pages'
 
 
@@ -44,6 +45,7 @@ const publicRoutes = [
     { path: '/shop/cart', component: Cart },
     { path: '/shop/wish-list', component: WishList },
     { path: '/shop/check-out', component: CheckOut },
+    { path: '/shop/vendors', component: Vendor },
     { path: '/shop', component: Shop },
     
     //account

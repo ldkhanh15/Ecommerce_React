@@ -12,7 +12,7 @@ const cx = classNames.bind(styles)
 
 const ProductDetail = () => {
   useScrollToTop();
-  const [info, setInfo] = useState(1);
+  const [info, setInfo] = useState(3);
   return (
     <div className={cx('container')}>
       <div className={cx('modal')}>
@@ -43,6 +43,7 @@ const ProductDetail = () => {
         </div>
       </div>
       <div className={cx('related')}>
+        
       </div>
     </div>
   )

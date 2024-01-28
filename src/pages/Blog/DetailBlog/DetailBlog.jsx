@@ -6,7 +6,7 @@ import styles from './styles.module.scss'
 import Button from '@/components/Button';
 import { FaFacebook } from 'react-icons/fa';
 import { BsInstagram, BsPinterest, BsTwitter } from 'react-icons/bs';
-import CreateComment from './components/CreateComment/CreateComment';
+import CreateComment from '../../../components/CreateComment/CreateComment';
 import ListComment from './components/ListComment/ListComment';
 
 const cx = classNames.bind(styles)
@@ -43,7 +43,7 @@ const DetailBlog = () => {
                     <img src="/blog-19.png" alt="" />
                     <div className={cx('content')}>
                         <h2>
-                        Helping everyone live happier, healthier lives at home through their kitchen. Kitchn is a daily food magazine on the Web celebrating life in the kitchen through home cooking and kitchen intelligence.
+                            Helping everyone live happier, healthier lives at home through their kitchen. Kitchn is a daily food magazine on the Web celebrating life in the kitchen through home cooking and kitchen intelligence.
                         </h2>
                         <p>
 
@@ -81,11 +81,11 @@ const DetailBlog = () => {
                         <Button primary small> conserve</Button>
                     </div>
                     <div className={cx('share')}>
-                        Share this: 
-                        <FaFacebook/>
-                        <BsTwitter/>
-                        <BsInstagram/>
-                        <BsPinterest/>
+                        Share this:
+                        <FaFacebook />
+                        <BsTwitter />
+                        <BsInstagram />
+                        <BsPinterest />
                     </div>
                 </div>
                 <div className={cx('author-comment')}>
@@ -109,13 +109,13 @@ const DetailBlog = () => {
                             </div>
                         </div>
                         <div className={cx('footer-comment')}>
-                        Hi there, I am a veteran food blogger sharing my daily all kinds of healthy and fresh recipes. I find inspiration in nature, on the streets and almost everywhere. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet id enim, libero sit. Est donec lobortis cursus amet, cras elementum libero
+                            Hi there, I am a veteran food blogger sharing my daily all kinds of healthy and fresh recipes. I find inspiration in nature, on the streets and almost everywhere. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet id enim, libero sit. Est donec lobortis cursus amet, cras elementum libero
                         </div>
                     </div>
                 </div>
                 <div className={cx('comment')}>
-                    <CreateComment/>
-                    <ListComment/>
+                    <CreateComment />
+                    <ListComment />
                 </div>
             </div>
             <div className={cx('right')}>

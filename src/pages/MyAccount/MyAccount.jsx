@@ -11,7 +11,7 @@ import AccountDetail from './components/AccountDetail/AccountDetail';
 const cx = classNames.bind(styles);
 const MyAccount = () => {
   useScrollToTop();
-  const [page, setPage] = useState(3);
+  const [page, setPage] = useState(0);
   return (
     <div className={cx('container')}>
       <div className={cx('side-bar')}>

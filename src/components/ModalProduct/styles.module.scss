@@ -28,18 +28,19 @@
         
     }
 }
-:global(.slick-slider){
-    ul{
-        bottom: -13rem;
-        li{
-            min-width: 10rem;
-            height: fit-content;
-            padding:0.5rem;
+@media(width < 992px) and (width > 768px){
+    .container{
+        .main{
+            width: 90%;
+            padding: 5rem 3rem;
         }
     }
 }
-:global(.slick-active){
-    border: 0.1rem solid #ececec !important;
-    border-radius: 1rem !important;
-    box-sizing: border-box;
+@media(width <= 768px){
+    .container{
+        .main{
+            width: 100%;
+            padding:5rem 1rem;
+        }
+    }
 }

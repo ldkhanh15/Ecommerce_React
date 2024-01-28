@@ -4,7 +4,7 @@
 
     }
     .info{
-        margin-top: 5rem;
+        margin-top: 10rem;
         border: 0.1rem solid #ececec;
         border-radius: 1.5rem;
         padding: 4rem;
@@ -12,10 +12,12 @@
             ul{
                 display: flex;
                 gap: 3rem;
+                flex-wrap: wrap;
                 li{
                     list-style: none;
                     .active{
                         color: var(--primary);
+                        box-shadow: 5px 5px 15px rgba(0,0,0,.05);
                     }
                 }
             }
@@ -23,5 +25,42 @@
     }
     .related{
 
+    }
+}
+@media (width < 992px) and (width > 768px){
+    .container{
+        padding: 10rem 7rem;
+    }
+}
+@media (width <= 768px) and (width > 576px){
+    .container{
+        padding: 10rem 4rem;
+        .info{
+            padding: 2rem;
+            .header{
+                ul{
+                    gap: 2rem;
+                    li{
+
+                    }
+                }
+            }
+        }
+    }
+}
+@media (width <= 576px){
+    .container{
+        padding: 5rem 1rem;
+        .info{
+            padding: 2rem;
+            .header{
+                ul{
+                    gap: 2rem;
+                    li{
+
+                    }
+                }
+            }
+        }
     }
 }

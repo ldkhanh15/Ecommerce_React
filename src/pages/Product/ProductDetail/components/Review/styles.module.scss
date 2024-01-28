@@ -1,0 +1,94 @@
+.container{
+    .comment{
+        display: flex;
+        gap: 5rem;
+        width: 100%;
+        .rating-comment{
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 6rem;
+            h4.title{
+                font-size: 1.8rem;
+                color: var(--text);
+                font-weight: 600;
+            }
+            .rating{
+                display: flex;
+                gap: 3rem;
+                align-items: center;
+                .rating-star{
+                    width: 6rem;
+                    height: 1.2rem;
+                    background: url('~/public/rating-star.png');
+                    background-position: 0 -1.2rem;
+                    .star{
+                        background: url('~/public/rating-star.png');
+                        height: 1.2rem;
+                        width: 4rem;
+                    }
+                }
+                .text{
+                    color: var(--text);
+                    font-weight: 600;
+                    font-size: 1.7rem;
+                }
+            }
+            .table{
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
+                .item{
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                    width: 100%;
+                    h3.title{
+                        font-size: 1.4rem;
+                        color: var(--text);
+                        font-weight: 500;
+                        width: 20%;
+                    }
+                    .range{
+                        width: 80%;
+                        border: 0.1rem solid #ececec;
+                        border-radius: 0.5rem;
+                        font-size: 1.2rem;
+                        color: #fff;
+                        background-color: #e9ecef;
+                        .range-item{
+                            padding: 0.2rem 0.5rem;
+                            text-align: center;
+                            background-color: var(--primary);
+                            width:50%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media(width < 992px ){
+    .container{
+        .comment{
+            display: block;
+            .rating-comment{
+                width: 100%;
+                margin-bottom: 5rem;
+                .table{
+                    width: 100%;
+                    .item{
+                        h3.title{
+                            width: 10%;
+                        }
+                        .range{
+                            width: 90%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -221,4 +221,87 @@
             }
         }
     }
+    :global(.slick-slider){
+        ul:has(.dots-slick){
+            bottom: -13rem;
+            li{
+                min-width: 10rem;
+                height: fit-content;
+                padding:0.5rem;
+            }
+        }
+    }
+    :global(.slick-active){
+        .dots-slick{
+            border: 0.1rem solid #ececec !important;
+            border-radius: 1rem !important;
+            box-sizing: border-box;
+        }
+    }
+}
+@media (width < 992px){
+    .content{
+        .right{
+            .price{
+                .new-price{
+                    font-size: 4.5rem;
+                }
+                .old-price{
+                    .old{
+                        font-size: 2.8rem;
+                    }
+                }
+            }
+            .box{
+                .item-box{
+                    font-size: 1.4rem;
+                }
+            }        }
+        :global(.slick-slider){
+            ul:has(.dots-slick){
+                bottom: -20rem;
+                li{
+                    min-width: 8rem;
+                }
+            }
+        }
+    }
+}
+@media(width <= 768px){
+    .content{
+        display: block;
+        .left{
+            width: 100%;
+            .item{
+                width: 100%;
+            }
+        }
+        .right{
+            width: 100%;
+            margin-top: 15rem;
+            .price{
+                .new-price{
+                    font-size: 4rem;
+                }
+                .old-price{
+                    .old{
+                        font-size: 2.5rem;
+                    }
+                }
+            }
+            .box{
+                .item-box{
+                    font-size: 1.4rem;
+                }
+            }
+        }
+        :global(.slick-slider){
+            ul:has(.dots-slick){
+                margin-bottom: 7rem;
+                li{
+                    min-width: 8rem;
+                }
+            }
+        }
+    }
 }

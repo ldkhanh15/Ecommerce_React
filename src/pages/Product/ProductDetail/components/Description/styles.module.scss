@@ -1,0 +1,28 @@
+.container{
+    padding: 3rem;
+    color: #7e7e7e;
+    font-weight: 500;
+    font: inherit;
+    font-size: 1.5rem;
+    line-height: 2.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    p{
+    }
+    ul{
+        margin-left: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        li{
+            
+        }
+    }
+    h1,h2,h3,h4,h5,h6{
+        padding-bottom: 2rem;
+        border-bottom: 0.1rem solid #ececec;
+        font-weight: 700;
+        color: var(--text);
+    }
+}

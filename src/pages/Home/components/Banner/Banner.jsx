@@ -13,7 +13,7 @@ const Banner = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     customPaging: (i) => (
-      <div className={cx('dots-slick')} key={i}>
+      <div className={cx('dots-slick-banner')} key={i}>
         
       </div>
     ),

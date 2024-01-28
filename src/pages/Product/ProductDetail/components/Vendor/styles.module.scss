@@ -1,0 +1,101 @@
+.container{
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    .header{
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+        .top{
+            display: flex;
+            gap: 2rem;
+            .left{
+                img{
+                    max-width: 15rem;
+
+                }
+            }
+            .right{
+                .name{
+                    color: var(--primary);
+                    font-weight: 700;
+                    font-size: 1.6rem;
+                    &:hover{
+                        color: var(--bgBtn);
+                    }
+                }
+                .info{
+                    display: flex;
+                    gap: 0.5rem;
+                    align-items: center;
+                    .rating{
+                        width: 6rem;
+                        height: 1.2rem;
+                        background: url('~/public/rating-star.png');
+                        background-position: 0 -1.2rem;
+                        .star{
+                            width: 5rem;
+                            height: 1.2rem;
+                            background: url('~/public/rating-star.png');
+                        }
+                    }
+                    .text{
+                        color: #7e7e7e;
+                        font-size: 1.4rem;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+        .bottom{
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            .item{
+                color: var(--text);
+                font-size: 1.5rem;                
+                font-weight: 500;
+
+                .image{
+
+                }
+                .title{
+                    margin-left: 0.5rem;
+                    font-weight: 700;   
+                }
+                .value{
+                    margin-left: 0.5rem;
+                    font-size: 1.5rem;    
+                    font-weight: 500;    
+                }
+            }
+        }
+    }
+    .rating-percent{
+        display: flex;
+        gap: 3rem;
+        align-items: center;
+        text-align: center;
+        .item{
+            padding: 1rem;
+            .title{
+                color: var(--primary);
+                font-weight: 400;
+                font-size: 1.3rem;
+            }
+            .number{
+                margin-top: 1rem;
+                color: var(--text);
+                font-size: 2.5rem;
+                font-weight: 700;
+            }
+        }
+    }
+    .desc{
+        color: #7e7e7e;
+        font-size: 1.6rem;
+        font-weight: 400;
+        line-height: 2.4rem;
+    }
+}

@@ -1,0 +1,38 @@
+.container{
+    margin-top: 5rem;
+    .box{
+        display: flex;
+        padding: 0 2rem;
+        font-size: 1.6rem;
+        color: #7e7e7e;
+        font-weight: 500;
+        align-items: center;
+        border: 0.1rem solid #ececec;
+        font: inherit;
+        position: relative;
+        &:after{
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 0.2rem;
+            background-color: #ececec;
+            left: 50%;
+        }
+        .title{
+            padding: 1.3rem 0;
+            width: 50%;
+        }
+        .value{
+            padding: 1.3rem 2rem;
+            width: 50%;
+
+        }
+    }
+}
+@media (width <= 576px){
+    .container{
+        .box{
+            font-size: 1.4rem;
+        }
+    }
+}
