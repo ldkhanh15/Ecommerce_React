@@ -10,10 +10,11 @@ import InputRange from 'react-input-range'
 import 'react-input-range/lib/css/index.css';
 import useScrollToTop from '@/hooks/useScrollToTop'
 import ProductSideBar from '@/components/ProductSideBar/ProductSideBar'
+import { Helmet } from 'react-helmet'
 
 const cx = classNames.bind(styles)
 
-const Shop = () => {
+const Shop = ({shop}) => {
   useScrollToTop()
   const [con, setCon] = useState(0);
   let initState = [];
@@ -29,8 +30,11 @@ const Shop = () => {
   }
   return (
     <div className={cx('container')}>
+       <Helmet>
+        <title>Product</title>
+      </Helmet>
       <div className={cx('side-bar')}>
-        <ProductSideBar color={color} thumbnail={thumbnail} cate={cate} condition={condition}/>
+        <ProductSideBar shop={shop} color={color} thumbnail={thumbnail} cate={cate} condition={condition}/>
       </div>
 
       <div className={cx('main')}>

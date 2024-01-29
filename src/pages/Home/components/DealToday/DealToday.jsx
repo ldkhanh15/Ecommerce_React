@@ -21,7 +21,7 @@ const DealToday = () => {
         {data.map((item) => (
           <div className={cx('item')} key={item.id}>
             <div className={cx('top')}>
-              <img src="/banner-5.png" alt="" />
+              <img src="/images/banner/banner-5.png" alt="" />
             </div>
             <div className={cx('bottom')}>
               <div className={cx('countdown')}>

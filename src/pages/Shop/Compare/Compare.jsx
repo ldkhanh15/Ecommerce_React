@@ -3,12 +3,16 @@ import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import { BiTrash } from 'react-icons/bi'
 import useScrollToTop from '@/hooks/useScrollToTop'
+import { Helmet } from 'react-helmet'
 
 const cx = classNames.bind(styles)
 const Compare = () => {
   useScrollToTop()
   return (
     <div className={cx('container')}>
+       <Helmet>
+        <title>Compare</title>
+      </Helmet>
       <div className={cx('header')}>
         <h3>Products Compare</h3>
         <p>This is products list to compare</p>
@@ -18,28 +22,28 @@ const Compare = () => {
           <tr>
             <th className={cx('title')}>Preview</th>
             <td className={cx('image')}>
-              <img src="/product-1-2.jpg" alt="" />
+              <img src="/images/product/product-1-2.jpg" alt="" />
             </td>
             <td className={cx('image')}>
-              <img src="/product-1-2.jpg" alt="" />
+              <img src="/images/product/product-1-2.jpg" alt="" />
             </td>
             <td className={cx('image')}>
-              <img src="/product-1-2.jpg" alt="" />
+              <img src="/images/product/product-1-2.jpg" alt="" />
             </td>
             <td className={cx('image')}>
-              <img src="/product-1-2.jpg" alt="" />
+              <img src="/images/product/product-1-2.jpg" alt="" />
             </td>
             <td className={cx('image')}>
-              <img src="/product-1-2.jpg" alt="" />
+              <img src="/images/product/product-1-2.jpg" alt="" />
             </td>
             <td className={cx('image')}>
-              <img src="/product-1-2.jpg" alt="" />
+              <img src="/images/product/product-1-2.jpg" alt="" />
             </td>
             <td className={cx('image')}>
-              <img src="/product-1-2.jpg" alt="" />
+              <img src="/images/product/product-1-2.jpg" alt="" />
             </td>
             <td className={cx('image')}>
-              <img src="/product-1-2.jpg" alt="" />
+              <img src="/images/product/product-1-2.jpg" alt="" />
             </td>
           </tr>
           <tr>

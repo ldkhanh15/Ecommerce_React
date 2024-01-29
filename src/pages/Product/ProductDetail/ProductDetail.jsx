@@ -8,6 +8,7 @@ import Description from './components/Description/Description'
 import Additional from './components/Additional/Additional'
 import Vendor from './components/Vendor/Vendor'
 import Review from './components/Review/Review'
+import { Helmet } from 'react-helmet'
 const cx = classNames.bind(styles)
 
 const ProductDetail = () => {
@@ -15,6 +16,11 @@ const ProductDetail = () => {
   const [info, setInfo] = useState(3);
   return (
     <div className={cx('container')}>
+      <Helmet>
+        <title>
+          All Natural Italian-Style Chicken Meatballs
+        </title>
+      </Helmet>
       <div className={cx('modal')}>
         <UiModal modal={false} />
       </div>
@@ -36,14 +42,14 @@ const ProductDetail = () => {
           </ul>
         </div>
         <div className={cx('main')}>
-          {info===1 && <Description/>}
-          {info===2 && <Additional/>}
-          {info===3 && <Vendor/>}
-          {info===4 && <Review/>}
+          {info === 1 && <Description />}
+          {info === 2 && <Additional />}
+          {info === 3 && <Vendor />}
+          {info === 4 && <Review />}
         </div>
       </div>
       <div className={cx('related')}>
-        
+
       </div>
     </div>
   )

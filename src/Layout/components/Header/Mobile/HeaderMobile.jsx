@@ -24,19 +24,19 @@ const HeaderMobile = () => {
         </div>
         <div className={cx('mid')}>
           <Link to={'/'}>
-            <img src="/logo.svg" alt="" />
+            <img src="/images/logo/logo.svg" alt="" />
           </Link>
         </div>
         <div className={cx('right')}>
           <dir className={cx('item')}>
             <span className={cx('icon')}>
-              <img src="/icon-heart.svg" alt="" />
+              <img src="/images/service/icon-heart.svg" alt="" />
               <span className={cx('count')}>0</span>
             </span>
           </dir>
           <dir className={cx('item')}>
             <span className={cx('icon')}>
-              <img src="/icon-cart.svg" alt="" />
+              <img src="/images/service/icon-cart.svg" alt="" />
               <span className={cx('count')}>0</span>
             </span>
           </dir>

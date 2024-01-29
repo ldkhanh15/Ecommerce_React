@@ -12,10 +12,10 @@ const Letter = () => {
         <div className={cx('text')}>
           Start You'r Daily Shopping with <span>Nest Mart</span>
         </div>
-        <InputLetter/>
+        <InputLetter />
       </div>
       <div className={cx('image')}>
-        <img src="/foot-banner.png" alt="" />
+        <img src="/images/other/foot-banner.png" alt="" />
       </div>
     </div>
   )

@@ -30,7 +30,7 @@ const Vendor = () => {
         <div className={cx('bottom')}>
           <div className={cx('item')}>
             <span className={cx('image')}>
-              <img src="/icon-location.svg" alt="" />
+              <img src="/images/service/icon-location.svg" alt="" />
             </span>
             <span className={cx('title')}>Address: </span>
             <span className={cx('value')}>
@@ -39,7 +39,7 @@ const Vendor = () => {
           </div>
           <div className={cx('item')}>
             <span className={cx('image')}>
-              <img src="/icon-contact.svg" alt="" />
+              <img src="/images/service/icon-contact.svg" alt="" />
             </span>
             <span className={cx('title')}>Contact Seller: </span>
             <span className={cx('value')}>

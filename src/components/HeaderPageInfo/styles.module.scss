@@ -1,0 +1,41 @@
+.container{
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    .name{
+        color: var(--text);
+        font-size: 3.8rem;
+        font-weight: 700;
+    }
+    .info{
+        display: flex;
+        margin-bottom: 3rem;
+        .item{
+            color: #7e7e7e;
+            font-weight: 400;
+            font-size: 1.3rem;
+            padding: 1rem;
+            &:nth-child(1),
+            &:nth-child(2),
+            &:nth-child(3){
+                position: relative;
+                &:after{
+                    content: '';
+                    width: 0.4rem;
+                    height: 0.4rem;
+                    border: 0.1rem solid #ececec;
+                    border-radius: 50%;
+                    background-color: #7e7e7e;
+                    position: absolute;
+                    right: 0;
+                    top: 1.5rem;
+                }
+            }
+            strong{
+                font-weight: 400;
+                color: var(--primary);
+            }
+        }
+    }
+}

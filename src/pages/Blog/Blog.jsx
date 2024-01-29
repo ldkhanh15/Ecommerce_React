@@ -3,24 +3,25 @@ import useScrollToTop from '@/hooks/useScrollToTop'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import React from 'react'
-import { data, cate, thumbnail, trendingProduct, tag } from './data'
-import { BiCategory, BiSearch } from 'react-icons/bi'
+import { data} from './data'
+import { BiCategory } from 'react-icons/bi'
 import { FaSort } from 'react-icons/fa'
-import NewProduct from '@/components/NewProduct/NewProduct'
-import { LiaTimesSolid } from 'react-icons/lia'
 import SideBar from '@/components/Blog/SideBar/SideBar'
-
+import { Helmet } from 'react-helmet';
 const cx = classNames.bind(styles)
 const Blog = () => {
   useScrollToTop()
   return (
     <div className={cx('container')}>
+      <Helmet>
+        <title>Blog</title>
+      </Helmet>
       <div className={cx('main')}>
         <div className={cx('left')}>
           <div className={cx('header')}>
             <div className={cx('h-left')}>
               <div className={cx('image')}>
-                <img src="/category-1.svg" alt="" />
+                <img src="/images/cate/category-1.svg" alt="" />
               </div>
               <div className={cx('text')}>
                 Recipes Articles

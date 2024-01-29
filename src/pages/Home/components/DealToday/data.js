@@ -3,10 +3,10 @@ const data = [
         id: 1,
         image: [
             {
-                link: '/product-1-1.jpg'
+                link: '/images/product/product-1-1.jpg'
             },
             {
-                link: '/product-1-2.jpg'
+                link: '/images/product/product-1-2.jpg'
             }
         ],
         author: 'armani',
@@ -24,10 +24,10 @@ const data = [
         id: 2,
         image: [
             {
-                link: '/product-2-1.jpg'
+                link: '/images/product/product-2-1.jpg'
             },
             {
-                link: '/product-2-2.jpg'
+                link: '/images/product/product-2-2.jpg'
             }
         ],
         author: 'armani',
@@ -44,10 +44,10 @@ const data = [
         id: 3,
         image: [
             {
-                link: '/product-3-1.jpg'
+                link: '/images/product/product-3-1.jpg'
             },
             {
-                link: '/product-3-2.jpg'
+                link: '/images/product/product-3-2.jpg'
             }
         ],
         author: 'armani',
@@ -64,10 +64,10 @@ const data = [
         id: 4,
         image: [
             {
-                link: '/product-4-1.jpg'
+                link: '/images/product/product-4-1.jpg'
             },
             {
-                link: '/product-4-2.jpg'
+                link: '/images/product/product-4-2.jpg'
             }
         ],
         author: 'armani',

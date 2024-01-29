@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 
 const cx = classNames.bind(styles)
 const LoginSell = () => {
@@ -10,8 +11,11 @@ const LoginSell = () => {
   useScrollToTop()
   return (
     <div className={cx('container')}>
+      <Helmet >
+        <title>Seller Login</title>
+      </Helmet>
       <div className={cx('left')}>
-        <img src="/login-1.png" alt="" />
+        <img src="/images/other/login-1.png" alt="" />
       </div>
       <div className={cx('right')}>
         <h3>Login Vendor</h3>
@@ -31,7 +35,7 @@ const LoginSell = () => {
           <div className={cx('action')}>
             <div className={cx('left-action')}>
               <input type="checkbox" id='remember' />
-              <label onClick={()=>setMember(!member)} className={member ? cx('active') : ''} htmlFor="remember">Remember me</label>
+              <label onClick={() => setMember(!member)} className={member ? cx('active') : ''} htmlFor="remember">Remember me</label>
             </div>
             <div className={cx('right-action')}>
               Forgot Password ?

@@ -5,12 +5,16 @@ import Map from '@/components/Map/Map'
 import Button from '@/components/Button'
 import { IoLocationOutline } from 'react-icons/io5'
 import useScrollToTop from '@/hooks/useScrollToTop'
+import { Helmet } from 'react-helmet'
 
 const cx = classNames.bind(styles)
 const Contact = () => {
   useScrollToTop()
   return (
     <div className={cx('container')}>
+      <Helmet>
+        <title>Contact</title>
+      </Helmet>
       <div className={cx('header')}>
         <div className={cx('main')}>
           <h5>How can help you ?</h5>
@@ -135,7 +139,7 @@ const Contact = () => {
           </form>
         </div>
         <div className={cx('right')}>
-          <img src="/contact-2.png" alt="" />
+          <img src="/images/other/contact-2.png" alt="" />
         </div>
       </div>
     </div>

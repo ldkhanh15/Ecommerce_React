@@ -18,7 +18,7 @@ const Modal = ({ open, setOpen }) => {
             <div className={cx('main-modal')} onClick={(e) => { e.stopPropagation() }}>
                 <div className={cx('header')}>
                     <div className={cx('left')}>
-                        <img src="/logo.svg" alt="" />
+                        <img src="/images/logo/logo.svg" alt="" />
                     </div>
                     <div className={cx('right')} onClick={() => { setOpen(false) }}>
                         <LiaTimesSolid />

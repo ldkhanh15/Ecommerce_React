@@ -37,9 +37,9 @@ const NavBar = () => {
         <div className={cx('mid')}>
           <div className={cx('btnDeal')}>
             <span className={cx('image')}>
-              <img src="/icon-hot.svg" alt="" />
+              <img src="/images/service/icon-hot.svg" alt="" />
             </span>
-            <Link to={'/'} className={cx('hot-deal')}>Hot Deals</Link>
+            <Link to={'/shop'} className={cx('hot-deal')}>Hot Deals</Link>
           </div>
           <div className={cx('navbar')}>
             <MenuHoverParent data={nav} />
@@ -47,7 +47,7 @@ const NavBar = () => {
         </div>
         <div className={cx('right')}>
           <span className={cx('icon')}>
-            <img src="/icon-headphone.svg" alt="" />
+            <img src="/images/service/icon-headphone.svg" alt="" />
           </span>
           <div className={cx('info')}>
             <div className={cx('main')}>

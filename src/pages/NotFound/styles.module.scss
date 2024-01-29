@@ -1,0 +1,82 @@
+.container{
+    padding: 10rem;
+    .main{
+        width: 60%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3rem;
+        img{
+            max-width: 30rem;
+        }
+        h1{
+            font-size: 6rem;
+            color: var(--text);
+            font-weight: 700;
+        }
+        p{
+            text-align: center;
+            line-height: 2.4rem;
+            color: #7e7e7e;
+            font-size: 1.5rem;
+            font-weight: 500;
+            a{
+                color: var(--primary);
+            }
+        }
+        .input{
+            width: 70%;
+            position: relative;
+            margin-bottom: 5rem;
+            input{
+                font-size: 1.6rem;
+                width: 100%;
+                padding: 2rem;
+                border: 0.1rem solid #ececec;
+                border-radius: 1rem;
+                &:focus{
+                    border-color: var(--primary);
+                }
+            }
+            .icon{
+                position: absolute;
+                top: 1.5rem;
+                right: 1.5rem;
+                font-size: 2.5rem;
+                cursor: pointer;
+            }
+        }
+        .btn{
+            width: fit-content;
+        }
+    }
+}
+@media (width < 992px) and (width > 768px){
+    .container{
+        padding: 10rem 7rem;
+        .main{
+            width: 80%;
+        }
+    }
+}
+@media (width <= 768px) and (width > 576px){
+    .container{
+        padding: 10rem 3rem;
+        .main{
+            width: 90%;
+        }
+    }
+}
+@media (width <= 576px){
+    .container{
+        padding: 10rem 1rem;
+        .main{
+            width: 100%;
+            h1{
+                font-size: 4rem;
+            }
+        }
+    }
+}

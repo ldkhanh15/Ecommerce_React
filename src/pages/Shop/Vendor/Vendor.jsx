@@ -6,10 +6,14 @@ import { BiCategory } from 'react-icons/bi'
 import { FaSort } from 'react-icons/fa'
 import data from './data'
 import VendorList from '@/components/VendorList/VendorList'
+import { Helmet } from 'react-helmet'
 const cx = classNames.bind(styles)
 const Vendor = () => {
   return (
     <div className={cx('container')}>
+       <Helmet>
+        <title>Vendor</title>
+      </Helmet>
       <div className={cx('header')}>
         <h1>Vendor List</h1>
         <div className={cx('input')}>

@@ -31,43 +31,43 @@ const nav = [
         children: [
             {
                 title: 'Shop Grid – Right Sidebar',
-                path: '/'
+                path: '/shop'
             },
             {
                 title: 'Shop Grid – Left Sidebar',
-                path: '/'
+                path: '/shop'
             },
             {
                 title: 'Shop List – Right Sidebar',
-                path: '/'
+                path: '/shop'
             },
             {
                 title: 'Shop List – Left Sidebar',
-                path: '/'
+                path: '/shop'
             },
             {
                 title: 'Shop - Wide',
-                path: '/'
+                path: '/shop'
             },
             {
                 title: 'Shop - Filter',
-                path: '/'
+                path: '/shop'
             },
             {
                 title: 'Shop - WishList',
-                path: '/'
+                path: '/shop/wish-list'
             },
             {
                 title: 'Shop - Cart',
-                path: '/'
+                path: '/shop/cart'
             },
             {
                 title: 'Shop - Checkout',
-                path: '/'
+                path: '/shop/checkout'
             },
             {
                 title: 'Shop - Compare',
-                path: '/'
+                path: '/shop/compare'
             },
             {
                 title:'Shop - Vendor',
@@ -171,7 +171,7 @@ const nav = [
             }
         ],
         image: {
-            link: '/banner-menu.png',
+            link: '/images/banner/banner-menu.png',
             sale: '25'
         }
     },
@@ -181,35 +181,35 @@ const nav = [
         children: [
             {
                 title: 'Blog Category Gird',
-                path: '/'
+                path: '/blog'
             },
             {
                 title: 'Blog Category List',
-                path: '/'
+                path: '/blog'
             },
             {
                 title: 'Blog Category Big',
-                path: '/'
+                path: '/blog'
             },
             {
                 title: 'Blog Category Wide',
-                path: '/'
+                path: '/blog'
             },
             {
                 title: 'Single Product Layout',
-                path: '/',
+                path: '/blog',
                 children: [
                     {
                         title: 'Left SideBar',
-                        path: '/'
+                        path: '/blog'
                     },
                     {
                         title: 'Right SideBar',
-                        path: '/'
+                        path: '/blog'
                     },
                     {
                         title: 'No SideBar',
-                        path: '/'
+                        path: '/blog'
                     },
                 ]
             },
@@ -217,7 +217,7 @@ const nav = [
     },
     {
         title: 'Pages',
-        path: '/pages',
+        path: '/',
         children: [
             {
                 title: 'About Us',
@@ -225,31 +225,35 @@ const nav = [
             },
             {
                 title: 'Contact',
-                path: '/'
+                path: '/contact'
             },
             {
                 title: 'My Account',
-                path: '/'
+                path: '/my-account'
             },
             {
-                title: 'Login / Register',
-                path: '/'
+                title: 'Login',
+                path: '/buyer/login'
+            },
+            {
+                title: 'Register',
+                path: '/buyer/register'
             },
             {
                 title: 'Purchase Guide',
-                path: '/'
+                path: '/purchase-guide'
             },
             {
                 title: 'Privacy Policy',
-                path: '/'
+                path: '/privacy-policy'
             },
             {
                 title: 'Terms Of Service',
-                path: '/'
+                path: '/terms-of-service'
             },
             {
                 title: '404 Page',
-                path: '/'
+                path: '/404-page'
             },
         ]
     },
@@ -261,43 +265,43 @@ const nav = [
 const cate = [
     {
         title:'Milks & Dairies',
-        image:'/category-1.svg'
+        image:'/images/cate/category-1.svg'
     },
     {
         title:'Clothing',
-        image:'/category-2.svg'
+        image:'/images/cate/category-2.svg'
     },
     {
         title:'Pet Foods',
-        image:'/category-3.svg'
+        image:'/images/cate/category-3.svg'
     },
     {
         title:'Baking material',
-        image:'/category-4.svg'
+        image:'/images/cate/category-4.svg'
     },
     {
         title:'Fresh Fruit',
-        image:'/category-5.svg'
+        image:'/images/cate/category-5.svg'
     },
     {
         title:'Milks & Dairies',
-        image:'/category-1.svg'
+        image:'/images/cate/category-1.svg'
     },
     {
         title:'Clothing',
-        image:'/category-2.svg'
+        image:'/images/cate/category-2.svg'
     },
     {
         title:'Pet Foods',
-        image:'/category-3.svg'
+        image:'/images/cate/category-3.svg'
     },
     {
         title:'Baking material',
-        image:'/category-4.svg'
+        image:'/images/cate/category-4.svg'
     },
     {
         title:'Fresh Fruit',
-        image:'/category-5.svg'
+        image:'/images/cate/category-5.svg'
     },
 ]
 export { nav, cate }

@@ -8,7 +8,7 @@ const Welcome = () => {
     return (
         <div className={cx('container')}>
             <div className={cx('left')}>
-                <img src="/about-1.png" alt="" />
+                <img src="/images/about/about-1.png" alt="" />
             </div>
             <div className={cx('right')}>
                 <h2>Welcome to Nest</h2>

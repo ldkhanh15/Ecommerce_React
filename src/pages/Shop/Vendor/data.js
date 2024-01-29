@@ -1,6 +1,6 @@
 const data=[
     {
-        image:'/vendor-1.png',
+        image:'/images/vendor/vendor-1.png',
         product:380,
         year:'2012',
         name:'Car Toys',
@@ -10,7 +10,7 @@ const data=[
         mall:true
     },
     {
-        image:'/vendor-3.png',
+        image:'/images/vendor/vendor-3.png',
         product:380,
         year:'2012',
         name:'Car Toys',
@@ -20,7 +20,7 @@ const data=[
         mall:true
     },
     {
-        image:'/vendor-1.png',
+        image:'/images/vendor/vendor-1.png',
         product:380,
         year:'2012',
         name:'Car Toys',
@@ -30,7 +30,7 @@ const data=[
         mall:true
     },
     {
-        image:'/vendor-2.png',
+        image:'/images/vendor/vendor-2.png',
         product:380,
         year:'2012',
         name:'Car Toys',
@@ -40,7 +40,7 @@ const data=[
         mall:true
     },
     {
-        image:'/vendor-3.png',
+        image:'/images/vendor/vendor-3.png',
         product:380,
         year:'2012',
         name:'Car Toys',
@@ -50,7 +50,7 @@ const data=[
         mall:true
     },
     {
-        image:'/vendor-4.png',
+        image:'/images/vendor/vendor-4.png',
         product:380,
         year:'2012',
         name:'Car Toys',
@@ -60,7 +60,7 @@ const data=[
         mall:true
     },
     {
-        image:'/vendor-1.png',
+        image:'/images/vendor/vendor-1.png',
         product:380,
         year:'2012',
         name:'Car Toys',
@@ -70,7 +70,7 @@ const data=[
         mall:true
     },
     {
-        image:'/vendor-2.png',
+        image:'/images/vendor/vendor-2.png',
         product:380,
         year:'2012',
         name:'Car Toys',
@@ -80,7 +80,7 @@ const data=[
         mall:true
     },
     {
-        image:'/vendor-3.png',
+        image:'/images/vendor/vendor-3.png',
         product:380,
         year:'2012',
         name:'Car Toys',
@@ -90,7 +90,7 @@ const data=[
         mall:true
     },
     {
-        image:'/vendor-4.png',
+        image:'/images/vendor/vendor-4.png',
         product:380,
         year:'2012',
         name:'Car Toys',
@@ -100,7 +100,7 @@ const data=[
         mall:true
     },
     {
-        image:'/vendor-1.png',
+        image:'/images/vendor/vendor-1.png',
         product:380,
         year:'2012',
         name:'Car Toys',

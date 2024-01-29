@@ -71,7 +71,7 @@ const SideBar = () => {
                 </div>
             </div>
             <div className={cx('banner')}>
-                <img src="/banner-11.png" alt="" />
+                <img src="/images/banner/banner-11.png" alt="" />
                 <div className={cx('content')}>
                     <span className={cx('author')}>
                         Oganic

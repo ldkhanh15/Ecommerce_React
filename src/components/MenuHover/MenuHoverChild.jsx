@@ -11,8 +11,8 @@ const MenuHoverChild = ({ data }) => {
       {data && <div className={cx('childDiv')}>
         <ul>
           {data.map((item, index) => (
-            <Link to={item.path}>
-              <li key={index}>
+            <Link key={index} to={item.path}>
+              <li >
                 {item.title}
                 {item.children && <MenuHoverChildChild data={item.children} />}
                 {item.children &&

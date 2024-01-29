@@ -3,12 +3,16 @@ import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import { GoTrash } from "react-icons/go";
 import useScrollToTop from '@/hooks/useScrollToTop';
+import { Helmet } from 'react-helmet';
 
 const cx = classNames.bind(styles)
 const WishList = () => {
   useScrollToTop()
   return (
     <div className={cx('container')}>
+       <Helmet>
+        <title>Wish List</title>
+      </Helmet>
       <div className={cx('main')}>
         <table cellSpacing={0}>
           <thead>
@@ -25,7 +29,7 @@ const WishList = () => {
               <td className={cx('product')}>
                 <div className={cx('detail')}>
                   <div className={cx('left')}>
-                    <img src="/product-2-1.jpg" alt="" />
+                    <img src="/images/product/product-2-1.jpg" alt="" />
                   </div>
                   <div className={cx('right')}>
                     <div className={cx('name')}>
@@ -60,7 +64,7 @@ const WishList = () => {
               <td className={cx('product')}>
                 <div className={cx('detail')}>
                   <div className={cx('left')}>
-                    <img src="/product-4-1.jpg" alt="" />
+                    <img src="/images/product/product-4-1.jpg" alt="" />
                   </div>
                   <div className={cx('right')}>
                     <div className={cx('name')}>

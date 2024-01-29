@@ -9,7 +9,7 @@ const Performance = () => {
         <div className={cx('container')}>
             <div className={cx('top')}>
                 <div className={cx('left')}>
-                    <img src="/about-5.png" alt="" />
+                    <img src="/images/about/about-5.png" alt="" />
                 </div>
                 <div className={cx('right')}>
                     <div className={cx('sub-title')}>

@@ -14,7 +14,7 @@ const Search = () => {
     <div className={cx('search')}>
       <div className={cx('container')}>
         <Link to={'/'} className={cx('logo')}>
-          <img src="/logo.svg" alt="" />
+          <img src="/images/logo/logo.svg" alt="" />
         </Link>
         <div className={cx('search')}>
           <select className={cx('cate')} name="category" id="">
@@ -32,7 +32,7 @@ const Search = () => {
         <div className={cx('action')}>
           <Link to={'/shop/compare'} className={cx('item')} title='Compare'>
             <span className={cx('icon')}>
-              <img src="/icon-compare.svg" alt="" />
+              <img src="/images/service/icon-compare.svg" alt="" />
               <span className={cx('count')}>
                 0
               </span>
@@ -44,7 +44,7 @@ const Search = () => {
           </Link>
           <Link to={'/shop/wish-list'} className={cx('item')} title='WishList'>
             <span className={cx('icon')}>
-              <img src="/icon-heart.svg" alt="" />
+              <img src="/images/service/icon-heart.svg" alt="" />
               <span className={cx('count')}>
                 0
               </span>
@@ -56,7 +56,7 @@ const Search = () => {
           </Link>
           <Link to={'/shop/cart'} className={cx('item')} title='Cart'>
             <span className={cx('icon')}>
-              <img src="/icon-cart.svg" alt="" />
+              <img src="/images/service/icon-cart.svg" alt="" />
               <span className={cx('count')}>
                 0
               </span>
@@ -68,7 +68,7 @@ const Search = () => {
           </Link>
           <div className={cx('item')} title='Account'>
             <span className={cx('icon')}>
-              <img src="/icon-user.svg" alt="" />
+              <img src="/images/service/icon-user.svg" alt="" />
             </span>
             <span className={cx('text')}>
               Account

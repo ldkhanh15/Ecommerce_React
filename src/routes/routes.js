@@ -22,6 +22,11 @@ import {
     DetailBlog,
     ProductDetail,
     Vendor,
+    VendorDetail,
+    PurchaseGuide,
+    Privacy,
+    TermService,
+    NotFound,
 } from '../pages/pages'
 
 
@@ -35,6 +40,10 @@ const publicRoutes = [
     { path: '/blog/:id', component: DetailBlog },
     { path: '/contact', component: Contact },
     { path: '/settings', component: Settings },
+    { path: '/purchase-guide', component: PurchaseGuide },
+    { path: '/privacy-policy', component: Privacy },
+    { path: '/terms-of-service', component: TermService },
+    { path: '/404-page', component: NotFound },
     
     //product
     { path: '/products/:name', component: ProductDetail },
@@ -44,8 +53,9 @@ const publicRoutes = [
     { path: '/shop/compare', component: Compare },
     { path: '/shop/cart', component: Cart },
     { path: '/shop/wish-list', component: WishList },
-    { path: '/shop/check-out', component: CheckOut },
+    { path: '/shop/checkout', component: CheckOut },
     { path: '/shop/vendors', component: Vendor },
+    { path: '/shop/vendors/:id', component: VendorDetail },
     { path: '/shop', component: Shop },
     
     //account

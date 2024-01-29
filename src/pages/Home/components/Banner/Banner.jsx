@@ -23,7 +23,7 @@ const Banner = () => {
     <div className={cx('container')}>
       <Slider  {...settings}>
         <div className={cx('slide')}>
-          <img src="/slider-1.png" alt="" />
+          <img src="/images/slide/slider-1.png" alt="" />
           <div className={cx('content')}>
             <h1>Don’t miss amazing <br /> grocery deals</h1>
             <p>Sign up for the daily newsletter</p>
@@ -31,7 +31,7 @@ const Banner = () => {
           </div>
         </div>
         <div className={cx('slide')}>
-          <img src="/slider-2.png" alt="" />
+          <img src="/images/slide/slider-2.png" alt="" />
           <div className={cx('content')}>
             <h1>Fresh Vegetables <br /> Big discount</h1>
             <p>Save up to 50% off on your first order</p>

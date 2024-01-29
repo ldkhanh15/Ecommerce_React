@@ -6,14 +6,14 @@ import { IoIosArrowRoundForward } from 'react-icons/io'
 import { Link } from 'react-router-dom'
 
 const cx = classNames.bind(styles)
-const VendorList = ({ data }) => {
+const VendorList = ({ data, sideBar = false }) => {
   return (
-    <div className={cx('container')}>
+    <div className={sideBar === true ? cx(['container', 'sidebar']) : cx('container')}>
       {data.mall && <div className={cx('mall')}>
         Mall
       </div>}
       <div className={cx('left')}>
-        <Link to={'/'} className={cx('image')}>
+        <Link to={`/shop/vendors/${data.name}`} className={cx('image')}>
           <img src={data.image} alt="" />
         </Link>
         <div className={cx('count')}>
@@ -24,7 +24,7 @@ const VendorList = ({ data }) => {
         <div className={cx('year')}>
           Since {data.year}
         </div>
-        <Link to={'/'} className={cx('name')}>
+        <Link to={`/shop/vendors/${data.name}`} className={cx('name')}>
           {data.name}
         </Link>
         <div className={cx('rating-product')}>
@@ -41,7 +41,7 @@ const VendorList = ({ data }) => {
               <div className={cx('item-info')}>
 
                 <span className={cx('image')}>
-                  <img src="/icon-location.svg" alt="" />
+                  <img src="/images/service/icon-location.svg" alt="" />
                 </span>
                 <span className={cx('title')}>Address: </span>
                 <span className={cx('value')}>
@@ -52,15 +52,15 @@ const VendorList = ({ data }) => {
             <div className={cx('item')}>
               <div className={cx('item-info')}>
                 <span className={cx('image')}>
-                  <img src="/icon-contact.svg" alt="" />
+                  <img src="/images/service/icon-contact.svg" alt="" />
                 </span>
                 <span className={cx('title')}>Contact Seller: </span>
                 <span className={cx('value')}>
                   (+84) - 903 - 526144
                 </span>
               </div>
-              <Link to={'/'} className={cx('btn')}>
-                <Button small rounded rightIcon={<IoIosArrowRoundForward />}>Visit Store</Button>
+              <Link to={`/shop/vendors/${data.name}`} className={cx('btn')}>
+                <Button small rounded rightIcon={<IoIosArrowRoundForward />}>{sideBar ? 'Contact Seller' : 'Visit Store'}</Button>
               </Link>
             </div>
           </div>

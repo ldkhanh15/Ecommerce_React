@@ -24,7 +24,7 @@ const OurTeam = () => {
                 <div className={cx('right')}>
                     <div className={cx('item')}>
                         <div className={cx('top')}>
-                            <img src="/about-6.png" alt="" />
+                            <img src="/images/about/about-6.png" alt="" />
                         </div>
                         <div className={cx('bottom')}>
                             <div className={cx('box')}>
@@ -41,7 +41,7 @@ const OurTeam = () => {
                     </div>
                     <div className={cx('item')}>
                         <div className={cx('top')}>
-                            <img src="/about-8.png" alt="" />
+                            <img src="/images/about/about-8.png" alt="" />
                         </div>
                         <div className={cx('bottom')}>
                             <div className={cx('box')}>

@@ -7,7 +7,7 @@ const TopProduct = () => {
   return (
     <div className={cx('container')}>
         <div className={cx('left')}>
-            <img src="/product-2-1.jpg" alt="" />
+            <img src="/images/product/product-2-1.jpg" alt="" />
         </div>
         <div className={cx('right')}>
             <h4>All Nature Italian-Style Chicken Meatballs</h4>

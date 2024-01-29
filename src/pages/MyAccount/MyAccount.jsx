@@ -8,12 +8,16 @@ import Orders from './components/Orders/Orders';
 import TrackOrder from './components/TrackOrder/TrackOrder';
 import Address from './components/Address/Address';
 import AccountDetail from './components/AccountDetail/AccountDetail';
+import { Helmet } from 'react-helmet';
 const cx = classNames.bind(styles);
 const MyAccount = () => {
   useScrollToTop();
   const [page, setPage] = useState(0);
   return (
     <div className={cx('container')}>
+      <Helmet>
+        <title>My Account</title>
+      </Helmet>
       <div className={cx('side-bar')}>
         {
           data.map((item, index) => (

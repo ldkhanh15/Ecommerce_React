@@ -5,6 +5,7 @@ import styles from './styles.module.scss'
 import { Link } from 'react-router-dom'
 import { FaBookOpen, FaFacebook } from "react-icons/fa";
 import { BsApple } from 'react-icons/bs'
+import { Helmet } from 'react-helmet'
 
 const cx = classNames.bind(styles)
 const RegisterSell = () => {
@@ -12,6 +13,9 @@ const RegisterSell = () => {
   const [agree, setAgree] = useState(false);
   return (
     <div className={cx('container')}>
+       <Helmet>
+        <title>Seller Register</title>
+      </Helmet>
       <div className={cx('left')}>
         <h3>Create an Account Vendor</h3>
         <p>Already have an account ? <Link to={'/buyer/login'}>Login instead!.</Link></p>
@@ -52,7 +56,7 @@ const RegisterSell = () => {
         <div className={cx('main')}>
           <div className={cx('item')}>
             <div className={cx('image')}>
-              <img src="/logo-facebook.svg" alt="" />
+              <img src="/images/logo/logo-facebook.svg" alt="" />
             </div>
             <div className={cx('text')}>
               Continue with Facebook
@@ -60,7 +64,7 @@ const RegisterSell = () => {
           </div>
           <div className={cx('item')}>
             <div className={cx('image')}>
-              <img src="/logo-google.svg" alt="" />
+              <img src="/images/logo/logo-google.svg" alt="" />
             </div>
             <div className={cx('text')}>
               Continue with Google
@@ -68,7 +72,7 @@ const RegisterSell = () => {
           </div>
           <div className={cx('item')}>
             <div className={cx('image')}>
-              <img src="/logo-apple.svg" alt="" />
+              <img src="/images/logo/logo-apple.svg" alt="" />
             </div>
             <div className={cx('text')}>
               Continue with Apple
@@ -86,7 +90,7 @@ const RegisterSell = () => {
               <FaFacebook className={cx('icon')}/>
             </div>
             <div className={cx('item')} title="Login with Google">
-              <img src="/logo-google.svg" alt="" />
+              <img src="/images/logo/logo-google.svg" alt="" />
             </div>
             <div className={cx('item')} title="Login with Apple">
               <BsApple className={cx('icon')}/>

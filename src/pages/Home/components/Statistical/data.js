@@ -5,7 +5,7 @@ const data=[
         product:[
             {
                 id:1,
-                image:'/product-2-1.jpg',
+                image:'/images/product/product-2-1.jpg',
                 name:'All Nature Italian-Style Chicken Meatballs',
                 star:4,
                 newPrice:238.85,
@@ -13,7 +13,7 @@ const data=[
             },
             {
                 id:2,
-                image:'/product-2-1.jpg',
+                image:'/images/product/product-2-1.jpg',
                 name:'All Nature Italian-Style Chicken Meatballs',
                 star:4,
                 newPrice:238.85,
@@ -21,7 +21,7 @@ const data=[
             },
             {
                 id:3,
-                image:'/product-2-1.jpg',
+                image:'/images/product/product-2-1.jpg',
                 name:'All Nature Italian-Style Chicken Meatballs',
                 star:4,
                 newPrice:238.85,
@@ -35,7 +35,7 @@ const data=[
         product:[
             {
                 id:1,
-                image:'/product-2-1.jpg',
+                image:'/images/product/product-2-1.jpg',
                 name:'All Nature Italian-Style Chicken Meatballs',
                 star:4,
                 newPrice:238.85,
@@ -43,7 +43,7 @@ const data=[
             },
             {
                 id:2,
-                image:'/product-2-1.jpg',
+                image:'/images/product/product-2-1.jpg',
                 name:'All Nature Italian-Style Chicken Meatballs',
                 star:4,
                 newPrice:238.85,
@@ -51,7 +51,7 @@ const data=[
             },
             {
                 id:3,
-                image:'/product-2-1.jpg',
+                image:'/images/product/product-2-1.jpg',
                 name:'All Nature Italian-Style Chicken Meatballs',
                 star:4,
                 newPrice:238.85,
@@ -65,7 +65,7 @@ const data=[
         product:[
             {
                 id:1,
-                image:'/product-2-1.jpg',
+                image:'/images/product/product-2-1.jpg',
                 name:'All Nature Italian-Style Chicken Meatballs',
                 star:4,
                 newPrice:238.85,
@@ -73,7 +73,7 @@ const data=[
             },
             {
                 id:2,
-                image:'/product-2-1.jpg',
+                image:'/images/product/product-2-1.jpg',
                 name:'All Nature Italian-Style Chicken Meatballs',
                 star:4,
                 newPrice:238.85,
@@ -81,7 +81,7 @@ const data=[
             },
             {
                 id:3,
-                image:'/product-2-1.jpg',
+                image:'/images/product/product-2-1.jpg',
                 name:'All Nature Italian-Style Chicken Meatballs',
                 star:4,
                 newPrice:238.85,
@@ -95,7 +95,7 @@ const data=[
         product:[
             {
                 id:1,
-                image:'/product-2-1.jpg',
+                image:'/images/product/product-2-1.jpg',
                 name:'All Nature Italian-Style Chicken Meatballs',
                 star:4,
                 newPrice:238.85,
@@ -103,7 +103,7 @@ const data=[
             },
             {
                 id:2,
-                image:'/product-2-1.jpg',
+                image:'/images/product/product-2-1.jpg',
                 name:'All Nature Italian-Style Chicken Meatballs',
                 star:4,
                 newPrice:238.85,
@@ -111,7 +111,7 @@ const data=[
             },
             {
                 id:3,
-                image:'/product-2-1.jpg',
+                image:'/images/product/product-2-1.jpg',
                 name:'All Nature Italian-Style Chicken Meatballs',
                 star:4,
                 newPrice:238.85,

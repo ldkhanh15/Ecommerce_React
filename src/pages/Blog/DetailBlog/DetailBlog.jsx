@@ -8,12 +8,16 @@ import { FaFacebook } from 'react-icons/fa';
 import { BsInstagram, BsPinterest, BsTwitter } from 'react-icons/bs';
 import CreateComment from '../../../components/CreateComment/CreateComment';
 import ListComment from './components/ListComment/ListComment';
-
+import { Helmet } from 'react-helmet';
 const cx = classNames.bind(styles)
 const DetailBlog = () => {
     const { id } = useParams();
     return (
         <div className={cx('container')}>
+            <Helmet>
+                <title>Best smartwatch 2024: the top wearables you can buy today</title>
+
+            </Helmet>
             <div className={cx('left')}>
                 <div className={cx('header')}>
                     <div className={cx('cate')}>
@@ -25,7 +29,7 @@ const DetailBlog = () => {
                     <div className={cx('info')}>
 
                         <div className={cx('item')}>
-                            <img src="/author-1.png" alt="" />
+                            <img src="/images/other/autor-1.png" alt="" />
                             <div className={cx('name-author')}>
                                 By <strong>Sugar Rosé</strong>
                             </div>
@@ -40,7 +44,7 @@ const DetailBlog = () => {
                     </div>
                 </div>
                 <div className={cx('main')}>
-                    <img src="/blog-19.png" alt="" />
+                    <img src="/images/blog/blog-19.png" alt="" />
                     <div className={cx('content')}>
                         <h2>
                             Helping everyone live happier, healthier lives at home through their kitchen. Kitchn is a daily food magazine on the Web celebrating life in the kitchen through home cooking and kitchen intelligence.
@@ -59,7 +63,7 @@ const DetailBlog = () => {
                         <p>
                             Throughout our review process, we look at the design, features, battery life, spec, price and more for each smartwatch, rank it against the competition and enter it into the list you'll find below.
                         </p>
-                        <img src="/blog-21.png" alt="" />
+                        <img src="/images/blog/blog-21.png" alt="" />
                         <p>
                             Tortor, lobortis semper viverra ac, molestie tortor laoreet amet euismod et diam quis aliquam consequat porttitor integer a nisl, in faucibus nunc et aenean turpis dui dignissim nec scelerisque ullamcorper eu neque, augue quam quis lacus pretium eros est amet turpis nunc in turpis massa et eget facilisis ante molestie penatibus dolor volutpat, porta pellentesque scelerisque at ornare dui tincidunt cras feugiat tempor lectus
                         </p>
@@ -92,7 +96,7 @@ const DetailBlog = () => {
                     <div className={cx('main')}>
                         <div className={cx('header-comment')}>
                             <div className={cx('avatar')}>
-                                <img src="/author-1.png" alt="" />
+                                <img src="/images/other/autor-1.png" alt="" />
                             </div>
                             <div className={cx('info')}>
                                 <div className={cx('top')}>

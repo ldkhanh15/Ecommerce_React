@@ -4,7 +4,7 @@ export const data=[
         children:[
             {
                 title:'About Us',
-                path:'/'
+                path:'/about-us'
             },
             {
                 title:'Delivery Information',
@@ -20,7 +20,7 @@ export const data=[
             },
             {
                 title:'Contact Us',
-                path:'/'
+                path:'/contact'
             },
             {
                 title:'Support Center',
@@ -37,19 +37,19 @@ export const data=[
         children:[
             {
                 title:'Sign In',
-                path:'/'
+                path:'/buyer/login'
             },
             {
                 title:'View Cart',
-                path:'/'
+                path:'/shop/cart'
             },
             {
                 title:'My WishList',
-                path:'/'
+                path:'/shop/wish-list'
             },
             {
                 title:'Track My Order',
-                path:'/'
+                path:'/track-order'
             },
             {
                 title:'Help Ticket',
@@ -61,7 +61,7 @@ export const data=[
             },
             {
                 title:'Compare products',
-                path:'/'
+                path:'/shop/compare'
             },
         ]
     },
@@ -70,7 +70,7 @@ export const data=[
         children:[
             {
                 title:'Become a Vender',
-                path:'/'
+                path:'/seller/login'
             },
             {
                 title:'Affiliate Program',
@@ -103,31 +103,31 @@ export const data=[
         children:[
             {
                 title:'Milk & Flavoured Milk',
-                path:'/'
+                path:'/shop'
             },
             {
                 title:'Butter and Margarine',
-                path:'/'
+                path:'/shop'
             },
             {
                 title:'Eggs Substitutes',
-                path:'/'
+                path:'/shop'
             },
             {
                 title:'Marmalades',
-                path:'/'
+                path:'/shop'
             },
             {
                 title:'Sour Cream and Dips',
-                path:'/'
+                path:'/shop'
             },
             {
                 title:'Tea & Kombucha',
-                path:'/'
+                path:'/shop'
             },
             {
                 title:'Cheese',
-                path:'/'
+                path:'/shop'
             },
         ]
     }
@@ -136,21 +136,21 @@ export const info=[
     {
         title:'Address',
         desc:'Hoa Khanh Nam ward, Lien Chieu district, Da Nang City',
-        icon:'/icon-location.svg'
+        icon:'/images/service/icon-location.svg'
     },
     {
         title:'Call Us',
         desc:'(+84) - 903 - 526144',
-        icon:'/icon-contact.svg'
+        icon:'/images/service/icon-contact.svg'
     },
     {
         title:'Email',
         desc:'khanh@gmail.com',
-        icon:'/icon-email-2.svg'
+        icon:'/images/service/icon-email-2.svg'
     },
     {
         title:'Hours',
         desc:'10:00 - 18:00, Mon - Sat',
-        icon:'/icon-clock.svg'
+        icon:'/images/service/icon-clock.svg'
     },
 ]

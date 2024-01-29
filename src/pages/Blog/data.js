@@ -1,6 +1,6 @@
 const data = [
     {
-        image: '/blog-1.png',
+        image: '/images/blog/blog-1.png',
         author: 'Politic',
         name: 'The litigants on the screen are not actors',
         date: '25 April 2024',
@@ -8,7 +8,7 @@ const data = [
         time: '4 mins'
     },
     {
-        image: '/blog-2.png',
+        image: '/images/blog/blog-2.png',
         author: 'Politic',
         name: 'The litigants on the screen are not actors',
         date: '25 April 2024',
@@ -16,7 +16,7 @@ const data = [
         time: '4 mins'
     },
     {
-        image: '/blog-3.png',
+        image: '/images/blog/blog-3.png',
         author: 'Politic',
         name: 'The litigants on the screen are not actors',
         date: '25 April 2024',
@@ -24,7 +24,7 @@ const data = [
         time: '4 mins'
     },
     {
-        image: '/blog-4.png',
+        image: '/images/blog/blog-4.png',
         author: 'Politic',
         name: 'The litigants on the screen are not actors',
         date: '25 April 2024',
@@ -32,7 +32,7 @@ const data = [
         time: '4 mins'
     },
     {
-        image: '/blog-5.png',
+        image: '/images/blog/blog-5.png',
         author: 'Politic',
         name: 'The litigants on the screen are not actors',
         date: '25 April 2024',
@@ -40,7 +40,7 @@ const data = [
         time: '4 mins'
     },
     {
-        image: '/blog-6.png',
+        image: '/images/blog/blog-6.png',
         author: 'Politic',
         name: 'The litigants on the screen are not actors',
         date: '25 April 2024',
@@ -48,7 +48,7 @@ const data = [
         time: '4 mins'
     },
     {
-        image: '/blog-7.png',
+        image: '/images/blog/blog-7.png',
         author: 'Politic',
         name: 'The litigants on the screen are not actors',
         date: '25 April 2024',
@@ -56,7 +56,7 @@ const data = [
         time: '4 mins'
     },
     {
-        image: '/blog-8.png',
+        image: '/images/blog/blog-8.png',
         author: 'Politic',
         name: 'The litigants on the screen are not actors',
         date: '25 April 2024',
@@ -64,7 +64,7 @@ const data = [
         time: '4 mins'
     },
     {
-        image: '/blog-9.png',
+        image: '/images/blog/blog-9.png',
         author: 'Politic',
         name: 'The litigants on the screen are not actors',
         date: '25 April 2024',
@@ -72,7 +72,7 @@ const data = [
         time: '4 mins'
     },
     {
-        image: '/blog-10.png',
+        image: '/images/blog/blog-10.png',
         author: 'Politic',
         name: 'The litigants on the screen are not actors',
         date: '25 April 2024',
@@ -80,7 +80,7 @@ const data = [
         time: '4 mins'
     },
     {
-        image: '/blog-11.png',
+        image: '/images/blog/blog-11.png',
         author: 'Politic',
         name: 'The litigants on the screen are not actors',
         date: '25 April 2024',
@@ -88,7 +88,7 @@ const data = [
         time: '4 mins'
     },
     {
-        image: '/blog-12.png',
+        image: '/images/blog/blog-12.png',
         author: 'Politic',
         name: 'The litigants on the screen are not actors',
         date: '25 April 2024',
@@ -96,7 +96,7 @@ const data = [
         time: '4 mins'
     },
     {
-        image: '/blog-13.png',
+        image: '/images/blog/blog-13.png',
         author: 'Politic',
         name: 'The litigants on the screen are not actors',
         date: '25 April 2024',
@@ -104,7 +104,7 @@ const data = [
         time: '4 mins'
     },
     {
-        image: '/blog-14.png',
+        image: '/images/blog/blog-14.png',
         author: 'Politic',
         name: 'The litigants on the screen are not actors',
         date: '25 April 2024',
@@ -112,7 +112,7 @@ const data = [
         time: '4 mins'
     },
     {
-        image: '/blog-15.png',
+        image: '/images/blog/blog-15.png',
         author: 'Politic',
         name: 'The litigants on the screen are not actors',
         date: '25 April 2024',

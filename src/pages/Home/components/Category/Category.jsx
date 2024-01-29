@@ -8,6 +8,7 @@ import data from './data'
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import Section from './Section/Section';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 const Category = () => {
@@ -72,7 +73,7 @@ const Category = () => {
                 <img src={item.image} alt="" />
               </div>
               <div className={cx('content')}>
-                <h2>{item.name}</h2>
+                <Link to={'/shop'}><h2>{item.name}</h2></Link>
                 <p>{item.quantity} items</p>
               </div>
             </div>
