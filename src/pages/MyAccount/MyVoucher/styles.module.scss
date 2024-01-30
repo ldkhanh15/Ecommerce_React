@@ -1,0 +1,121 @@
+.container{
+    padding: 5rem;
+    .main{
+        width: 70%;
+        margin: auto;
+        padding: 4rem;
+        border: 0.1rem solid #ececec;
+        border-radius: 1rem;
+        box-shadow: 0.5rem 0.5rem 1.5rem rgba(0,0,0,.05);
+        h1{
+            color: var(--text);
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+        .header{
+            margin-top: 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 2rem;
+            border-bottom: 0.1rem solid #ececec;
+            label{
+                color: var(--primary);
+                font-weight: 700;
+                font-size: 1.7rem;
+            }
+            input{
+                width: 70%;
+                padding: 1.5rem;
+                border: 0.1rem solid #ececec;
+                border-radius: 0.5rem;
+                color: #7e7e7e;
+                font-size: 1.5rem;
+                &:focus{
+                    border-color: var(--primary);
+                }
+            }
+            .btn{
+
+            }
+        }
+        .voucher{
+            margin-top: 2rem;
+            border: 0.1rem solid #ececec;
+            padding: 2rem;
+            border-radius: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 5rem;
+            .type{
+                display: flex;
+                gap: 3rem;
+                
+                .item{
+                    font-size: 1.6rem;
+                    color: #7e7e7e;
+                    font-weight: 700;
+                    cursor: pointer;
+                }
+                .item.active{
+                    color: var(--primary);
+                }
+            }
+            .list-voucher{
+                display: grid;
+                grid-template-columns: repeat(2,1fr);
+                gap: 2rem;
+            }
+        }
+    }
+}
+@media (width < 992px) and (width > 768px){
+    .container{
+        padding: 5rem 3rem;
+        .main{
+            width: 90%;
+            padding: 2rem;
+            .header{
+                input{
+                    width: 60%;
+                }
+            }
+        }
+    }
+}
+@media(width <= 768px) and (width > 576px){
+    .container{
+        padding: 5rem 1rem;
+        .main{
+            width: 100%;
+            padding: 1rem;
+            .header{
+                input{
+                    width: 50%;
+                }
+            }
+        }
+    }
+}
+@media(width <= 576px){
+    .container{
+        padding: 5rem 1rem;
+        .main{
+            width: 100%;
+            padding: 1rem;
+            .header{
+                label{
+                    font-size: 1.4rem;
+                }
+                input{
+                    width: 40%;
+                }
+            }
+            .voucher{
+                .list-voucher{
+                    grid-template-columns: repeat(1,1fr);
+                }
+            }
+        }
+    }
+}

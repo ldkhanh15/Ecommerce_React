@@ -49,7 +49,7 @@ export const data=[
             },
             {
                 title:'Track My Order',
-                path:'/track-order'
+                path:'/my-account'
             },
             {
                 title:'Help Ticket',

@@ -12,7 +12,7 @@ const data = [
     {
         icon: <MdOutlineLocationOn />,
         title: 'Order Tracking',
-        path:'/order-tracking'
+        path:'/my-account'
     },
     {
         icon: <RiHome4Line />,
