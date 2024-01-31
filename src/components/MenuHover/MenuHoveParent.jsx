@@ -18,6 +18,7 @@ const MenuHoverParent = ({ data }) => {
             onMouseLeave={() => setHoveredId(null)}
           >
             <NavLink exact="true" to={item.path} className={cx('nav')}>
+              {item.img && <img className={cx('image')} src={item.img}/>}
               <p>{item.title}</p>
               <span>{item.children && <MdKeyboardArrowDown />}</span>
             </NavLink>

@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
-import Button from '../Button';
+import Button from '../../Button';
 import { FaRandom, FaRegHeart } from 'react-icons/fa';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -9,7 +9,7 @@ import Slider from 'react-slick';
 import data from './data'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 const cx = classNames.bind(styles)
-const UiModal = ({modal}) => {
+const UiModal = ({ modal }) => {
     const slider = React.useRef(null);
     const settings = {
         infinite: false,

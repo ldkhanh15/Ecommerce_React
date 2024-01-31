@@ -27,6 +27,7 @@ import {
     Privacy,
     TermService,
     NotFound,
+    HotDeal,
 } from '../pages/pages'
 
 
@@ -55,6 +56,7 @@ const publicRoutes = [
     { path: '/shop/wish-list', component: WishList },
     { path: '/shop/checkout', component: CheckOut },
     { path: '/shop/vendors', component: Vendor },
+    { path: '/hot-deals', component: HotDeal },
     { path: '/shop/vendors/:id', component: VendorDetail },
     { path: '/shop', component: Shop },
     

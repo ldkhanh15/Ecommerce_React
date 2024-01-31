@@ -35,12 +35,12 @@ const NavBar = () => {
           </div>
         }
         <div className={cx('mid')}>
-          <div className={cx('btnDeal')}>
+          {/* <div className={cx('btnDeal')}>
             <span className={cx('image')}>
               <img src="/images/service/icon-hot.svg" alt="" />
             </span>
-            <Link to={'/shop'} className={cx('hot-deal')}>Hot Deals</Link>
-          </div>
+            <Link to={'/hot-deals'} className={cx('hot-deal')}>Hot Deals</Link>
+          </div> */}
           <div className={cx('navbar')}>
             <MenuHoverParent data={nav} />
           </div>

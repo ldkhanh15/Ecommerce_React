@@ -1,6 +1,7 @@
 .container {
     display: flex;
     gap: 4rem;
+    align-items: center;
     .title {
       position: relative;
       color: var(--text);

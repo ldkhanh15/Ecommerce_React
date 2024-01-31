@@ -4,12 +4,12 @@ import styles from './styles.module.scss'
 import Modal from 'react-modal';
 import { LiaTimesSolid } from 'react-icons/lia';
 
-import UiModal from '../UiModal/UiModal';
+import UiModal from '../UiModal/Product/UiProduct';
 
 Modal.setAppElement('#root');
 const cx = classNames.bind(styles)
 const ModalProduct = ({ open, setOpen, modal }) => {
-  
+
   return (
     <Modal
       isOpen={open}
@@ -31,7 +31,7 @@ const ModalProduct = ({ open, setOpen, modal }) => {
             <LiaTimesSolid />
           </div>
         }
-        <UiModal modal={modal}/>
+        <UiModal modal={modal} />
       </div>
     </Modal>
   );

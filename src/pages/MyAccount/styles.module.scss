@@ -40,3 +40,24 @@
         width: 75%;
     }
 }
+@media (width < 992px){
+    .container{
+        padding: 10rem 5rem;
+        gap: 5rem;
+    }
+}
+@media (width <= 768px) {
+    @media(width < 576px){
+        .container{
+            padding: 5rem 1rem !important;
+        }
+    }
+    .container{
+        padding: 10rem 5rem;
+        flex-direction: column;
+        .side-bar,
+        .main{
+            width: 100%;
+        }
+    }
+}

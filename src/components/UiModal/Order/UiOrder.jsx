@@ -1,30 +1,22 @@
-import useScrollToTop from '@/hooks/useScrollToTop'
-import React, { useState } from 'react'
-import { Helmet } from 'react-helmet'
+import React from 'react'
+import { CgNotes } from 'react-icons/cg'
+import { IoIosArrowForward } from 'react-icons/io'
+import { TbBasketDiscount } from 'react-icons/tb'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
-import ShopProduct from '../../../components/CheckOut/ShopProduct/ShopProduct'
-import { TbBasketDiscount } from "react-icons/tb";
-import { IoIosArrowForward } from 'react-icons/io'
-import { CgNotes } from "react-icons/cg";
-import Button from '@/components/Button'
-import { Link } from 'react-router-dom'
-import ModalVoucher from '@/components/ModalVoucher/ModalVoucher'
-import { voucher, payment } from './data'
-const cx = classNames.bind(styles)
+import ShopProduct from '@/components/CheckOut/ShopProduct/ShopProduct'
 
-const CheckOut = () => {
-  useScrollToTop();
-  const [openVoucher, setOpenVoucher] = useState(false)
-  const [openPayment, setOpenPayment] = useState(false)
+const cx=classNames.bind(styles)
+const UiOrder = ({data}) => {
   return (
     <div className={cx('container')}>
-      <Helmet>
-        <title>Check Out</title>
-      </Helmet>
+      <div className={cx('header-info')}>
+        <h2>Order detail</h2>
+        <p>ID: #123</p>
+      </div>
       <div className={cx('main')}>
         <div className={cx('address')}>
-          <select name="" id="">
+          <select disabled name="" id="">
             <option value="">Choose a address</option>
             <option value="">Address1</option>
             <option value="">Address2</option>
@@ -32,12 +24,12 @@ const CheckOut = () => {
           </select>
         </div>
         <div className={cx('shop-product')}>
-          <ShopProduct />
-          <ShopProduct />
-          <ShopProduct />
+          <ShopProduct order={true}/>
+          <ShopProduct  order={true}/>
+          <ShopProduct  order={true}/>
         </div>
         <div className={cx('footer')}>
-          <div onClick={() => setOpenVoucher(true)} className={cx('item')}>
+          <div className={cx('item')}>
             <div className={cx('left')}>
               <TbBasketDiscount className={cx('icon')} />
               <div className={cx('text')}>Nest Voucher</div>
@@ -47,7 +39,7 @@ const CheckOut = () => {
               <IoIosArrowForward className={cx('icon')} />
             </div>
           </div>
-          <div onClick={() => setOpenPayment(true)} className={cx('item')}>
+          <div className={cx('item')}>
             <div className={cx('left')}>
               <TbBasketDiscount className={cx('icon')} />
               <div className={cx('text')}>Payment method</div>
@@ -100,20 +92,10 @@ const CheckOut = () => {
             </div>
           </div>
         </div>
-        <div className={cx('submit')}>
-          <div className={cx('privacy')}>
-            By clicking "Place Order", you are agreeing to <Link to={'/privacy-policy'}>Nest's Privacy Policy</Link>
-          </div>
-          <div className={cx('btn')}>
-            <Button primary large>Place Order</Button>
-          </div>
-        </div>
-        <ModalVoucher data={voucher} open={openVoucher} setOpen={setOpenVoucher} voucher={true} />
-        <ModalVoucher data={payment} open={openPayment} setOpen={setOpenPayment} payment={true} />
       </div>
 
     </div>
   )
 }
 
-export default CheckOut
+export default UiOrder;

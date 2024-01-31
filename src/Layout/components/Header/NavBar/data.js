@@ -1,5 +1,10 @@
 const nav = [
     {
+        title:'Hot Deals',
+        path:'/hot-deals',
+        img:'/images/service/icon-hot.svg'
+    },
+    {
         title: 'Home',
         path: '/',
         children: [
@@ -217,7 +222,7 @@ const nav = [
     },
     {
         title: 'Pages',
-        path: '/',
+        path: '/pages',
         children: [
             {
                 title: 'About Us',

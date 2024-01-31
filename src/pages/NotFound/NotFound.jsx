@@ -25,9 +25,9 @@ const NotFound = () => {
                     <input type="text" placeholder='Search...' />
                     <CiSearch className={cx('icon')} />
                 </div>
-                <div className={cx('btn')}>
+                <Link to={'/'} className={cx('btn')}>
                     <Button leftIcon={<BiHome />} primary large>Back To HomePage</Button>
-                </div>
+                </Link>
             </div>
         </div>
     )

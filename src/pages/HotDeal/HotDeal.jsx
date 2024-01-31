@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import { thumbnail, color, condition, cate, product } from './data'

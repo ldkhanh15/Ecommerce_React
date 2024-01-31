@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import { Link } from 'react-router-dom';
+import ModalOrder from '@/components/ModalOrder/ModalOrder';
 
 const cx = classNames.bind(styles);
 const Orders = () => {
+  const [open, setOpen] = useState(false);
+  const [data, setData]=useState('');
+  const handleModal = (d) => {
+    setData(d)
+    setOpen(true);
+  }
   return (
     <div className={cx('container')}>
       <h3>Your Orders</h3>
@@ -24,28 +31,28 @@ const Orders = () => {
             <th>January 23, 2024</th>
             <th>Processing</th>
             <th>$ 125 for 2 item</th>
-            <th><Link>View</Link></th>
+            <th onClick={()=>handleModal('item 1')}><Link>View</Link></th>
           </tr>
           <tr>
             <th>#1</th>
             <th>January 23, 2024</th>
             <th>Processing</th>
             <th>$ 125 for 2 item</th>
-            <th><Link>View</Link></th>
+            <th onClick={()=>handleModal('item 2')}><Link>View</Link></th>
           </tr>
           <tr>
             <th>#1</th>
             <th>January 23, 2024</th>
             <th>Processing</th>
             <th>$ 125 for 2 item</th>
-            <th><Link>View</Link></th>
+            <th onClick={()=>handleModal('item 3')}><Link>View</Link></th>
           </tr>
           <tr>
             <th>#1</th>
             <th>January 23, 2024</th>
             <th>Processing</th>
             <th>$ 125 for 2 item</th>
-            <th><Link>View</Link></th>
+            <th onClick={()=>handleModal('item 4')}><Link>View</Link></th>
           </tr>
         </tbody>
       </table>
@@ -54,6 +61,7 @@ const Orders = () => {
           Hoping you to have a good day!!!
         </p>
       </div>
+      <ModalOrder open={open} setOpen={setOpen} data={data} />
     </div>
   )
 }

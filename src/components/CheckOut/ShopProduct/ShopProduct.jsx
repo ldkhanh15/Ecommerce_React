@@ -1,14 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import { BiSolidDiscount } from 'react-icons/bi'
 import { IoIosArrowForward } from 'react-icons/io'
 import { Link } from 'react-router-dom'
-
+import { voucher } from '../../../pages/Shop/CheckOut/data'
+import ModalVoucher from '@/components/ModalVoucher/ModalVoucher'
 const cx = classNames.bind(styles)
-const ShopProduct = () => {
+const ShopProduct = ({order}) => {
+  const [open, setOpen] = useState(false);
+  const handleClick=()=>{
+    if(!order){
+      setOpen(true)
+    }
+  }
   return (
     <div className={cx('container')}>
+      <ModalVoucher data={voucher} open={open} setOpen={setOpen} voucher={true} />
       <div className={cx('shop')}>
         <div className={cx('name-shop')}>
           Car Toys
@@ -36,7 +44,7 @@ const ShopProduct = () => {
           </div>
         </div>
       </div>
-      <div className={cx('voucher')}>
+      <div onClick={handleClick} className={cx('voucher')}>
         <div className={cx('left')}>
           <div className={cx('icon')}>
             <BiSolidDiscount />
