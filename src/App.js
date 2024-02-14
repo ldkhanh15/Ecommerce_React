@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route,useNavigate, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 import { privateRoutes, publicRoutes } from '@/routes/routes'
 import DefaultLayout from './Layout/DefaultLayout/DefaultLayout';
 
@@ -11,7 +11,7 @@ function App() {
         <Routes>
           {publicRoutes.map((route) => {
             const Page = route.component;
-            let Layout = DefaultLayout;
+            let Layout = route.layout || DefaultLayout;
             return <Route key={route.path} path={route.path} element={<Layout><Page /></Layout>} />
           }
           )}
@@ -21,7 +21,7 @@ function App() {
             return <Route key={route.path} path={route.path} element={<Layout><Page /></Layout>} />
           }
           )}
-          <Route path='*' element={<Navigate to={'/404-page'}/>}/>
+          <Route path='*' element={<Navigate to={'/404-page'} />} />
         </Routes>
       </div>
     </Router>

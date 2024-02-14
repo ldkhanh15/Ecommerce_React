@@ -17,7 +17,7 @@ const ParentMenu = ({ closeModal, openMenu, setOpenMenu, menuData, className }) 
                         {menuData.title}
 
                         {isOpen && menuData.children && menuData.children.map((menuItem, index) => (
-                            <div><SubMenu key={index} item={menuItem} /></div>
+                            <SubMenu key={index} item={menuItem} />
                         ))}
                         <span onClick={(e)=>handleToggle(e)}><MdOutlineKeyboardArrowDown/></span>
                     </Link >

@@ -39,7 +39,7 @@ a{
     color: black;
 }
 a.active{
-    color:var(--primary);
+    color:var(--primary) !important;
 }
 input,button{
     border: none;

@@ -1,0 +1,59 @@
+.container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    .item{
+        padding: 2rem;
+        border-radius: 1.5rem;
+        &:nth-child(1){
+            background-color: #eef4ff;
+        }
+        &:nth-child(2){
+            background-color: #fdf4f5;
+        }
+        &:nth-child(3){
+            background-color: #fffce4;
+        }
+
+        .header{
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            .logo{
+                padding: 1.3rem 1.5rem;
+                border: 0.1rem solid black;
+                border-radius: 1rem;
+                background-color: #fff;
+                svg{
+                    font-size: 2rem;
+                }
+            } 
+            .content{
+                font-weight: bold;
+                font-size: 1.7rem;
+            }
+        }
+        .footer{
+            display: flex;
+            margin-top: 4rem;
+            justify-content: space-between;
+            color: var(--text);
+            font-weight: 600;
+            align-items: center;
+            .sales{
+                font-size: 14px;
+            }
+            .red{
+                color: red;
+            }
+            .green{
+                color: green;
+            }
+            .icon{
+                font-size: 1.6rem;
+            }
+        }
+    }
+}
+
+

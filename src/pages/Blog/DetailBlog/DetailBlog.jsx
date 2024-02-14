@@ -29,7 +29,7 @@ const DetailBlog = () => {
                     <div className={cx('info')}>
 
                         <div className={cx('item')}>
-                            <img src="/images/other/autor-1.png" alt="" />
+                            <img src="/images/other/author-1.png" alt="" />
                             <div className={cx('name-author')}>
                                 By <strong>Sugar Rosé</strong>
                             </div>
@@ -96,7 +96,7 @@ const DetailBlog = () => {
                     <div className={cx('main')}>
                         <div className={cx('header-comment')}>
                             <div className={cx('avatar')}>
-                                <img src="/images/other/autor-1.png" alt="" />
+                                <img src="/images/other/author-1.png" alt="" />
                             </div>
                             <div className={cx('info')}>
                                 <div className={cx('top')}>

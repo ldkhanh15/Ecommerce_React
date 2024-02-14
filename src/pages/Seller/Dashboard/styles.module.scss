@@ -1,0 +1,20 @@
+.container {
+    padding: 1rem 0rem;
+    .main{
+        display: flex;
+        gap: 3rem;
+        margin-top: 2rem;
+        .left,
+        .right{
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+        .left{
+            width: 70%;
+        }
+        .right{
+            width: 30%;
+        }
+    }
+}

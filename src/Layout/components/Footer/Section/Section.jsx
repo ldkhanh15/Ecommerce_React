@@ -36,7 +36,7 @@ const Section = () => {
             <h2>{item.title}</h2>
             <ul>
               {item.children.map((value, index) => (
-                <Link to={value.path} >
+                <Link key={index} to={value.path} >
                   <li key={index}>{value.title}</li>
                 </Link>
               ))}

@@ -1,34 +1,34 @@
 const data = [
     {
-        image: '/images/other/autor-1.png',
+        image: '/images/other/author-1.png',
         name: 'Roses',
         time: 'December 4, 2024 at 3:12 pm',
         star: 4,
         comment: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, suscipit exercitationem accusantium obcaecati quos voluptate nesciunt facilis itaque modi commodi dignissimos sequi repudiandae minus ab deleniti totam officia id incidunt? ',
         children: [
             {
-                image: '/images/other/autor-1.png',
+                image: '/images/other/author-1.png',
                 name: 'Roses',
                 time: 'December 4, 2024 at 3:12 pm',
                 star: 4,
                 comment: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, suscipit exercitationem accusantium obcaecati quos voluptate nesciunt facilis itaque modi commodi dignissimos sequi repudiandae minus ab deleniti totam officia id incidunt? ',
             },
             {
-                image: '/images/other/autor-1.png',
+                image: '/images/other/author-1.png',
                 name: 'Roses',
                 time: 'December 4, 2024 at 3:12 pm',
                 star: 4,
                 comment: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, suscipit exercitationem accusantium obcaecati quos voluptate nesciunt facilis itaque modi commodi dignissimos sequi repudiandae minus ab deleniti totam officia id incidunt? ',
                 children: [
                     {
-                        image: '/images/other/autor-1.png',
+                        image: '/images/other/author-1.png',
                         name: 'Roses',
                         time: 'December 4, 2024 at 3:12 pm',
                         star: 4,
                         comment: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, suscipit exercitationem accusantium obcaecati quos voluptate nesciunt facilis itaque modi commodi dignissimos sequi repudiandae minus ab deleniti totam officia id incidunt? ',
                     },
                     {
-                        image: '/images/other/autor-1.png',
+                        image: '/images/other/author-1.png',
                         name: 'Roses',
                         time: 'December 4, 2024 at 3:12 pm',
                         star: 4,
@@ -39,7 +39,7 @@ const data = [
         ]
     },
     {
-        image: '/images/other/autor-1.png',
+        image: '/images/other/author-1.png',
         name: 'Roses',
         time: 'December 4, 2024 at 3:12 pm',
         star: 4,
@@ -47,7 +47,7 @@ const data = [
 
     },
     {
-        image: '/images/other/autor-1.png',
+        image: '/images/other/author-1.png',
         name: 'Roses',
         time: 'December 4, 2024 at 3:12 pm',
         star: 4,
@@ -55,28 +55,28 @@ const data = [
 
     },
     {
-        image: '/images/other/autor-1.png',
+        image: '/images/other/author-1.png',
         name: 'Roses',
         time: 'December 4, 2024 at 3:12 pm',
         star: 4,
         comment: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, suscipit exercitationem accusantium obcaecati quos voluptate nesciunt facilis itaque modi commodi dignissimos sequi repudiandae minus ab deleniti totam officia id incidunt? ',
         children: [
             {
-                image: '/images/other/autor-1.png',
+                image: '/images/other/author-1.png',
                 name: 'Roses',
                 time: 'December 4, 2024 at 3:12 pm',
                 star: 4,
                 comment: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, suscipit exercitationem accusantium obcaecati quos voluptate nesciunt facilis itaque modi commodi dignissimos sequi repudiandae minus ab deleniti totam officia id incidunt? ',
                 children: [
                     {
-                        image: '/images/other/autor-1.png',
+                        image: '/images/other/author-1.png',
                         name: 'Roses',
                         time: 'December 4, 2024 at 3:12 pm',
                         star: 4,
                         comment: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, suscipit exercitationem accusantium obcaecati quos voluptate nesciunt facilis itaque modi commodi dignissimos sequi repudiandae minus ab deleniti totam officia id incidunt? ',
                     },
                     {
-                        image: '/images/other/autor-1.png',
+                        image: '/images/other/author-1.png',
                         name: 'Roses',
                         time: 'December 4, 2024 at 3:12 pm',
                         star: 4,

@@ -4,10 +4,18 @@ import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-
+import { login } from '@/services/userService'
+import axios from 'axios'
+axios.defaults.withCredentials = true
 const cx = classNames.bind(styles)
 const LoginBuy = () => {
   const [member, setMember] = useState(false)
+  const [email, setEmail] = useState('')
+  const [pass, setPass] = useState('')
+  const handleLogin = async () => {
+    const res = await login({ email, password: pass })
+    console.log(res.message)
+  }
   useScrollToTop()
   return (
     <div className={cx('container')}>
@@ -21,29 +29,29 @@ const LoginBuy = () => {
         <h3>Login</h3>
         <p>Don't have an account ? <Link to={'/buyer/register'}>Create here.</Link></p>
         <form action="">
-          <input type="text" placeholder='Username or Email *' />
-          <input type="text" placeholder='Your Password *' />
-          <div className={cx('secure')}>
-            <input type="text" placeholder='Security Code' />
-            <div className={cx('code')}>
-              <span>8</span>
-              <span>7</span>
-              <span>6</span>
-              <span>9</span>
-            </div>
+        <input onChange={(e) => setEmail(e.target.value)} type="text" placeholder='Username or Email *' />
+        <input onChange={(e) => setPass(e.target.value)} type="text" placeholder='Your Password *' />
+        <div className={cx('secure')}>
+          <input type="text" placeholder='Security Code' />
+          <div className={cx('code')}>
+            <span>8</span>
+            <span>7</span>
+            <span>6</span>
+            <span>9</span>
           </div>
-          <div className={cx('action')}>
-            <div className={cx('left-action')}>
-              <input type="checkbox" id='remember' />
-              <label onClick={() => setMember(!member)} className={member ? cx('active') : ''} htmlFor="remember">Remember me</label>
-            </div>
-            <div className={cx('right-action')}>
-              Forgot Password ?
-            </div>
+        </div>
+        <div className={cx('action')}>
+          <div className={cx('left-action')}>
+            <input type="checkbox" id='remember' />
+            <label onClick={() => setMember(!member)} className={member ? cx('active') : ''} htmlFor="remember">Remember me</label>
           </div>
-          <div className={cx('btn')}>
-            <button type='submit'>Login</button>
+          <div className={cx('right-action')}>
+            Forgot Password ?
           </div>
+        </div>
+        <div className={cx('btn')}>
+          <button onClick={handleLogin}>Login</button>
+        </div>
         </form>
       </div>
     </div>
