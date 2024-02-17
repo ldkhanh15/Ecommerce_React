@@ -14,23 +14,22 @@ const Navbar = () => {
         <nav className={cx('container')}>
             <h1>Dashboard</h1>
             <div className={cx('notification')}>
-                <div className={cx('calender')}>
+                <div className={cx('left')}>
                     <AiOutlineCalendar />
                     <span>{month} </span>
                     <span>{day}, </span>
                     <span>{year}</span>
                 </div>
-                <div className={cx('action')}>
-                    <BiSearch />
-                </div>
-                <div className={cx('action')}>
-                    <AiOutlineBell />
-                </div>
-                <div className={cx('avatar')}>
-                    <img src={'/images/other/author-1.png'} alt="" />
-                </div>
-                <div className={cx('down')}>
-                    <AiOutlineCaretDown />
+                <div className={cx('right')}>
+                    <div className={cx('action')}>
+                        <BiSearch />
+                    </div>
+                    <div className={cx('action')}>
+                        <AiOutlineBell />
+                    </div>
+                    <div className={cx('avatar')}>
+                        <img src={'/images/other/author-1.png'} alt="" />
+                    </div>
                 </div>
             </div>
         </nav>

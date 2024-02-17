@@ -18,3 +18,26 @@
         }
     }
 }
+@media (width < 992px) and (width > 768px){
+    .container{
+        .main{
+            flex-direction: column;
+            .left,
+            .right{
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (width <= 768px ){
+    .container{
+        .main{
+            flex-direction: column;
+            .left,
+            .right{
+                width: 100%;
+            }
+        }
+    }
+}

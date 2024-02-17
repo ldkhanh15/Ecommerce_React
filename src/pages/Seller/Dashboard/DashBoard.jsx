@@ -11,10 +11,10 @@ import styles from './styles.module.scss'
 const cx = classNames.bind(styles)
 
 const DashBoard = () => {
-
   return (
     <section className={cx('container')}>
       <Navbar />
+
       <div className={cx('main')}>
         <div className={cx('left')}>
           <Statistic />

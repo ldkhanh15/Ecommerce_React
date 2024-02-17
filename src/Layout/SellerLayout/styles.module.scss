@@ -2,10 +2,17 @@
     display: flex;
     gap: 1rem;
     .side-bar{
-        
     }
     .children{
         padding: 2rem;
         width: 100%;
+    }
+}
+@media (width <= 768px){
+    .container{
+        flex-direction: column;
+        .children{
+            padding: 0 1rem;
+        }
     }
 }

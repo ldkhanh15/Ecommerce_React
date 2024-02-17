@@ -17,7 +17,7 @@
 
         .header{
             display: flex;
-            gap: 2rem;
+            gap: 1rem;
             align-items: center;
             .logo{
                 padding: 1.3rem 1.5rem;
@@ -35,13 +35,13 @@
         }
         .footer{
             display: flex;
-            margin-top: 4rem;
+            margin-top: 2rem;
             justify-content: space-between;
             color: var(--text);
             font-weight: 600;
             align-items: center;
             .sales{
-                font-size: 14px;
+                font-size: 1.4rem;
             }
             .red{
                 color: red;
@@ -53,6 +53,22 @@
                 font-size: 1.6rem;
             }
         }
+    }
+}
+@media (width < 992px) and (width > 576px){
+    .container{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        
+    }
+}
+@media (width <= 576px){
+    .container{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1rem;
+        
     }
 }
 

@@ -1,12 +1,11 @@
 .container{
     background-color: var(--bgRound);
-    height: 100vh;
+    min-height: 100vh;
     flex-direction: column;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1.5rem;
-    overflow-y: auto;
     .top{
         display: flex;
         flex-direction: column;
