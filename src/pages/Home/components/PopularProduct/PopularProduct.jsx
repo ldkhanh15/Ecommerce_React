@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
-import data from './data'
 import Product from '@/components/Product/Product';
+import { getProduct } from '@/services/productService';
 const cx = classNames.bind(styles);
 const PopularProduct = () => {
+  const [data,setData]=useState([])
+  useEffect(()=>{
+    const getData=async()=>{
+      let res=await getProduct();
+      setData(res.data)
+    }
+    getData()
+  },[])
+  console.log(data)
   return (
     <div className={cx('container')}>
       <div className={cx('header')}>

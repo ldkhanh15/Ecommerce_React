@@ -1,10 +1,12 @@
 import React from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
-import { AiOutlineAppstore, AiOutlineLogout, AiOutlineMessage, AiOutlinePieChart, AiOutlineSetting, AiOutlineShopping, AiOutlineShoppingCart, AiOutlineUsergroupAdd } from 'react-icons/ai'
+import { AiOutlineAppstore, AiOutlineLogout, AiOutlinePieChart, AiOutlineSetting, AiOutlineShopping, AiOutlineShoppingCart, AiOutlineUsergroupAdd } from 'react-icons/ai'
 import { NavLink } from 'react-router-dom'
-import { BsList } from 'react-icons/bs'
 import { FaTimes } from 'react-icons/fa'
+import { BiSolidDiscount } from 'react-icons/bi'
+import { GrDeliver } from 'react-icons/gr'
+import { CiShop } from 'react-icons/ci'
 
 const cx = classNames.bind(styles)
 const Modal = ({ open, setOpen }) => {
@@ -14,7 +16,7 @@ const Modal = ({ open, setOpen }) => {
                 <div className={cx('top')}>
                     <div className={cx('brand')}>
                         <img src="/images/logo/logo.svg" alt="" />
-                        <div onClick={()=>setOpen(false)} className={cx('close')}>
+                        <div onClick={() => setOpen(false)} className={cx('close')}>
                             <FaTimes />
                         </div>
                     </div>
@@ -50,10 +52,22 @@ const Modal = ({ open, setOpen }) => {
                                     <span className={cx('border')}>Customers</span>
                                 </NavLink>
                             </li>
-                            <li onClick={() => setOpen(false)}>
-                                <NavLink exact="true" to='/seller/messages'>
-                                    <AiOutlineMessage />
-                                    <span className={cx('border')}>Messages</span>
+                            <li>
+                                <NavLink exact="true" to='/seller/account'>
+                                    <CiShop />
+                                    <span className={cx('border')}>Account</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink exact="true" to='/seller/vouchers'>
+                                    <BiSolidDiscount />
+                                    <span className={cx('border')}>Vouchers</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink exact="true" to='/seller/delivers'>
+                                    <GrDeliver />
+                                    <span className={cx('border')}>Delivers</span>
                                 </NavLink>
                             </li>
                             <li onClick={() => setOpen(false)}>

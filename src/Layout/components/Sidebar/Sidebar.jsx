@@ -5,13 +5,15 @@ import {
   AiOutlineShoppingCart,
   AiOutlineShopping,
   AiOutlineLogout,
-  AiOutlineMessage,
   AiOutlinePieChart,
   AiOutlineSetting,
   AiOutlineUsergroupAdd,
 } from 'react-icons/ai';
+import { GrDeliver } from "react-icons/gr";
 import classNames from 'classnames/bind';
 import styles from './styles.module.scss'
+import { BiSolidDiscount } from 'react-icons/bi';
+import { CiShop } from 'react-icons/ci';
 
 const cx = classNames.bind(styles)
 const Sidebar = () => {
@@ -54,9 +56,21 @@ const Sidebar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink exact="true" to='/seller/messages'>
-                <AiOutlineMessage />
-                <span className={cx('border')}>Messages</span>
+              <NavLink exact="true" to='/seller/account'>
+                <CiShop />
+                <span className={cx('border')}>Account</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink exact="true" to='/seller/vouchers'>
+                <BiSolidDiscount />
+                <span className={cx('border')}>Vouchers</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink exact="true" to='/seller/delivers'>
+                <GrDeliver />
+                <span className={cx('border')}>Delivers</span>
               </NavLink>
             </li>
             <li>

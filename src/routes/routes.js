@@ -29,12 +29,14 @@ import {
     NotFound,
     HotDeal,
     Customer,
-    Message,
+    Account,
     Order,
     Overview,
     Products,
     Dashboard,
     SettingSell,
+    Vouchers,
+    Delivers,
 } from '../pages/pages'
 
 
@@ -54,7 +56,7 @@ const publicRoutes = [
     { path: '/404-page', component: NotFound },
 
     //product
-    { path: '/products/:name', component: ProductDetail },
+    { path: '/products/:id', component: ProductDetail },
 
 
     //shop
@@ -77,12 +79,14 @@ const publicRoutes = [
     { path: '/seller/login', component: LoginSell },
     { path: '/seller/register', component: RegisterSell },
     { path: '/seller/customers', component: Customer, layout: SellerLayout },
-    { path: '/seller/messages', component: Message, layout: SellerLayout },
+    { path: '/seller/account', component: Account, layout: SellerLayout },
     { path: '/seller/orders', component: Order, layout: SellerLayout },
     { path: '/seller/overviews', component: Overview, layout: SellerLayout },
     { path: '/seller/products', component: Products, layout: SellerLayout },
     { path: '/seller/settings', component: SettingSell, layout: SellerLayout },
     { path: '/seller/dashboard', component: Dashboard, layout: SellerLayout },
+    { path: '/seller/vouchers', component: Vouchers, layout: SellerLayout },
+    { path: '/seller/delivers', component: Delivers, layout: SellerLayout },
 
 
 

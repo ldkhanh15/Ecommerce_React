@@ -9,7 +9,7 @@ const Vendor = () => {
       <div className={cx('header')}>
         <div className={cx('top')}>
           <div className={cx('left')}>
-            <img src="/vendor-18.svg" alt="" />
+            <img src="/images/vendor/vendor-18.svg" alt="" />
           </div>
           <div className={cx('right')}>
             <div className={cx('name')}>

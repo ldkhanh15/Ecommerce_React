@@ -11,38 +11,39 @@ import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles)
 const Product = ({ data, className }) => {
-    const [open,setOpen]=useState(false)
+    const [open, setOpen] = useState(false)
     return (
         <div className={cx('container', { [className]: className, })}>
             <div className={cx('top')}>
                 <div className={cx('image-product')}>
-                    <img src={data.image[0].link} alt="" className={cx('image1')} />
-                    <img src={data.image[1].link} alt="" className={cx('image2')} />
+                    <img src={data.mainImage} alt="" className={cx('image1')} />
+                    <img src={data.hoverImage} alt="" className={cx('image2')} />
                 </div>
                 <div className={cx('info')}>
-                    {data.hot &&
-                        <div className={cx('tooltip', 'hot')}>
-                            Hot
-                        </div>
+                    {
+                        data.sold > 1000 ?
+                            <div className={cx('tooltip', 'hot')}>
+                                Hot
+                            </div> : ''
                     }
-                    {data.sale &&
+                    {data.sale > 0 ?
                         <div className={cx('tooltip', 'sale')}>
                             Sale
-                        </div>
+                        </div> : ''
                     }
-                    {data.discount &&
+                    {data.sale > 0 ?
                         <div className={cx('tooltip', 'discount')}>
-                            {data.discount}
-                        </div>
+                            {data.sale}%
+                        </div> : ''
                     }
-                    {data.new &&
-                        <div className={cx('tooltip', 'new')}>
-                            New
-                        </div>
-                    }
+
+                    <div className={cx('tooltip', 'new')}>
+                        New
+                    </div>
+
                 </div>
                 <div className={cx('action')}>
-                    <div  onClick={()=>setOpen(true)} aria-label='Quick view' className={cx('box')}>
+                    <div onClick={() => setOpen(true)} aria-label='Quick view' className={cx('box')}>
                         <MdOutlineRemoveRedEye className={cx('icon')} />
                     </div>
                     <a href='/' aria-label='Add to WishList' className={cx('box')}>
@@ -55,28 +56,28 @@ const Product = ({ data, className }) => {
             </div>
             <div className={cx('bottom')}>
                 <div className={cx('cate')}>
-                    {data.author}
+                    {data.brand}
                 </div>
-                <Link to={`/products/${data.name}`} className={cx('name')}>
+                <Link to={`/products/${data.id}`} className={cx('name')}>
                     {data.name}
                 </Link>
                 <div className={cx('rating')}>
-                    <div className={cx('star')} style={{ width: `${data.star}` }}>
+                    <div className={cx('star')} style={{ width: `${4 * 100 / 5}%` }}>
 
                     </div>
                 </div>
                 <div className={cx('author')}>
-                    By <span>{data.by}</span>
+                    By <span>{data?.shop?.username}</span>
                 </div>
                 {
                     data.total ?
                         <div className={cx('sale')}>
                             <div className={cx('price')}>
                                 <span className={cx('new-price')}>
-                                    ${data.newPrice}
+                                    ${Math.round(data.price * (100 - data.sale)) / 100}
                                 </span>
                                 <span className={cx('old-price')}>
-                                    {data.oldPrice ? `$ ${data.oldPrice}` :''}
+                                    {data.price}
                                 </span>
                             </div>
                             <div className={cx('sold')}>
@@ -93,16 +94,16 @@ const Product = ({ data, className }) => {
                         :
                         <div className={cx('info')}>
                             <span className={cx('new-price')}>
-                                ${data.newPrice}
+                                ${Math.round(data.price * (100 - data.sale)) / 100}
                             </span>
                             <span className={cx('old-price')}>
-                            {data.oldPrice ? `$${data.oldPrice}` :''}
+                                {data.price}
                             </span>
                             <Button rightIcon={<CiShoppingCart />} outline small>Add</Button>
                         </div>
                 }
             </div>
-            <ModalProduct open={open} setOpen={setOpen} modal={true}/>
+            <ModalProduct open={open} setOpen={setOpen} modal={true} />
         </div>
     )
 }

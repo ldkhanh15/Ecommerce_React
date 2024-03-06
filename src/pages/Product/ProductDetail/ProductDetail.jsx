@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './styles.module.scss'
 import classNames from 'classnames/bind'
 import useScrollToTop from '@/hooks/useScrollToTop'
@@ -9,11 +9,22 @@ import Additional from './components/Additional/Additional'
 import Vendor from './components/Vendor/Vendor'
 import Review from './components/Review/Review'
 import { Helmet } from 'react-helmet'
+import { useParams } from 'react-router-dom';
+import { getProductDetail } from '@/services/productService'
 const cx = classNames.bind(styles)
 
 const ProductDetail = () => {
+  let { id } = useParams()
   useScrollToTop();
-  const [info, setInfo] = useState(3);
+  const [info, setInfo] = useState(1);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const getData = async () => {
+      let res = await getProductDetail(id);
+      setData(res.data)
+    }
+    getData();
+  }, [])
   return (
     <div className={cx('container')}>
       <Helmet>
@@ -22,7 +33,7 @@ const ProductDetail = () => {
         </title>
       </Helmet>
       <div className={cx('modal')}>
-        <UiModal modal={false} />
+        <UiModal data={data} modal={false} />
       </div>
       <div className={cx('info')}>
         <div className={cx('header')}>

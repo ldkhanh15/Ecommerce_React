@@ -1,17 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
-import data from './data'
+// import data from './data'
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import Section from './Section/Section';
 import { Link } from 'react-router-dom';
+import { getCate } from '@/services/categoryService';
 
 const cx = classNames.bind(styles);
 const Category = () => {
+  const [data, setData] = useState([])
+  useEffect(() => {
+    const getCategory = async () => {
+      let res = await getCate("true");
+      setData(res.data)
+    }
+    getCategory();
+  },[])
+  console.log(data);
   const settings = {
     speed: 500,
     slidesToShow: 10,
@@ -67,7 +77,7 @@ const Category = () => {
       </div>
       <Slider ref={slider} {...settings}>
         {data.map((item, index) => (
-          <div key={index} className={cx('item', `${item.classNames}`)}>
+          <div key={index} className={cx('item', `bg-${index + 1}`)}>
             <div className={cx('main')}>
               <div className={cx('image')}>
                 <img src={item.image} alt="" />

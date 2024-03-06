@@ -1,19 +1,30 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import { BiCategory } from "react-icons/bi";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { Link } from 'react-router-dom';
-import { cate, nav } from './data'
+import { nav } from './data'
 import MenuHoverParent from '@/components/MenuHover/MenuHoveParent';
 import Button from '@/components/Button';
+import { getCate } from '@/services/categoryService';
 const cx = classNames.bind(styles)
 const NavBar = () => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+  const [cate, setCate] = useState([]);
+  useEffect(() => {
+    const getData = async () => {
+      let res = await getCate("false");
+      let arr = res.data;
+      let arrCate = arr.concat(arr);
+      setCate(arrCate);
+    }
+    getData();
+  }, [])
+
   return (
     <div className={cx('nav')}>
       <div className={cx('container')}>
-        <Button onClick={()=> setOpen(!open)} cate leftIcon={<BiCategory />} rightIcon={<MdOutlineKeyboardArrowDown />}>
+        <Button onClick={() => setOpen(!open)} cate leftIcon={<BiCategory />} rightIcon={<MdOutlineKeyboardArrowDown />}>
           Browse Categories
         </Button>
         {open &&
@@ -26,7 +37,7 @@ const NavBar = () => {
                       <img src={item.image} alt="" />
                     </div>
                     <div className={cx('content')}>
-                      {item.title}
+                      {item.name}
                     </div>
                   </li>
                 ))}

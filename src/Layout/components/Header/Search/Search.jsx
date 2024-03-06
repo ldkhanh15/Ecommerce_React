@@ -1,15 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import { IoSearchOutline } from "react-icons/io5";
 import Modal from '../Mobile/Modal/Modal';
 import { BsList } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import MenuHoverChild from '@/components/MenuHover/MenuHoverChild';
 import data from './data'
+import { getCate } from '@/services/categoryService';
 const cx = classNames.bind(styles)
 const Search = () => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+  const [cate, setCate] = useState([]);
+  useEffect(() => {
+    const getData = async () => {
+      let res = await getCate("true");
+      setCate(res.data);
+    }
+    getData();
+  }, [])
   return (
     <div className={cx('search')}>
       <div className={cx('container')}>
@@ -19,9 +27,11 @@ const Search = () => {
         <div className={cx('search')}>
           <select className={cx('cate')} name="category" id="">
             <option value="">All Categories</option>
-            <option value="">Electronics</option>
-            <option value="">Women's</option>
-            <option value="">Men's</option>
+            {
+              cate && cate.map((item) => (
+                <option key={item.id} value={item.id}>{item.name}</option>
+              ))
+            }
           </select>
           <input className={cx('input')} type="text" placeholder='Search' />
           <IoSearchOutline className={cx('icon')} />

@@ -1,20 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 import InputLetter from '@/components/InputLetter/InputLetter';
+import { getBanner } from '@/services/bannerService';
 const cx = classNames.bind(styles);
 const Banner = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const getData = async () => {
+      let res = await getBanner("true");
+      setData(res.data);
+    }
+    getData();
+  }, [])
+  console.log(data);
   const settings = {
     dots: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
     customPaging: (i) => (
       <div className={cx('dots-slick-banner')} key={i}>
-        
+
       </div>
     ),
   };
@@ -22,22 +33,16 @@ const Banner = () => {
   return (
     <div className={cx('container')}>
       <Slider  {...settings}>
-        <div className={cx('slide')}>
-          <img src="/images/slide/slider-1.png" alt="" />
-          <div className={cx('content')}>
-            <h1>Don’t miss amazing <br /> grocery deals</h1>
-            <p>Sign up for the daily newsletter</p>
-            <InputLetter />
+        {data && data.map((item, index) => (
+          <div key={index} className={cx('slide')}>
+            <img src={item.image} alt="" />
+            <div className={cx('content')}>
+              <h1>{item.title}</h1>
+              <p>{item.subTitle}</p>
+              <InputLetter />
+            </div>
           </div>
-        </div>
-        <div className={cx('slide')}>
-          <img src="/images/slide/slider-2.png" alt="" />
-          <div className={cx('content')}>
-            <h1>Fresh Vegetables <br /> Big discount</h1>
-            <p>Save up to 50% off on your first order</p>
-            <InputLetter />
-          </div>
-        </div>
+        ))}
       </Slider>
     </div>
   )

@@ -102,14 +102,14 @@ const Order = () => {
         </table>
       </div>
       <div className={cx('navigation')}>
-            <ul>
-              <li className={cx('active')}>1</li>
-              <li>2</li>
-              <li>3</li>
-              <li>4</li>
-              <li>51</li>
-            </ul>
-        </div>
+        <ul>
+          <li className={cx('active')}>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+          <li>51</li>
+        </ul>
+      </div>
     </div>
   )
 }
