@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import Button from '../../Button';
@@ -9,6 +9,9 @@ import Slider from 'react-slick';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 const cx = classNames.bind(styles)
 const UiModal = ({ data, modal }) => {
+    const [color, setColor] = useState(0)
+    const [combo, setCombo] = useState(0)
+    const [size, setSize] = useState(0)
     const slider = React.useRef(null);
     const settings = {
         infinite: false,
@@ -53,80 +56,67 @@ const UiModal = ({ data, modal }) => {
                     </div>
                     <div className={cx('review')}>
                         <div className={cx('rating')}>
-                            <div style={{ width: `${4 * 100 / 5}%` }} className={cx('star')}>
+                            <div style={{ width: `${data.avgStar * 100 / 5}%` }} className={cx('star')}>
 
                             </div>
                         </div>
                         <div className={cx('count')}>
-                            (32 reviews)
+                            ({data.review?.length} reviews)
                         </div>
                     </div>
                     <div className={cx('price')}>
                         <div className={cx('new-price')}>
-                            $238.25
+                            ${Math.round(data.price * (100 - data.sale)) / 100}
                         </div>
                         <div className={cx('old-price')}>
                             <div className={cx('sale')}>
-                                14% Off
+                                {data.sale}% Off
                             </div>
                             <div className={cx('old')}>
-                                $245.5
+                                ${data.price}
                             </div>
                         </div>
                     </div>
                     {
                         !modal && <div className={cx('desc')}>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam rem officia, corrupti reiciendis minima nisi modi, quasi, odio minus dolore impedit fuga eum eligendi? Officia doloremque facere quia. Voluptatum, accusantium!
+                            {data.introduce}
                         </div>
                     }
-                    <div className={cx('color')}>
-                        <h3 className={cx('title')}>Color</h3>
+                    {
+                        data.color && <div className={cx('color')}>
+                            <h3 className={cx('title')}>Color</h3>
 
-                        <div className={cx('item-color')}>
+                            {
+                                data.color.map((item, index) => (
+                                    <div onClick={()=>setColor(index)} key={index} style={{ background: `${item.name}` }} className={index===color ?cx(['item-color','active']):cx('item-color')}>
 
+                                    </div>
+                                ))
+                            }
                         </div>
-                        <div className={cx('item-color')}>
+                    }
+                    {
+                        data.size && <div className={cx('box')}>
+                            <h3 className={cx('title')}>Size</h3>
 
-                        </div>
-                        <div className={cx('item-color')}>
+                            {
+                                data.size.map((item, index) => (
+                                    <div onClick={()=>setSize(index)} key={index} className={index === size ? cx(['item-box', 'active']) : cx('item-box')}>
+                                        {item.name}
+                                    </div>
 
+                                ))
+                            }
                         </div>
-                        <div className={cx('item-color')}>
-
-                        </div>
-                        <div className={cx('item-color')}>
-
-                        </div>
-                        <div className={cx('item-color')}>
-
-                        </div>
-                    </div>
-                    <div className={cx('box')}>
-                        <h3 className={cx('title')}>Size</h3>
-
-                        <div className={cx(['item-box', 'active'])}>
-                            M
-                        </div>
-                        <div className={cx('item-box')}>
-                            L
-                        </div>
-                        <div className={cx('item-box')}>
-                            XL
-                        </div>
-                        <div className={cx('item-box')}>
-                            XXL
-                        </div>
-                    </div>
+                    }
                     {data.combo && <div className={cx('box')}>
 
                         <h3 className={cx('title')}>Combo</h3>
                         {
 
                             data.combo && data.combo.map((item, index) => (
-                                <div className={cx(['item-box', 'active'])}>
-                                    {
-                                        item.name
-                                    }
+                                <div onClick={()=>setCombo(index)} key={index} className={combo === index ? cx(['item-box', 'active']) : cx('item-box')}>
+                                    {item.name}
                                 </div>
 
                             ))
@@ -148,10 +138,10 @@ const UiModal = ({ data, modal }) => {
                             SKU: <span>{data.id}</span>
                         </div>
                         <div className={cx('item')}>
-                            Tag: <span>Cloth</span>
+                            Tag: <span>{data?.cate?.name}</span>
                         </div>
                         <div className={cx('item')}>
-                            Available: <span>{data.detailProduct.quantity} items in Stock</span>
+                            Available: <span>{data?.detailProduct?.quantity} items in Stock</span>
                         </div>
                     </div>
                 </div>

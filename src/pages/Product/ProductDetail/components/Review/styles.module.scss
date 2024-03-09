@@ -3,6 +3,7 @@
         display: flex;
         gap: 5rem;
         width: 100%;
+        justify-content: space-between;
         .rating-comment{
             width: 50%;
             display: flex;
@@ -26,7 +27,7 @@
                     .star{
                         background: url('~/public/images/other/rating-star.png');
                         height: 1.2rem;
-                        width: 4rem;
+                      
                     }
                 }
                 .text{
@@ -62,7 +63,7 @@
                             padding: 0.2rem 0.5rem;
                             text-align: center;
                             background-color: var(--primary);
-                            width:50%;
+                    
                         }
                     }
                 }

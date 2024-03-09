@@ -10,10 +10,11 @@
         .top{
             display: flex;
             gap: 2rem;
+            align-items: center;
             .left{
                 img{
-                    max-width: 15rem;
-
+                    max-width: 10rem;
+                    border-radius: 0.5rem;
                 }
             }
             .right{

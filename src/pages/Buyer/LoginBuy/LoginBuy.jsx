@@ -14,7 +14,7 @@ const LoginBuy = () => {
   const [pass, setPass] = useState('')
   const handleLogin = async () => {
     const res = await login({ email, password: pass })
-    console.log(res.message)
+    localStorage.setItem('token', res.token)
   }
   useScrollToTop()
   return (
@@ -28,7 +28,7 @@ const LoginBuy = () => {
       <div className={cx('right')}>
         <h3>Login</h3>
         <p>Don't have an account ? <Link to={'/buyer/register'}>Create here.</Link></p>
-        <form action="">
+        {/* <form> */}
         <input onChange={(e) => setEmail(e.target.value)} type="text" placeholder='Username or Email *' />
         <input onChange={(e) => setPass(e.target.value)} type="text" placeholder='Your Password *' />
         <div className={cx('secure')}>
@@ -52,7 +52,7 @@ const LoginBuy = () => {
         <div className={cx('btn')}>
           <button onClick={handleLogin}>Login</button>
         </div>
-        </form>
+        {/* </form> */}
       </div>
     </div>
   )

@@ -3,10 +3,13 @@ import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import data from './data'
 const cx=classNames.bind(styles)
-const Additional = () => {
+const Additional = ({data}) => {
   return (
     <div className={cx('container')}>
       {
+        data
+      }
+      {/* {
         data.map((item,index)=>(
           <div key={index} className={cx('box')}>
             <div className={cx('title')}>
@@ -17,7 +20,7 @@ const Additional = () => {
             </div>
           </div>
         ))
-      }
+      } */}
     </div>
   )
 }

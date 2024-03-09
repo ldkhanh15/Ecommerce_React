@@ -20,10 +20,11 @@ const ProductSideBar = ({ thumbnail, color, condition, cate, shop }) => {
     col[index] = !col[index];
     setCol([...col])
   }
+
   return (
     <div className={cx('side-bar')}>
       <div className={cx('shop')}>
-        {shop && <VendorList data={data} sideBar={true}/>}
+        {shop && <VendorList data={data} sideBar={true} />}
       </div>
       <div className={cx('cate')}>
         <h3 className={cx('title')}>
@@ -36,7 +37,7 @@ const ProductSideBar = ({ thumbnail, color, condition, cate, shop }) => {
                 <img src={item.image} alt="" />
               </div>
               <div className={cx('title')}>
-                {item.title}
+                {item.name}
               </div>
               <div className={cx('quantity')}>
                 {item.quantity}
@@ -76,8 +77,9 @@ const ProductSideBar = ({ thumbnail, color, condition, cate, shop }) => {
             Item Condition
           </p>
           <div className={cx('detail')}>
+            <div onClick={() => setCon(0)} className={con === 0 ? cx('item', 'active') : cx('item')} >All</div>
             {condition.map((item, index) => (
-              <div key={index} onClick={() => setCon(index)} className={con === index ? cx('item', 'active') : cx('item')} >{item.title}</div>
+              <div key={index + 1} onClick={() => setCon(index + 1)} className={con === index + 1 ? cx('item', 'active') : cx('item')} >{item.name}</div>
             ))}
           </div>
         </div>

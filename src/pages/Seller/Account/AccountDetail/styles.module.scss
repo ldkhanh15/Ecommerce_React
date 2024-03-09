@@ -1,0 +1,93 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    padding: 2rem;
+    h1{
+        font-size: 4rem;
+        color: var(--text);
+        font-weight: 700;
+    }
+    .main{
+        display: flex;
+        gap: 3rem;
+        .left{
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+            .avatar{
+                width: fit-content;
+                padding: 1rem;
+                border-radius: 1rem;
+                img{
+                    border-radius: 1.5rem;
+                    width: 30rem;
+                    height: 30rem;
+                }
+            }
+            .name{
+                color: var(--primary);
+                font-size: 2.5rem;
+                font-weight: 700;
+                text-align: center;
+            }
+        }
+        .right{
+            width: 70%;
+            display: grid;
+            grid-template-columns: repeat(1,1fr);
+            gap: 2rem;
+            input,textarea{
+                padding: 1.5rem;
+                color: var(--text);
+                font-weight: 500;
+                font-size: 1.5rem;
+                border: 0.1rem solid #ececec;
+                border-radius: 0.5rem;
+                &:focus{
+                    border: 0.1rem solid var(--primary);
+                }
+            }
+            textarea{
+                &:focus-visible{
+                    border: 0.1rem solid var(--primary);
+                    outline: none;
+                }
+            }
+        }
+    }
+}
+@media (width < 992px) and (width >768px){
+    .container{
+        .main{
+            .left{
+                width: 40%;
+                .avatar{
+                    img{
+                        width: 25rem;
+                        height: 25rem;
+                    }
+                }
+            }
+            .right{
+                width: 60%;
+            }
+        }
+    }
+}
+@media (width <= 768px){
+    .container{
+        .main{
+            flex-direction: column;
+            margin-bottom: 5rem;
+            .left{
+                width: 100%;
+            }
+            .right{
+                width: 100%;
+            }
+        }
+    }
+}

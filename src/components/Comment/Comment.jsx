@@ -6,24 +6,27 @@ import { BiSend } from 'react-icons/bi';
 const cx = classNames.bind(styles)
 const Comment = ({ data }) => {
     const [open, setOpen] = useState(false)
+    let arr = data.createdAt.split(".");
+    let time = arr[0].split("T");
+    
     return (
         <div className={cx('container')}>
             <div className={cx('main')}>
                 <div className={cx('left')}>
                     <div className={cx('image')}>
-                        <img src={data.image} alt="" />
+                        <img src={data.user.avatar} alt="" />
                     </div>
                     <div className={cx('name')}>
-                        {data.name}
+                        {data.user.name}
                     </div>
                 </div>
                 <div className={cx('right')}>
                     <div className={cx('header')}>
                         <div className={cx('time')}>
-                            {data.time}
+                            {time[0]} - {time[1]}
                         </div>
                         <div className={cx('rating')}>
-                            <div style={{ width: `${4 / 5 * 100}%` }} className={cx('star')}>
+                            <div style={{ width: `${data.star / 5 * 100}%` }} className={cx('star')}>
 
                             </div>
                         </div>
@@ -33,7 +36,7 @@ const Comment = ({ data }) => {
                     </div>
                     <div className={cx('action')}>
                         <div className={cx('emote')}>
-                            <EmojiPicker reactionsDefaultOpen/>
+                            
                         </div>
                         <div onClick={() => setOpen(!open)} className={cx('reply')}>
                             Reply
@@ -46,7 +49,7 @@ const Comment = ({ data }) => {
                 <>
                     <div className={cx('reply-comment')}>
                         <div className={cx('image')}>
-                            <img src={data.image} alt="" />
+                            <img src={data.user.avatar} alt="" />
                         </div>
                         <div className={cx('input')}>
                             <input autoFocus type="text" placeholder='Write a reply comment' />

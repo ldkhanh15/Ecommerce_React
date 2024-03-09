@@ -8,10 +8,17 @@ import { FaRegHeart } from "react-icons/fa";
 import { FaRandom } from "react-icons/fa";
 import ModalProduct from '../ModalProduct/ModalProduct';
 import { Link } from 'react-router-dom';
+import { addCart, getCart } from '@/services/cartService';
 
 const cx = classNames.bind(styles)
 const Product = ({ data, className }) => {
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(false);
+    const handleAdd = async (id) => {
+        let res = await addCart({
+            idProduct: `${id}`,
+            quantity: 1
+        })
+    }
     return (
         <div className={cx('container', { [className]: className, })}>
             <div className={cx('top')}>
@@ -74,10 +81,12 @@ const Product = ({ data, className }) => {
                         <div className={cx('sale')}>
                             <div className={cx('price')}>
                                 <span className={cx('new-price')}>
-                                    ${Math.round(data.price * (100 - data.sale)) / 100}
+                                    {/* ${Math.round(data.price * (100 - data.sale)) / 100} */}
+                                    {data.newPrice}
                                 </span>
                                 <span className={cx('old-price')}>
-                                    {data.price}
+                                    {/* {data.price} */}
+                                    {data.oldPrice}
                                 </span>
                             </div>
                             <div className={cx('sold')}>
@@ -99,7 +108,7 @@ const Product = ({ data, className }) => {
                             <span className={cx('old-price')}>
                                 {data.price}
                             </span>
-                            <Button rightIcon={<CiShoppingCart />} outline small>Add</Button>
+                            <Button onClick={() => handleAdd(data.id)} rightIcon={<CiShoppingCart />} outline small>Add</Button>
                         </div>
                 }
             </div>

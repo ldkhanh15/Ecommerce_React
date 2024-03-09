@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import { BiShoppingBag, BiTrash } from 'react-icons/bi'
@@ -8,14 +8,24 @@ import { FaFingerprint, FaRegCalendarMinus } from "react-icons/fa";
 import useScrollToTop from '@/hooks/useScrollToTop'
 import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
+import { deleteCart, deleteCartAll, getCart, updateCart } from '@/services/cartService'
 
 const cx = classNames.bind(styles)
 const Cart = () => {
+
   useScrollToTop();
   const [select, setSelect] = useState(true);
+  const [data, setData] = useState([])
   const [input, setInput] = useState(true);
   const options = ["Option 1", "Option 2", "Option 3"];
-
+  const getData = async () => {
+    let res = await getCart(1);
+    setData(res.data);
+  }
+  useEffect(() => {
+    getData();
+  }, [])
+  console.log(data);
   const handleSelectChange = (event) => {
     if (event.target.value !== '') {
       setInput(false)
@@ -32,6 +42,28 @@ const Cart = () => {
       setInput(true)
     }
   }
+  const handleChange = async (e, id) => {
+    let res = await updateCart({
+      id: "1",
+      idProduct: `${id}`,
+      quantity: e.target.value
+    })
+    getData();
+  }
+  const handleDelete = async (id) => {
+    let res = await deleteCart("1", id);
+    getData();
+  }
+  const handleClearAll = async () => {
+    let res = await deleteCartAll("1");
+    getData();
+  }
+  let total = 0;
+  if (data && data.product) {
+    total = data.product.reduce((value, current) => {
+      return value + current.CartProduct.quantity * current.price;
+    }, 0)
+  }
   return (
     <div className={cx('container')}>
       <Helmet>
@@ -45,7 +77,7 @@ const Cart = () => {
           </div>
           <div className={cx('right')}>
             <BiTrash className={cx('icon')} />
-            <span className={cx('text')}>Clear Cart</span>
+            <span onClick={() => handleClearAll()} className={cx('text')}>Clear Cart</span>
           </div>
         </div>
       </div>
@@ -61,66 +93,41 @@ const Cart = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className={cx('product')}>
-                <div className={cx('detail')}>
-                  <div className={cx('left')}>
-                    <img src="/images/product/product-2-1.jpg" alt="" />
-                  </div>
-                  <div className={cx('right')}>
-                    <div className={cx('name')}>
-                      Angie's Boomchickapop Sweet & Salty
-                    </div>
-                    <div className={cx('rating')}>
-                      <div style={{ width: '45%' }} className={cx('star')}></div>
-                    </div>
+            {
+              data && data.product && data.product.map((item, index) => (
+                <tr key={index}>
+                  <td className={cx('product')}>
+                    <div className={cx('detail')}>
+                      <div className={cx('left')}>
+                        <img src={item.mainImage} alt="" />
+                      </div>
+                      <div className={cx('right')}>
+                        <Link to={`/products/${item.id}`} className={cx('name')}>
+                          {item.name}
+                        </Link >
+                        <div className={cx('rating')}>
+                          <div style={{ width: `${item.avgStar / 5 * 100}%` }} className={cx('star')}></div>
+                        </div>
 
-                  </div>
-                </div>
-              </td>
-              <td className={cx('price')}>
-                $35
-              </td>
-              <td className={cx('quantity')}>
-                <input type="number" title='quantity' min={1} defaultValue={1} />
-              </td>
-              <td className={cx('sub-total')}>
-                $35
-              </td>
-              <td className={cx('trash')}>
-                <BiTrash />
-              </td>
-            </tr>
-            <tr>
-              <td className={cx('product')}>
-                <div className={cx('detail')}>
-                  <div className={cx('left')}>
-                    <img src="/images/product/product-2-1.jpg" alt="" />
-                  </div>
-                  <div className={cx('right')}>
-                    <div className={cx('name')}>
-                      Angie's Boomchickapop Sweet & Salty
+                      </div>
                     </div>
-                    <div className={cx('rating')}>
-                      <div style={{ width: '45%' }} className={cx('star')}></div>
-                    </div>
+                  </td>
+                  <td className={cx('price')}>
+                    ${Math.floor(item.price * (100 - item.sale)) / 100}
+                  </td>
+                  <td className={cx('quantity')}>
+                    <input type="number" title='quantity' onChange={(e) => handleChange(e, item.id)} min={1} defaultValue={item.CartProduct.quantity} />
+                  </td>
+                  <td className={cx('sub-total')}>
+                    ${item.CartProduct.quantity * Math.floor(item.price * (100 - item.sale)) / 100}
+                  </td>
+                  <td onClick={() => handleDelete(item.id)} className={cx('trash')}>
+                    <BiTrash />
+                  </td>
+                </tr>
+              ))
+            }
 
-                  </div>
-                </div>
-              </td>
-              <td className={cx('price')}>
-                $35
-              </td>
-              <td className={cx('quantity')}>
-                <input type="number" defaultValue={1} min={1} />
-              </td>
-              <td className={cx('sub-total')}>
-                $35
-              </td>
-              <td className={cx('trash')}>
-                <BiTrash />
-              </td>
-            </tr>
           </tbody>
         </table>
         <div className={cx('footer')}>
@@ -177,7 +184,9 @@ const Cart = () => {
           <table>
             <tr>
               <td>Cart Subtotal</td>
-              <td className={cx('price')}>$351.86</td>
+              <td className={cx('price')}>
+                ${total}
+              </td>
             </tr>
             <tr>
               <td>Shipping</td>
@@ -185,7 +194,7 @@ const Cart = () => {
             </tr>
             <tr>
               <td>Total</td>
-              <td className={cx('price')}>$351.86</td>
+              <td className={cx('price')}>${total}</td>
             </tr>
           </table>
           <Link to={'/shop/checkout'} className={cx('btn')}>

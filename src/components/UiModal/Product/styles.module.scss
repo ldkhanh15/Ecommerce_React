@@ -137,11 +137,28 @@
                 width: 2.6rem;
                 height: 2.6rem;
                 border-radius: 50%;
-                background-color: #ff596d;
                 cursor: pointer;
                 transition:0.5s;
+                position: relative;
                 &:hover{
                     transform: translateY(-1rem) scale(1.1);
+                }
+                &:after{
+                    content: "";
+                    width: 1.1rem;
+                    position: absolute;
+                    opacity: 0;
+                    top: 50%;
+                    left: 30%;
+                    height: 6px;
+                    border-left: 0.2rem solid #fff;
+                    border-bottom: 0.2rem solid #fff;
+                    transform: translateY(-65%) rotate(-45deg);
+                }
+            }
+            .active.item-color{
+                &:after{
+                    opacity: 1;
                 }
             }
         }

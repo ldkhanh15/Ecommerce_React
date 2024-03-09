@@ -16,6 +16,7 @@ const BestSale = () => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    autoplay: true,
     responsive: [
       {
         breakpoint: 992,
