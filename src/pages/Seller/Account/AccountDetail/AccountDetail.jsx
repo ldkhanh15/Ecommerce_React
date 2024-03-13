@@ -2,16 +2,19 @@ import React, { useEffect, useState } from 'react'
 import styles from './styles.module.scss'
 import classNames from 'classnames/bind'
 import Button from '@/components/Button'
-import { getShop, updateShop } from '@/services/shopService'
+import { getShopDetail, updateAvatarShop, updateShop } from '@/services/shopService'
+import { useParams } from 'react-router-dom'
 
 const cx = classNames.bind(styles)
 const AccountDetail = () => {
+  const { id } = useParams();
   const [data, setData] = useState([]);
+  const getData = async () => {
+    let res = await getShopDetail(id);
+    setData(res.data[0])
+  }
   useEffect(() => {
-    const getData = async () => {
-      let res = await getShop(1);
-      setData(res.data[0])
-    }
+
     getData();
   }, [])
   const handleChange = (e, name) => {
@@ -32,6 +35,17 @@ const AccountDetail = () => {
     })
     console.log(res);
   }
+
+  const handleImage = async (e) => {
+    const file = e.target.files[0];
+    let res = await updateAvatarShop({
+      id: `${data.id}`,
+      image: file
+    })
+    setTimeout(() => {
+      getData();
+    }, 200)
+  }
   return (
     <div className={cx('container')}>
       {
@@ -45,6 +59,11 @@ const AccountDetail = () => {
               <div className={cx('name')}>
                 {data.name}
               </div>
+              <div className={cx('change-avatar')}>
+                <label htmlFor="image">Change avatar</label>
+                <input type="file" id='image' onChange={(e) => handleImage(e)} />
+              </div>
+
             </div>
             <div className={cx('right')}>
               <input onChange={(e) => handleChange(e, 'name')} type="text" placeholder='Shop Name' value={data.name} />
@@ -53,6 +72,7 @@ const AccountDetail = () => {
               <input onChange={(e) => handleChange(e, 'address')} type="text" placeholder='Address' value={data.address} />
               <input onChange={(e) => handleChange(e, 'phone')} type="text" placeholder='Phone' value={data.phone} />
               <input onChange={(e) => handleChange(e, 'bank')} type="text" placeholder='Banking' value={data.bank} />
+
               <div className={cx('btn')}>
                 <Button primary large onClick={() => handleUpdate()}>Update</Button>
               </div>

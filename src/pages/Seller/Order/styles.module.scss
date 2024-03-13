@@ -65,15 +65,27 @@
                     font-size: 1.3rem;
                     color: #fff;
                }
-               .pending{
+               .status_1{
                     border-color: var(--text);
                     background-color: var(--text);
                }
-               .completed{
+               .status_2{
+                    border-color: #1abc9c;
+                    background-color: #1abc9c;
+               }
+               .status_3{
+                    border-color: #f1c40f;
+                    background-color: #f1c40f;
+               }
+               .status_4{
+                    border-color: #ff4757;
+                    background-color: #ff4757;
+               }
+               .status_5{
                     border-color: var(--primary);
                     background-color: var(--primary);
                }
-                .cancelled{
+                .status_6{
                     border-color: red;
                     background-color: red;
                 }

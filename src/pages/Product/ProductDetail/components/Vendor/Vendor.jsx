@@ -68,7 +68,7 @@ const Vendor = () => {
                 Rating
               </div>
               <div className={cx('number')}>
-                {data.avgStar * 100 / 5}%
+                {data.shop.avgStar * 100 / 5}%
               </div>
             </div>
             <div className={cx('item')}>
@@ -76,7 +76,7 @@ const Vendor = () => {
                 Ship on time
               </div>
               <div className={cx('number')}>
-                {data.avgStar * 100 / 5}%
+                {data.shop.avgStar * 100 / 5}%
               </div>
             </div>
             <div className={cx('item')}>
@@ -84,7 +84,7 @@ const Vendor = () => {
                 Chat response
               </div>
               <div className={cx('number')}>
-                {data.avgStar * 100 / 5}%
+                {data.shop.avgStar * 100 / 5}%
               </div>
             </div>
           </div>

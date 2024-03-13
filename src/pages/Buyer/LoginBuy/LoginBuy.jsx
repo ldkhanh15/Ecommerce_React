@@ -28,7 +28,7 @@ const LoginBuy = () => {
       <div className={cx('right')}>
         <h3>Login</h3>
         <p>Don't have an account ? <Link to={'/buyer/register'}>Create here.</Link></p>
-        {/* <form> */}
+        <div className={cx('form')}>
         <input onChange={(e) => setEmail(e.target.value)} type="text" placeholder='Username or Email *' />
         <input onChange={(e) => setPass(e.target.value)} type="text" placeholder='Your Password *' />
         <div className={cx('secure')}>
@@ -50,9 +50,9 @@ const LoginBuy = () => {
           </div>
         </div>
         <div className={cx('btn')}>
-          <button onClick={handleLogin}>Login</button>
+          <button type='submit' onClick={handleLogin}>Login</button>
         </div>
-        {/* </form> */}
+        </div>
       </div>
     </div>
   )

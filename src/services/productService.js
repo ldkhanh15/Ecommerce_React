@@ -16,3 +16,6 @@ export const getProductComment = (id) => {
 export const getSize = () => {
     return axios.get('/api/size')
 }
+export const deleteProduct = (id) => {
+    return axios.delete(`/api/product/delete?id=${id}`)
+}

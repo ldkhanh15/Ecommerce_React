@@ -1,12 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import Button from '@/components/Button'
 import { CiSearch } from 'react-icons/ci'
+import { getProduct } from '@/services/shopService'
+import { deleteProduct } from '@/services/productService'
+import { Link } from 'react-router-dom'
 
 const cx = classNames.bind(styles)
 const Products = () => {
-
+  const [data, setData] = useState([])
+  useEffect(() => {
+    const getData = async () => {
+      let res = await getProduct(1);
+      setData(res.data)
+    }
+    getData();
+  }, [])
+  const handleDelete = async (id) => {
+    if (confirm('Are you sure you want to delete this product?')) {
+      let res = await deleteProduct(id);
+      console.log(res);
+    }
+  }
   return (
     <div className={cx('container')}>
       <h1>Products</h1>
@@ -21,226 +37,63 @@ const Products = () => {
           </div>
         </div>
         <div className={cx('list')}>
-          <table>
-            <thead>
-              <tr>
-                <td>
-                  STT
-                </td>
-                <td>
-                  ID
-                </td>
-                <td>
-                  Name
-                </td>
-                <td>
-                  Description
-                </td>
-                <td>
-                  Price
-                </td>
-                <td>
-                  Created at
-                </td>
-                <td>
-                  Stock
-                </td>
-                <td>
-                  Action
-                </td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>#123</td>
-                <td>Iphone 15</td>
-                <td>New iphone in 2023, design by Apple</td>
-                <td>25.000.000đ</td>
-                <td>17 Feb,2024</td>
-                <td>100</td>
-                <td className={cx('action')}>
-                  <button className={cx(['btn', 'view'])}>
-                    View
-                  </button>
-                  <button className={cx(['btn', 'del'])}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>#123</td>
-                <td>Iphone 15</td>
-                <td>New iphone in 2023, design by Apple</td>
-                <td>25.000.000đ</td>
-                <td>17 Feb,2024</td>
-                <td>100</td>
-                <td className={cx('action')}>
-                  <button className={cx(['btn', 'view'])}>
-                    View
-                  </button>
-                  <button className={cx(['btn', 'del'])}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>#123</td>
-                <td>Iphone 15</td>
-                <td>New iphone in 2023, design by Apple</td>
-                <td>25.000.000đ</td>
-                <td>17 Feb,2024</td>
-                <td>100</td>
-                <td className={cx('action')}>
-                  <button className={cx(['btn', 'view'])}>
-                    View
-                  </button>
-                  <button className={cx(['btn', 'del'])}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>#123</td>
-                <td>Iphone 15</td>
-                <td>New iphone in 2023, design by Apple</td>
-                <td>25.000.000đ</td>
-                <td>17 Feb,2024</td>
-                <td>100</td>
-                <td className={cx('action')}>
-                  <button className={cx(['btn', 'view'])}>
-                    View
-                  </button>
-                  <button className={cx(['btn', 'del'])}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>#123</td>
-                <td>Iphone 15</td>
-                <td>New iphone in 2023, design by Apple</td>
-                <td>25.000.000đ</td>
-                <td>17 Feb,2024</td>
-                <td>100</td>
-                <td className={cx('action')}>
-                  <button className={cx(['btn', 'view'])}>
-                    View
-                  </button>
-                  <button className={cx(['btn', 'del'])}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>#123</td>
-                <td>Iphone 15</td>
-                <td>New iphone in 2023, design by Apple</td>
-                <td>25.000.000đ</td>
-                <td>17 Feb,2024</td>
-                <td>100</td>
-                <td className={cx('action')}>
-                  <button className={cx(['btn', 'view'])}>
-                    View
-                  </button>
-                  <button className={cx(['btn', 'del'])}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>#123</td>
-                <td>Iphone 15</td>
-                <td>New iphone in 2023, design by Apple</td>
-                <td>25.000.000đ</td>
-                <td>17 Feb,2024</td>
-                <td>100</td>
-                <td className={cx('action')}>
-                  <button className={cx(['btn', 'view'])}>
-                    View
-                  </button>
-                  <button className={cx(['btn', 'del'])}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>#123</td>
-                <td>Iphone 15</td>
-                <td>New iphone in 2023, design by Apple</td>
-                <td>25.000.000đ</td>
-                <td>17 Feb,2024</td>
-                <td>100</td>
-                <td className={cx('action')}>
-                  <button className={cx(['btn', 'view'])}>
-                    View
-                  </button>
-                  <button className={cx(['btn', 'del'])}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>#123</td>
-                <td>Iphone 15</td>
-                <td>New iphone in 2023, design by Apple</td>
-                <td>25.000.000đ</td>
-                <td>17 Feb,2024</td>
-                <td>100</td>
-                <td className={cx('action')}>
-                  <button className={cx(['btn', 'view'])}>
-                    View
-                  </button>
-                  <button className={cx(['btn', 'del'])}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>#123</td>
-                <td>Iphone 15</td>
-                <td>New iphone in 2023, design by Apple</td>
-                <td>25.000.000đ</td>
-                <td>17 Feb,2024</td>
-                <td>100</td>
-                <td className={cx('action')}>
-                  <button className={cx(['btn', 'view'])}>
-                    View
-                  </button>
-                  <button className={cx(['btn', 'del'])}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>#123</td>
-                <td>Iphone 15</td>
-                <td>New iphone in 2023, design by Apple</td>
-                <td>25.000.000đ</td>
-                <td>17 Feb,2024</td>
-                <td>100</td>
-                <td className={cx('action')}>
-                  <button className={cx(['btn', 'view'])}>
-                    View
-                  </button>
-                  <button className={cx(['btn', 'del'])}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
+          {
+            data && <table>
+              <thead>
+                <tr>
+                  <td>
+                    STT
+                  </td>
+                  <td>
+                    ID
+                  </td>
+                  <td>
+                    Name
+                  </td>
+                  <td>
+                    Price
+                  </td>
+                  <td>
+                    Sold
+                  </td>
+                  <td>
+                    Stock
+                  </td>
+                  <td>
+                    Shop
+                  </td>
+                  <td>
+                    Action
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  data.map((item, index) => (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>#{item.id}</td>
+                      <td>{item.name}</td>
+                      <td>{item.price} $</td>
+                      <td>{item.sold}</td>
+                      <td>{item.detailProduct.quantity}</td>
+                      <td>{item.shop.name}</td>
+                      <td className={cx('action')}>
+                        <Link to={`/seller/products/${item.id}`} className={cx(['btn', 'view'])}>
+                          View
+                        </Link>
+                        <button onClick={() => handleDelete(item.id)} className={cx(['btn', 'del'])}>
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                }
 
-            </tbody>
-          </table>
+
+              </tbody>
+            </table>
+          }
         </div>
         <div className={cx('navigation')}>
           <ul>

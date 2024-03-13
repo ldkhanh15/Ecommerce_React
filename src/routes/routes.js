@@ -37,7 +37,10 @@ import {
     SettingSell,
     Vouchers,
     Delivers,
-    AccountDetail
+    AccountDetail,
+    VoucherDetail,
+    CustomerDetail,
+    ProductDetailSeller
 } from '../pages/pages'
 
 
@@ -80,14 +83,17 @@ const publicRoutes = [
     { path: '/seller/login', component: LoginSell },
     { path: '/seller/register', component: RegisterSell },
     { path: '/seller/customers', component: Customer, layout: SellerLayout },
+    { path: '/seller/customers/:id', component: CustomerDetail, layout: SellerLayout },
     { path: '/seller/account', component: Account, layout: SellerLayout },
     { path: '/seller/account/:id', component: AccountDetail, layout: SellerLayout },
     { path: '/seller/orders', component: Order, layout: SellerLayout },
     { path: '/seller/overviews', component: Overview, layout: SellerLayout },
     { path: '/seller/products', component: Products, layout: SellerLayout },
+    { path: '/seller/products/:id', component: ProductDetailSeller, layout: SellerLayout },
     { path: '/seller/settings', component: SettingSell, layout: SellerLayout },
     { path: '/seller/dashboard', component: Dashboard, layout: SellerLayout },
     { path: '/seller/vouchers', component: Vouchers, layout: SellerLayout },
+    { path: '/seller/vouchers/:id', component: VoucherDetail, layout: SellerLayout },
     { path: '/seller/delivers', component: Delivers, layout: SellerLayout },
 
 

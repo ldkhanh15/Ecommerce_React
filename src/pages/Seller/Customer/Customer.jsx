@@ -1,11 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import { CiSearch } from 'react-icons/ci'
+import { useEffect } from 'react'
+import { deleteUser, getCustomer } from '@/services/userService'
+import { Link } from 'react-router-dom'
 
 const cx = classNames.bind(styles)
 const Customer = () => {
-
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const getData = async () => {
+      let res = await getCustomer();
+      setData(res.data);
+    }
+    getData()
+  }, [])
+  console.log(data);
+  const handleDelete = async(id) => {
+    if(confirm('Are you sure you want to delete this customer?')){
+      let res = await deleteUser(id);
+      console.log(res);
+    }
+  }
   return (
     <div className={cx('container')}>
       <h1>Customers</h1>
@@ -25,6 +42,9 @@ const Customer = () => {
                   Name
                 </td>
                 <td>
+                  Email
+                </td>
+                <td>
                   Phone
                 </td>
                 <td>
@@ -42,136 +62,29 @@ const Customer = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>David Json</td>
-                <td>0903526144</td>
-                <td>12</td>
-                <td>11</td>
-                <td>598.25$</td>
-                <td className={cx('action')}>
-                  <button className={cx(['btn', 'view'])}>
-                    View
-                  </button>
-                  <button className={cx(['btn', 'del'])}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>David Json</td>
-                <td>0903526144</td>
-                <td>12</td>
-                <td>11</td>
-                <td>598.25$</td>
-                <td className={cx('action')}>
-                  <button className={cx(['btn', 'view'])}>
-                    View
-                  </button>
-                  <button className={cx(['btn', 'del'])}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>David Json</td>
-                <td>0903526144</td>
-                <td>12</td>
-                <td>11</td>
-                <td>598.25$</td>
-                <td className={cx('action')}>
-                  <button className={cx(['btn', 'view'])}>
-                    View
-                  </button>
-                  <button className={cx(['btn', 'del'])}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>David Json</td>
-                <td>0903526144</td>
-                <td>12</td>
-                <td>11</td>
-                <td>598.25$</td>
-                <td className={cx('action')}>
-                  <button className={cx(['btn', 'view'])}>
-                    View
-                  </button>
-                  <button className={cx(['btn', 'del'])}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>David Json</td>
-                <td>0903526144</td>
-                <td>12</td>
-                <td>11</td>
-                <td>598.25$</td>
-                <td className={cx('action')}>
-                  <button className={cx(['btn', 'view'])}>
-                    View
-                  </button>
-                  <button className={cx(['btn', 'del'])}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td>David Json</td>
-                <td>0903526144</td>
-                <td>12</td>
-                <td>11</td>
-                <td>598.25$</td>
-                <td className={cx('action')}>
-                  <button className={cx(['btn', 'view'])}>
-                    View
-                  </button>
-                  <button className={cx(['btn', 'del'])}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>7</td>
-                <td>David Json</td>
-                <td>0903526144</td>
-                <td>12</td>
-                <td>11</td>
-                <td>598.25$</td>
-                <td className={cx('action')}>
-                  <button className={cx(['btn', 'view'])}>
-                    View
-                  </button>
-                  <button className={cx(['btn', 'del'])}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>8</td>
-                <td>David Json</td>
-                <td>0903526144</td>
-                <td>12</td>
-                <td>11</td>
-                <td>598.25$</td>
-                <td className={cx('action')}>
-                  <button className={cx(['btn', 'view'])}>
-                    View
-                  </button>
-                  <button className={cx(['btn', 'del'])}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              
+              {
+                data && data.map((item, index) => (
+                  <tr>
+                    <td>{index + 1}</td>
+                    <td>{item.name}</td>
+                    <td>{item.email}</td>
+                    <td>{item.phone}</td>
+                    <td>{item.bill[0].totalOrders}</td>
+                    <td>{item.bill[0].successfulOrders}</td>
+                    <td>{item.bill[0].totalPrice}$</td>
+                    <td className={cx('action')}>
+                      <Link to={`/seller/customers/${item.id}`} className={cx(['btn', 'view'])}>
+                        View
+                      </Link>
+                      <button onClick={() => handleDelete(item.id)} className={cx(['btn', 'del'])}>
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
 
+
+                ))
+              }
             </tbody>
           </table>
         </div>

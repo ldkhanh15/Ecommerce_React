@@ -1,9 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
+import { getBill } from '@/services/orderService'
 
 const cx = classNames.bind(styles)
 const Order = () => {
+  const [data, setData] = useState();
+  useEffect(() => {
+    const getData = async () => {
+      let res = await getBill();
+      setData(res.data)
+    }
+    getData();
+  }, [])
+  let all = 0, completed = 0, cancelled = 0, wait = 0;
+  if (data) {
+    data.map(item => {
+      all += item.totalPrice;
+      completed += item.idStatus === '5' ? item.totalPrice : 0
+      cancelled += item.idStatus === '6' ? item.totalPrice : 0
+      wait += item.idStatus === '1' ? item.totalPrice : 0
+    })
+  }
   return (
     <div className={cx('container')}>
       <h1>Orders</h1>
@@ -13,15 +31,15 @@ const Order = () => {
             All Orders
           </div>
           <div className={cx('count')}>
-            200000
+            {all} $
           </div>
         </div>
         <div className={cx('item')}>
           <div className={cx('top')}>
-            To Pay
+            Order Placed
           </div>
           <div className={cx('count')}>
-            200000
+            {wait} $
           </div>
         </div>
         <div className={cx('item')}>
@@ -29,7 +47,7 @@ const Order = () => {
             Completed Order
           </div>
           <div className={cx('count')}>
-            200000
+           {completed} $
           </div>
         </div>
         <div className={cx('item')}>
@@ -37,7 +55,7 @@ const Order = () => {
             Cancelled
           </div>
           <div className={cx('count')}>
-            200000
+            {cancelled} $
           </div>
         </div>
       </div>
@@ -55,7 +73,10 @@ const Order = () => {
                 Date
               </td>
               <td>
-                Quantity product
+                Shop Name
+              </td>
+              <td>
+                Total
               </td>
               <td>
                 Status
@@ -66,38 +87,24 @@ const Order = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>#123</td>
-              <td>16 Feb, 2024</td>
-              <td>$125 for 2 items</td>
-              <td><span className={cx(['status', 'pending'])}>Pending</span></td>
-              <td className={cx('view')}>View</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>#123</td>
-              <td>16 Feb, 2024</td>
-              <td>$125 for 2 items</td>
-              <td><span className={cx(['status', 'completed'])}>Completed</span></td>
-              <td className={cx('view')}>View</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>#123</td>
-              <td>16 Feb, 2024</td>
-              <td>$125 for 2 items</td>
-              <td><span className={cx(['status', 'cancelled'])}>Cancelled</span></td>
-              <td className={cx('view')}>View</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>#123</td>
-              <td>16 Feb, 2024</td>
-              <td>$125 for 2 items</td>
-              <td><span className={cx(['status', 'pending'])}>Pending</span></td>
-              <td className={cx('view')}>View</td>
-            </tr>
+            {
+              data && data.map((item, index) => {
+                let arr = item.createdAt.split(".");
+                let time = arr[0].split("T");
+                return (
+                  <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>#{item.id}</td>
+                    <td>{time[0]}</td>
+                    <td>{item.shop.name}</td>
+                    <td>{item.totalPrice}$</td>
+                    <td><span className={cx(['status', `status_${item.idStatus}`])}>{item.status.status}</span></td>
+                    <td className={cx('view')}>View</td>
+                  </tr>
+
+                )
+              })
+            }
           </tbody>
         </table>
       </div>
