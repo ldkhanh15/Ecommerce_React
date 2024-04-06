@@ -2,15 +2,23 @@ import BlogLayout from '@/components/Blog/BlogLayout/BlogLayout'
 import useScrollToTop from '@/hooks/useScrollToTop'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
-import React from 'react'
-import { data} from './data'
+import React, { useEffect, useState } from 'react'
 import { BiCategory } from 'react-icons/bi'
 import { FaSort } from 'react-icons/fa'
 import SideBar from '@/components/Blog/SideBar/SideBar'
 import { Helmet } from 'react-helmet';
+import { getAllBlog } from '@/services/blogService'
 const cx = classNames.bind(styles)
 const Blog = () => {
   useScrollToTop()
+  const [data, setData] = useState([])
+  useEffect(() => {
+    const getData = async () => {
+      let res = await getAllBlog();
+      setData(res.data)
+    }
+    getData();
+  }, [])
   return (
     <div className={cx('container')}>
       <Helmet>
@@ -57,7 +65,7 @@ const Blog = () => {
             </div>
           </div>
           <div className={cx('footer')}>
-            {data.map((value, index) => (
+            {data && data.map((value, index) => (
               <BlogLayout data={value} key={index} />
             ))}
           </div>

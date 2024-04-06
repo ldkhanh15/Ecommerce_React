@@ -4,7 +4,7 @@ import styles from './styles.module.scss'
 import Button from '../Button'
 import { IoIosArrowRoundForward } from 'react-icons/io'
 import { Link } from 'react-router-dom'
-
+import moment from 'moment'
 const cx = classNames.bind(styles)
 const VendorList = ({ data, sideBar = false }) => {
   return (
@@ -14,25 +14,25 @@ const VendorList = ({ data, sideBar = false }) => {
       </div>}
       <div className={cx('left')}>
         <Link to={`/shop/vendors/${data.name}`} className={cx('image')}>
-          <img src={data.image} alt="" />
+          <img src={data.avatar} alt="" />
         </Link>
         <div className={cx('count')}>
-          {data.product} products
+          {data?.product?.length} products
         </div>
       </div>
       <div className={cx('right')}>
         <div className={cx('year')}>
-          Since {data.year}
+          Since {moment(data.createdAt).year()}
         </div>
         <Link to={`/shop/vendors/${data.name}`} className={cx('name')}>
           {data.name}
         </Link>
         <div className={cx('rating-product')}>
           <div className={cx('rating')}>
-            <div style={{ width: `${data.star / 5 * 100}%` }} className={cx('star')}></div>
+            <div style={{ width: `${data.avgStar / 5 * 100}%` }} className={cx('star')}></div>
           </div>
           <div className={cx('text')}>
-            ( {data.star} )
+            ( {data.comment} )
           </div>
         </div>
         <div className={cx('more-info')}>
@@ -59,7 +59,7 @@ const VendorList = ({ data, sideBar = false }) => {
                   (+84) - 903 - 526144
                 </span>
               </div>
-              <Link to={`/shop/vendors/${data.name}`} className={cx('btn')}>
+              <Link to={`/shop/vendors/${data.id}`} className={cx('btn')}>
                 <Button small rounded rightIcon={<IoIosArrowRoundForward />}>{sideBar ? 'Contact Seller' : 'Visit Store'}</Button>
               </Link>
             </div>

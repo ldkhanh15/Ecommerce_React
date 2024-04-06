@@ -6,7 +6,12 @@ import { NavLink } from 'react-router-dom'
 import { FaTimes } from 'react-icons/fa'
 import { BiSolidDiscount } from 'react-icons/bi'
 import { GrDeliver } from 'react-icons/gr'
-import { CiShop } from 'react-icons/ci'
+import { CiLocationOn, CiShop } from 'react-icons/ci'
+import { TfiLayoutSliderAlt } from 'react-icons/tfi'
+import { TbCategory } from 'react-icons/tb'
+import { ImFontSize } from 'react-icons/im'
+import { MdPayment } from 'react-icons/md'
+import { CgNotes } from 'react-icons/cg'
 
 const cx = classNames.bind(styles)
 const Modal = ({ open, setOpen }) => {
@@ -22,55 +27,79 @@ const Modal = ({ open, setOpen }) => {
                     </div>
                     <nav className={cx('links')}>
                         <ul>
-                            <li onClick={() => setOpen(false)}>
+                            <li onClick={()=>setOpen(false)}>
                                 <NavLink exact="true" to='/seller/dashboard' >
-                                    <AiOutlineAppstore />
-                                    <span className={cx('border')}>Dashboard</span>
+                                    <AiOutlinePieChart />
+                                    <span className={cx('border')}>Overview</span>
                                 </NavLink>
                             </li>
-                            <li onClick={() => setOpen(false)}>
+                            <li onClick={()=>setOpen(false)}>
                                 <NavLink exact="true" to='/seller/orders'>
                                     <AiOutlineShoppingCart />
                                     <span className={cx('border')}>Orders</span>
                                 </NavLink>
                             </li>
-                            <li onClick={() => setOpen(false)}>
+                            <li onClick={()=>setOpen(false)}>
                                 <NavLink exact="true" to='/seller/products'>
                                     <AiOutlineShopping />
                                     <span className={cx('border')}>Products</span>
                                 </NavLink>
                             </li>
-                            <li onClick={() => setOpen(false)}>
-                                <NavLink exact="true" to='/seller/overviews'>
-                                    <AiOutlinePieChart />
-                                    <span className={cx('border')}>Overviews</span>
+                            <li onClick={()=>setOpen(false)}>
+                                <NavLink exact="true" to='/seller/banner'>
+                                    <TfiLayoutSliderAlt />
+                                    <span className={cx('border')}>Banner</span>
                                 </NavLink>
                             </li>
-                            <li onClick={() => setOpen(false)}>
+                            <li onClick={()=>setOpen(false)}>
+                                <NavLink exact="true" to='/seller/category'>
+                                    <TbCategory />
+                                    <span className={cx('border')}>Category</span>
+                                </NavLink>
+                            </li>
+                            <li onClick={()=>setOpen(false)}>
+                                <NavLink exact="true" to='/seller/size'>
+                                    <ImFontSize />
+                                    <span className={cx('border')}>Size</span>
+                                </NavLink>
+                            </li>
+                            <li onClick={()=>setOpen(false)}>
+                                <NavLink exact="true" to='/seller/payment'>
+                                    <MdPayment />
+                                    <span className={cx('border')}>Payment</span>
+                                </NavLink>
+                            </li>
+                            <li onClick={()=>setOpen(false)}>
+                                <NavLink exact="true" to='/seller/blog'>
+                                    <CgNotes />
+                                    <span className={cx('border')}>Blog</span>
+                                </NavLink>
+                            </li>
+                            <li onClick={()=>setOpen(false)}>
                                 <NavLink exact="true" to='/seller/customers'>
                                     <AiOutlineUsergroupAdd />
                                     <span className={cx('border')}>Customers</span>
                                 </NavLink>
                             </li>
-                            <li>
+                            <li onClick={()=>setOpen(false)}>
                                 <NavLink exact="true" to='/seller/account'>
                                     <CiShop />
                                     <span className={cx('border')}>Account</span>
                                 </NavLink>
                             </li>
-                            <li>
+                            <li onClick={()=>setOpen(false)}>
                                 <NavLink exact="true" to='/seller/vouchers'>
                                     <BiSolidDiscount />
                                     <span className={cx('border')}>Vouchers</span>
                                 </NavLink>
                             </li>
-                            <li>
+                            <li onClick={()=>setOpen(false)}>
                                 <NavLink exact="true" to='/seller/delivers'>
                                     <GrDeliver />
                                     <span className={cx('border')}>Delivers</span>
                                 </NavLink>
                             </li>
-                            <li onClick={() => setOpen(false)}>
+                            <li onClick={()=>setOpen(false)}>
                                 <NavLink exact="true" to='/seller/settings'>
                                     <AiOutlineSetting />
                                     <span className={cx('border')}>Settings</span>
@@ -78,12 +107,6 @@ const Modal = ({ open, setOpen }) => {
                             </li>
                         </ul>
                     </nav>
-                </div>
-                <div className={cx('logout')}>
-                    <NavLink to='/'>
-                        <AiOutlineLogout />
-                        <span>Log Out</span>
-                    </NavLink>
                 </div>
             </div>
         </section>

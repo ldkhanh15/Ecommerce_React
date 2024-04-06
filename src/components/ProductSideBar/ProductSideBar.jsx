@@ -24,7 +24,7 @@ const ProductSideBar = ({ thumbnail, color, condition, cate, shop }) => {
   return (
     <div className={cx('side-bar')}>
       <div className={cx('shop')}>
-        {shop && <VendorList data={data} sideBar={true} />}
+        {shop && <VendorList data={shop} sideBar={true} />}
       </div>
       <div className={cx('cate')}>
         <h3 className={cx('title')}>

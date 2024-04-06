@@ -1,17 +1,27 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import { Link } from 'react-router-dom';
 import ModalOrder from '@/components/ModalOrder/ModalOrder';
-
+import { getBill } from '@/services/billService';
+import moment from 'moment';
 const cx = classNames.bind(styles);
 const Orders = () => {
   const [open, setOpen] = useState(false);
-  const [data, setData]=useState('');
+  const [data, setData] = useState([]);
+  const [item, setItem] = useState([])
   const handleModal = (d) => {
-    setData(d)
+    setItem(d)
     setOpen(true);
   }
+  useEffect(() => {
+    const getData = async () => {
+      let res = await getBill();
+      setData(res.data);
+    }
+    getData();
+  }, [])
+  console.log(data);
   return (
     <div className={cx('container')}>
       <h3>Your Orders</h3>
@@ -26,34 +36,21 @@ const Orders = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th>#1</th>
-            <th>January 23, 2024</th>
-            <th>Processing</th>
-            <th>$ 125 for 2 item</th>
-            <th onClick={()=>handleModal('item 1')}><Link>View</Link></th>
-          </tr>
-          <tr>
-            <th>#1</th>
-            <th>January 23, 2024</th>
-            <th>Processing</th>
-            <th>$ 125 for 2 item</th>
-            <th onClick={()=>handleModal('item 2')}><Link>View</Link></th>
-          </tr>
-          <tr>
-            <th>#1</th>
-            <th>January 23, 2024</th>
-            <th>Processing</th>
-            <th>$ 125 for 2 item</th>
-            <th onClick={()=>handleModal('item 3')}><Link>View</Link></th>
-          </tr>
-          <tr>
-            <th>#1</th>
-            <th>January 23, 2024</th>
-            <th>Processing</th>
-            <th>$ 125 for 2 item</th>
-            <th onClick={()=>handleModal('item 4')}><Link>View</Link></th>
-          </tr>
+          {
+            data.length > 0 ? data.map((item, index) => {
+              const date = moment(item.createdAt).format('DD MMMM YYYY');
+              return (
+                <tr>
+                  <th>{index + 1}</th>
+                  <th>{date}</th>
+                  <th>{item?.status?.status}</th>
+                  <th>${item.totalPrice - item.discountPrice}</th>
+                  <th onClick={() => handleModal(item)}><Link>View</Link></th>
+                </tr>
+              )
+            }) : null
+          }
+
         </tbody>
       </table>
       <div className={cx('footer')}>
@@ -61,7 +58,7 @@ const Orders = () => {
           Hoping you to have a good day!!!
         </p>
       </div>
-      <ModalOrder open={open} setOpen={setOpen} data={data} />
+      <ModalOrder open={open} setOpen={setOpen} data={item} />
     </div>
   )
 }

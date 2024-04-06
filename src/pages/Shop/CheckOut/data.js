@@ -1,6 +1,6 @@
 const voucher=[
     {
-        image:'/favicon.ico',
+        avatar:'/favicon.ico',
         name:'Nest',
         title:'10%',
         subTitle:'Min 100$ Capped 10$',
@@ -9,7 +9,7 @@ const voucher=[
         limit:true
     },
     {
-        image:'/images/vendor/vendor-1.png',
+        avatar:'/images/vendor/vendor-1.png',
         name:'Car Toys',
         title:'25%',
         subTitle:'Min 100$ Capped 10$',
@@ -17,7 +17,7 @@ const voucher=[
         limit:false
     },
     {
-        image:'/images/vendor/vendor-1.png',
+        avatar:'/images/vendor/vendor-1.png',
         name:'Nest',
         title:'50%',
         subTitle:'Min 100$ Capped 10$',
@@ -26,7 +26,7 @@ const voucher=[
         limit:false
     },
     {
-        image:'/favicon.ico',
+        avatar:'/favicon.ico',
         name:'Nest',
         title:'50%',
         subTitle:'Min 100$ Capped 10$',
@@ -34,7 +34,7 @@ const voucher=[
         limit:true
     },
     {
-        image:'/images/vendor/vendor-1.png',
+        avatar:'/images/vendor/vendor-1.png',
         name:'Car Toys',
         title:'50%',
         subTitle:'Min 100$ Capped 10$',
@@ -42,7 +42,7 @@ const voucher=[
         limit:false
     },
     {
-        image:'/images/vendor/vendor-1.png',
+        avatar:'/images/vendor/vendor-1.png',
         name:'Nest',
         title:'50%',
         subTitle:'Min 100$ Capped 10$',
@@ -51,7 +51,7 @@ const voucher=[
         limit:false
     },
     {
-        image:'/favicon.ico',
+        avatar:'/favicon.ico',
         name:'Nest',
         title:'50%',
         subTitle:'Min 100$ Capped 10$',
@@ -59,7 +59,7 @@ const voucher=[
         limit:true
     },
     {
-        image:'/images/vendor/vendor-1.png',
+        avatar:'/images/vendor/vendor-1.png',
         name:'Car Toys',
         title:'50%',
         subTitle:'Min 100$ Capped 10$',
@@ -67,7 +67,7 @@ const voucher=[
         limit:false
     },
     {
-        image:'/images/vendor/vendor-1.png',
+        avatar:'/images/vendor/vendor-1.png',
         name:'Nest',
         title:'50%',
         subTitle:'Min 100$ Capped 10$',
@@ -76,7 +76,7 @@ const voucher=[
         limit:false
     },
     {
-        image:'/favicon.ico',
+        avatar:'/favicon.ico',
         name:'Nest',
         title:'50%',
         subTitle:'Min 100$ Capped 10$',
@@ -84,7 +84,7 @@ const voucher=[
         limit:true
     },
     {
-        image:'/images/vendor/vendor-1.png',
+        avatar:'/images/vendor/vendor-1.png',
         name:'Car Toys',
         title:'50%',
         subTitle:'Min 100$ Capped 10$',
@@ -92,7 +92,7 @@ const voucher=[
         limit:false
     },
     {
-        image:'/images/vendor/vendor-1.png',
+        avatar:'/images/vendor/vendor-1.png',
         name:'Nest',
         title:'50%',
         subTitle:'Min 100$ Capped 10$',
@@ -101,7 +101,7 @@ const voucher=[
         limit:false
     },
     {
-        image:'/favicon.ico',
+        avatar:'/favicon.ico',
         name:'Nest',
         title:'50%',
         subTitle:'Min 100$ Capped 10$',
@@ -109,7 +109,7 @@ const voucher=[
         limit:true
     },
     {
-        image:'/images/vendor/vendor-1.png',
+        avatar:'/images/vendor/vendor-1.png',
         name:'Car Toys',
         title:'50%',
         subTitle:'Min 100$ Capped 10$',
@@ -117,7 +117,7 @@ const voucher=[
         limit:false
     },
     {
-        image:'/images/vendor/vendor-1.png',
+        avatar:'/images/vendor/vendor-1.png',
         name:'Nest',
         title:'50%',
         subTitle:'Min 100$ Capped 10$',
@@ -126,7 +126,7 @@ const voucher=[
         limit:false
     },
     {
-        image:'/favicon.ico',
+        avatar:'/favicon.ico',
         name:'Nest',
         title:'50%',
         subTitle:'Min 100$ Capped 10$',

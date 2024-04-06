@@ -7,8 +7,9 @@ import { BsList } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import data from './data'
 import { getCate } from '@/services/categoryService';
+import { connect } from 'react-redux';
 const cx = classNames.bind(styles)
-const Search = () => {
+const Search = ({ carts, whitelists, compares }) => {
   const [open, setOpen] = useState(false);
   const [cate, setCate] = useState([]);
   useEffect(() => {
@@ -44,7 +45,7 @@ const Search = () => {
             <span className={cx('icon')}>
               <img src="/images/service/icon-compare.svg" alt="" />
               <span className={cx('count')}>
-                0
+                {compares.length}
               </span>
             </span>
             <span className={cx('text')}>
@@ -56,7 +57,7 @@ const Search = () => {
             <span className={cx('icon')}>
               <img src="/images/service/icon-heart.svg" alt="" />
               <span className={cx('count')}>
-                0
+                {whitelists.length}
               </span>
             </span>
             <span className={cx('text')}>
@@ -68,7 +69,7 @@ const Search = () => {
             <span className={cx('icon')}>
               <img src="/images/service/icon-cart.svg" alt="" />
               <span className={cx('count')}>
-                0
+                {carts.length}
               </span>
             </span>
             <span className={cx('text')}>
@@ -107,4 +108,15 @@ const Search = () => {
   )
 }
 
-export default Search
+
+const mapStateToProps = (state) => ({
+  carts: state.carts,
+  whitelists: state.whitelists,
+  compares: state.compares,
+});
+
+const mapDispatchToProps = {
+
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

@@ -25,6 +25,7 @@ const CustomerDetail = () => {
         })
     }
     const handleUpdate = async () => {
+        console.log(data);
         let res = await updateUser({
             birthday: data.birthday,
             gender: data.gender,
@@ -58,8 +59,8 @@ const CustomerDetail = () => {
                             <input onChange={(e) => handleChange(e)} name="birthday" type="date" placeholder='birthday' value={data.birthday?.split('T')[0]} />
                             <input onChange={(e) => handleChange(e)} name="phone" type="text" placeholder='phone' value={data.phone} />
                             <select name='gender' onChange={(e) => handleChange(e)}>
-                                <option defaultChecked={data.gender === "0" ? true : false} value="0">Male</option>
-                                <option defaultChecked={data.gender === "1" ? true : false} value="1">FeMale</option>
+                                <option defaultChecked={data.gender === "false" ? true : false} value={"false"}>Male</option>
+                                <option defaultChecked={data.gender === "true" ? true : false} value={"true"}>FeMale</option>
                             </select>
                             <div className={cx('btn')}>
                                 <Button primary large onClick={() => handleUpdate()}>Update</Button>

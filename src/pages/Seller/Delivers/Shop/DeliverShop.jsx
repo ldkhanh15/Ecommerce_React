@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
-import { addDeliver, deleteDeliver, getDeliver, getDeliverShop } from '@/services/deliverService'
+import { addDeliver, deleteDeliverShop, getDeliver, getDeliverShop } from '@/services/deliverService'
 const cx = classNames.bind(styles)
-const Delivers = () => {
+const DeliverShop = () => {
 
   const [data, setData] = useState([])
   const [deliver, setDeliver] = useState([])
@@ -28,7 +28,7 @@ const Delivers = () => {
     }, 500)
   }
   const handleDelete = async (item, id) => {
-    let res = await deleteDeliver(item.id, id);
+    let res = await deleteDeliverShop(item.id, id);
     setTimeout(async() => {
       getData();
     }, 500)
@@ -66,4 +66,4 @@ const Delivers = () => {
   )
 }
 
-export default Delivers
+export default DeliverShop

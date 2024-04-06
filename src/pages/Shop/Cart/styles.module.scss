@@ -65,11 +65,39 @@
                     margin-top: 10rem;
                     .product{
                         padding: 4rem 0;
+                        position: relative;
+                        &::before{
+                            cursor: pointer;
+                            content: '';
+                            position: absolute;
+                            height: 1.5rem;
+                            width: 1.5rem;
+                            border-radius: 0.3rem;
+                            border: 0.1rem solid #adadad;
+                            left: 0;
+                            top: 50%;
+                            transform: translate(0,-50%);
+                        }
+                        &:after{
+                            content: "";
+                            width: 1.2rem;
+                            position: absolute;
+                            height: 5px;
+                            border-left: 2px solid #fff;
+                            border-bottom: 2px solid #fff;
+                            opacity: 0;
+                            left: 0.15rem;
+                            top: 49%;
+                            transform: translateY(-65%) rotate(-45deg);
+                        }
+
                         .detail{
                             display: flex;
                             gap: 4rem;
                             align-items: center;
                             text-align: left;
+                            margin-left: 3rem;
+                           
                             .left{
                                 padding: 0rem;
                                 border:0.1rem solid  #ececec;
@@ -100,6 +128,14 @@
                                     }
                                 }
                             }
+                        }
+                    }
+                    .product.active{
+                        &::before{
+                            background-color: var(--primary);
+                        }
+                        &::after{
+                            opacity: 1;
                         }
                     }
                     .price{

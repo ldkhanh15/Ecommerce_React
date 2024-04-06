@@ -7,6 +7,12 @@ export const getShopDetail = (id) => {
 export const getShop = () => {
     return axios.get(`/api/vendor`)
 }
+export const getAllShopDetail = (id) => {
+    return axios.get(`/api/vendor/all?id=${id}`)
+}
+export const getAllShop = () => {
+    return axios.get(`/api/vendor/all`)
+}
 export const deleteShop = (id) => {
     return axios.delete(`/api/vendor/delete?id=${id}`)
 }

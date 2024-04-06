@@ -20,6 +20,7 @@ const Products = () => {
   const handleDelete = async (id) => {
     if (confirm('Are you sure you want to delete this product?')) {
       let res = await deleteProduct(id);
+
       console.log(res);
     }
   }
@@ -33,7 +34,7 @@ const Products = () => {
             <CiSearch className={cx('icon')} />
           </div>
           <div className={cx('right')}>
-            <Button primary large>Add new product</Button>
+            <Button to={'/seller/products/add'} primary large>Add new product</Button>
           </div>
         </div>
         <div className={cx('list')}>

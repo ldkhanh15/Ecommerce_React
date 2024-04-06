@@ -1,13 +1,14 @@
 import React from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
+import { connect } from 'react-redux'
 
 const cx = classNames.bind(styles)
-const Dashboard = () => {
+const Dashboard = ({ user }) => {
   return (
     <div className={cx('container')}>
       <div className={cx('header')}>
-        Hello Rosé !
+        Hello {user?.name} !
       </div>
       <div className={cx('footer')}>
         <p>
@@ -19,4 +20,13 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+
+const mapStateToProps = (state) => ({
+  user: state.user
+});
+
+const mapDispatchToProps = {
+
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

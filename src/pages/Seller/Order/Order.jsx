@@ -2,10 +2,14 @@ import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import { getBill } from '@/services/orderService'
+import { Link } from 'react-router-dom'
+import { deleteBill } from '@/services/billService'
+
 
 const cx = classNames.bind(styles)
 const Order = () => {
   const [data, setData] = useState();
+
   useEffect(() => {
     const getData = async () => {
       let res = await getBill();
@@ -21,6 +25,12 @@ const Order = () => {
       cancelled += item.idStatus === '6' ? item.totalPrice : 0
       wait += item.idStatus === '1' ? item.totalPrice : 0
     })
+  }
+  const handleDelete = async (id) => {
+    if (confirm('Are you sure you want to delete this order?')) {
+      let res = await deleteBill(id);
+      console.log(res);
+    }
   }
   return (
     <div className={cx('container')}>
@@ -47,7 +57,7 @@ const Order = () => {
             Completed Order
           </div>
           <div className={cx('count')}>
-           {completed} $
+            {completed} $
           </div>
         </div>
         <div className={cx('item')}>
@@ -99,7 +109,10 @@ const Order = () => {
                     <td>{item.shop.name}</td>
                     <td>{item.totalPrice}$</td>
                     <td><span className={cx(['status', `status_${item.idStatus}`])}>{item.status.status}</span></td>
-                    <td className={cx('view')}>View</td>
+                    <td className={cx('view')}>
+                      <Link className={cx(['btn', 'view'])} to={`/seller/orders/${item.id}`}>View</Link>
+                      <div onClick={() => handleDelete(item.id)} className={cx(['btn', 'delete'])}>Delete</div>
+                    </td>
                   </tr>
 
                 )
@@ -117,6 +130,7 @@ const Order = () => {
           <li>51</li>
         </ul>
       </div>
+
     </div>
   )
 }

@@ -6,27 +6,32 @@ import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import ShopProduct from '@/components/CheckOut/ShopProduct/ShopProduct'
 
-const cx=classNames.bind(styles)
-const UiOrder = ({data}) => {
+const cx = classNames.bind(styles)
+const UiOrder = ({ data }) => {
+  console.log(data);
+  let d = data.product.map(product => {
+    return {
+      ...product,
+      quantity: product.BillProduct.quantity,
+      type: product.BillProduct.type
+    };
+  });
   return (
     <div className={cx('container')}>
       <div className={cx('header-info')}>
         <h2>Order detail</h2>
-        <p>ID: #123</p>
+        <p>ID: {data.id}</p>
       </div>
       <div className={cx('main')}>
         <div className={cx('address')}>
-          <select disabled name="" id="">
-            <option value="">Choose a address</option>
-            <option value="">Address1</option>
-            <option value="">Address2</option>
-            <option value="">Address3</option>
-          </select>
+          <input type="text" name="" id="" readOnly value={data.address.address} />
         </div>
         <div className={cx('shop-product')}>
-          <ShopProduct order={true}/>
-          <ShopProduct  order={true}/>
-          <ShopProduct  order={true}/>
+          {
+            d.map((item, index) => (
+              <ShopProduct order={true} product={item} key={index} />
+            ))
+          }
         </div>
         <div className={cx('footer')}>
           <div className={cx('item')}>
@@ -63,7 +68,7 @@ const UiOrder = ({data}) => {
                 Merchandise Subtotal:
               </div>
               <div className={cx('right')}>
-                $358.24
+                ${data.totalPrice}
               </div>
             </div>
             <div className={cx('item')}>
@@ -79,7 +84,7 @@ const UiOrder = ({data}) => {
                 Shipping Discount
               </div>
               <div className={cx('right')}>
-                $4
+                ${data.discountPrice}
               </div>
             </div>
             <div className={cx('total')}>
@@ -87,7 +92,7 @@ const UiOrder = ({data}) => {
                 Total:
               </div>
               <div className={cx('right')}>
-                $340.25
+                ${data.totalPrice - data.discountPrice + 5}
               </div>
             </div>
           </div>

@@ -17,109 +17,120 @@
     .main{
         overflow-x: auto;
         margin-top: 3rem;
-        table{
-            width: 100%;
-            border: 0.1rem solid #ececec;
-            border-bottom: none;
-            border-right: none;
-            tr{
-                th,td{
-                    padding:0.8rem ;
-                    border-bottom: 0.1rem solid #ececec;
-                    border-right: 0.1rem solid #ececec;
-                    text-align: center;
-                }
-                .title{
-                    font-size: 1.6rem;
-                    color: #b6b6b6;
-                    font-weight: 700;
-                }
-                .image{
-                    
-                    
-                    img{
-                        max-width: 100%;
+        .table{
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            span{
+                cursor: pointer;
+                font-weight: 600;
+                color: #7e7e7e;
+                font-size: 1.5rem;
+            }
+            table{
+                width: 100%;
+                border: 0.1rem solid #ececec;
+                border-bottom: none;
+                border-right: none;
+                tr{
+                    th,td{
+                        padding:0.8rem ;
+                        border-bottom: 0.1rem solid #ececec;
+                        border-right: 0.1rem solid #ececec;
+                        text-align: center;
                     }
-                }
-                .name{
-                    font-size: 1.8rem;
-                    color: var(--primary);
-                    font-weight: 700;
-                    cursor: pointer;
-                    &:hover{
-                        color: #fdc040;
+                    .title{
+                        font-size: 1.6rem;
+                        color: #b6b6b6;
+                        font-weight: 700;
                     }
-                }
-                .price{
-                    color: #7e7e7e;
-                    font-weight: 600;
-
-                    
-                }
-                .rating{
-                    .rating-star{
-                        margin: auto;
-                        width: 6rem;
-                        height: 1.2rem;
-                        background: url('~/public/images/other/rating-star.png');
-                        background-position: 0 -1.2rem;
-                        .star{
-                            background: url('~/public/images/other/rating-star.png');
-                            height: 1.2rem;
-
+                    .image{
+                        
+                        
+                        img{
+                            max-width: 100%;
                         }
                     }
-                }
-                .desc,
-                .color,
-                .stock,
-                .weight,
-                .dimension,
-                .remove{
-                    color: #7e7e7e;
-                    font-weight: 500;
-                    font-size: 1.55rem;
-                    line-height: 1.2;
-                }
-                .stock.in{
-                    color: var(--primary);
-                }
-                .stock.out{
-                    color: red;
-                    font-weight: 600;
-                }
-                .buy{
-                    font-size: 1.4rem;
-                    .add,
-                    .contact{
-                        margin: auto;
-                        width: fit-content;
-                        padding: 1rem;
-                        border: 0.1rem solid #3bb77e;
-                        border-radius: 0.5rem;
-                        font-size: 1.3rem;
+                    .name{
+                        font-size: 1.8rem;
+                        color: var(--primary);
                         font-weight: 700;
-                        color: #fff;
+                        cursor: pointer;
+                        &:hover{
+                            color: #fdc040;
+                        }
+                    }
+                    .price{
+                        color: #7e7e7e;
+                        font-weight: 600;
+    
+                        
+                    }
+                    .rating{
+                        .rating-star{
+                            margin: auto;
+                            width: 6rem;
+                            height: 1.2rem;
+                            background: url('~/public/images/other/rating-star.png');
+                            background-position: 0 -1.2rem;
+                            .star{
+                                background: url('~/public/images/other/rating-star.png');
+                                height: 1.2rem;
+    
+                            }
+                        }
+                    }
+                    .desc,
+                    .color,
+                    .stock,
+                    .weight,
+                    .dimension,
+                    .remove{
+                        color: #7e7e7e;
+                        font-weight: 500;
+                        font-size: 1.55rem;
+                        line-height: 1.2;
+                    }
+                    .stock.in{
+                        color: var(--primary);
+                    }
+                    .stock.out{
+                        color: red;
+                        font-weight: 600;
+                    }
+                    .buy{
+                        font-size: 1.4rem;
+                        .add,
+                        .contact{
+                            margin: auto;
+                            width: fit-content;
+                            padding: 1rem;
+                            border: 0.1rem solid #3bb77e;
+                            border-radius: 0.5rem;
+                            font-size: 1.3rem;
+                            font-weight: 700;
+                            color: #fff;
+                            cursor: pointer;
+                        }
+                        .add{
+                            background-color: var(--primary);
+                            border-color: var(--primary);
+                            &:hover{
+                                background-color: #399c6e;
+                            }
+                        }
+    
+                        .contact{
+                            background-color: #3e5379;
+                            border-color: #3e5379;
+                            &:hover{
+                                background-color: #273b5f;
+                            }
+                        }
+                    }
+                    .remove{
                         cursor: pointer;
                     }
-                    .add{
-                        background-color: var(--primary);
-                        border-color: var(--primary);
-                        &:hover{
-                            background-color: #399c6e;
-                        }
-                    }
-
-                    .contact{
-                        background-color: #3e5379;
-                        border-color: #3e5379;
-                        &:hover{
-                            background-color: #273b5f;
-                        }
-                    }
-                }
-                .remove{
-                    cursor: pointer;
                 }
             }
         }

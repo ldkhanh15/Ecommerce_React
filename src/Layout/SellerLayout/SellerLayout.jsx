@@ -8,11 +8,12 @@ import NavBarMobile from '@/pages/Seller/components/NavBarMobile/NavBarMobile'
 const cx = classNames.bind(styles)
 const SellerLayout = ({ children }) => {
     let { width } = useWindowDimensions();
-
+    console.log(width);
     return (
         <div className={cx('container')}>
             <div className={cx('side-bar')}>
-                {width >= 768 ? <Sidebar /> : <NavBarMobile />}
+                {width <768 ? <NavBarMobile /> : null}
+                {width >= 768 ? <Sidebar /> : null}
             </div>
             <div className={cx('children')}>
                 {children}

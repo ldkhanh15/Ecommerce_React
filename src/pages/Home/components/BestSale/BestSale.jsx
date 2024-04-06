@@ -1,15 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import Product from '@/components/Product/Product';
-import data from './data'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 import Button from '@/components/Button';
 import { IoIosArrowRoundBack, IoIosArrowRoundForward } from 'react-icons/io';
+import { getAllProductSales } from '@/services/productSale';
 const cx = classNames.bind(styles);
 const BestSale = () => {
+  const [data, setData] = useState([])
+  useEffect(() => {
+    const getData = async () => {
+      let res = await getAllProductSales();
+      let arr = []
+      
+      res.data.map((item) => {
+        arr.push({
+          end: item.end,
+          start: item.start,
+          id: item.id,
+          quantity: item.quantity,
+          sold: item.sold,
+          mainImage: item.product.mainImage,
+          hoverImage: item.product.hoverImage,
+          price: item.product.price,
+          name: item.product.name,
+          idProduct: item.idProduct,
+          brand: item.product.brand,
+          shop:item.product.shop,
+          review:item.product.review,
+          sale:item.product.sale
+        })
+      })
+      setData(arr)
+    }
+    getData()
+  }, [])
   const settings = {
     // dots: true,
     infinite: false,

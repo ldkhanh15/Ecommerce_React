@@ -2,11 +2,13 @@ import React from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import { BiHeart } from 'react-icons/bi'
-
+import moment from 'moment'
+import { Link } from 'react-router-dom'
 const cx = classNames.bind(styles)
 const BlogLayout = ({ data }) => {
+    const date = moment(data.createdAt).format('DD MMMM YYYY');
     return (
-        <div className={cx('container')}>
+        <Link to={`/blog/${data.id}`} className={cx('container')}>
             {data &&
                 <>
                     <div className={cx('header')}>
@@ -17,27 +19,24 @@ const BlogLayout = ({ data }) => {
                     </div>
                     <div className={cx('footer')}>
                         <div className={cx('author')}>
-                            {data.author}
+                            {data.author.name}
                         </div>
                         <div className={cx('name')}>
                             {data.name}
                         </div>
                         <div className={cx('info')}>
                             <div className={cx('item')}>
-                                {data.date}
+                                {date}
                             </div>
                             <div className={cx('item')}>
                                 {data.view} Views
-                            </div>
-                            <div className={cx('item')}>
-                                {data.time} read
                             </div>
                         </div>
                     </div>
 
                 </>
             }
-        </div>
+        </Link>
     )
 }
 

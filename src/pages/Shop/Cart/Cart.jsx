@@ -8,24 +8,16 @@ import { FaFingerprint, FaRegCalendarMinus } from "react-icons/fa";
 import useScrollToTop from '@/hooks/useScrollToTop'
 import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
-import { deleteCart, deleteCartAll, getCart, updateCart } from '@/services/cartService'
 
+import { addProduct, removeProduct, addCart, removeCart, updateCart, clearCart } from '@/redux/action';
+import { connect } from 'react-redux';
 const cx = classNames.bind(styles)
-const Cart = () => {
-
+const Cart = ({ clearCart, products, addProduct, removeProduct, carts, addCart, removeCart, updateCart }) => {
   useScrollToTop();
   const [select, setSelect] = useState(true);
   const [data, setData] = useState([])
   const [input, setInput] = useState(true);
   const options = ["Option 1", "Option 2", "Option 3"];
-  const getData = async () => {
-    let res = await getCart(1);
-    setData(res.data);
-  }
-  useEffect(() => {
-    getData();
-  }, [])
-  console.log(data);
   const handleSelectChange = (event) => {
     if (event.target.value !== '') {
       setInput(false)
@@ -42,28 +34,30 @@ const Cart = () => {
       setInput(true)
     }
   }
-  const handleChange = async (e, id) => {
-    let res = await updateCart({
-      id: "1",
-      idProduct: `${id}`,
+  const handleChange = (e, id) => {
+    updateCart({
+      id,
       quantity: e.target.value
     })
-    getData();
+
   }
-  const handleDelete = async (id) => {
-    let res = await deleteCart("1", id);
-    getData();
-  }
-  const handleClearAll = async () => {
-    let res = await deleteCartAll("1");
-    getData();
+
+  const handleAdd = (item) => {
+    let index = products.findIndex(p => p.id === item.id);
+    if (index !== -1) {
+      removeProduct(item.id);
+    } else {
+      addProduct(item)
+    }
+
   }
   let total = 0;
-  if (data && data.product) {
-    total = data.product.reduce((value, current) => {
-      return value + current.CartProduct.quantity * current.price;
+  if (products) {
+    total = products.reduce((value, current) => {
+      return value + current.quantity * Math.floor(current.price * (100 - current.sale)) / 100;
     }, 0)
   }
+
   return (
     <div className={cx('container')}>
       <Helmet>
@@ -77,7 +71,7 @@ const Cart = () => {
           </div>
           <div className={cx('right')}>
             <BiTrash className={cx('icon')} />
-            <span onClick={() => handleClearAll()} className={cx('text')}>Clear Cart</span>
+            <span onClick={() => clearCart()} className={cx('text')}>Clear Cart</span>
           </div>
         </div>
       </div>
@@ -94,38 +88,50 @@ const Cart = () => {
           </thead>
           <tbody>
             {
-              data && data.product && data.product.map((item, index) => (
-                <tr key={index}>
-                  <td className={cx('product')}>
-                    <div className={cx('detail')}>
-                      <div className={cx('left')}>
-                        <img src={item.mainImage} alt="" />
-                      </div>
-                      <div className={cx('right')}>
-                        <Link to={`/products/${item.id}`} className={cx('name')}>
-                          {item.name}
-                        </Link >
-                        <div className={cx('rating')}>
-                          <div style={{ width: `${item.avgStar / 5 * 100}%` }} className={cx('star')}></div>
+              carts.map((item, index) => {
+                let isActive = products.some((selectP, index) => {
+                  return selectP.id === item.id;
+                })
+                let avgStar = 0
+                if (item.review.length) {
+                  avgStar = item.review.reduce((acc, cur) => {
+                    return acc + cur.star
+                  }, 0)
+                  avgStar /= item.review.length
+                }
+                return (
+                  <tr key={index}>
+                    <td onClick={() => handleAdd(item)} className={isActive ? cx(['product', 'active']) : cx(['product'])}>
+                      <div className={cx('detail')}>
+                        <div className={cx('left')}>
+                          <img src={item.mainImage} alt="" />
                         </div>
+                        <div className={cx('right')}>
+                          <Link to={`/products/${item.id}`} className={cx('name')}>
+                            {item.name}
+                          </Link >
+                          <div className={cx('rating')}>
+                            <div style={{ width: `${avgStar / 5 * 100}%` }} className={cx('star')}></div>
+                          </div>
 
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                  <td className={cx('price')}>
-                    ${Math.floor(item.price * (100 - item.sale)) / 100}
-                  </td>
-                  <td className={cx('quantity')}>
-                    <input type="number" title='quantity' onChange={(e) => handleChange(e, item.id)} min={1} defaultValue={item.CartProduct.quantity} />
-                  </td>
-                  <td className={cx('sub-total')}>
-                    ${item.CartProduct.quantity * Math.floor(item.price * (100 - item.sale)) / 100}
-                  </td>
-                  <td onClick={() => handleDelete(item.id)} className={cx('trash')}>
-                    <BiTrash />
-                  </td>
-                </tr>
-              ))
+                    </td>
+                    <td className={cx('price')}>
+                      ${Math.floor(item.price * (100 - item.sale)) / 100}
+                    </td>
+                    <td className={cx('quantity')}>
+                      <input type="number" title='quantity' onChange={(e) => handleChange(e, item.id)} min={1} defaultValue={item.quantity} />
+                    </td>
+                    <td className={cx('sub-total')}>
+                      ${item.quantity * Math.floor(item.price * (100 - item.sale)) / 100}
+                    </td>
+                    <td onClick={() => removeCart(item.id)} className={cx('trash')}>
+                      <BiTrash />
+                    </td>
+                  </tr>
+                )
+              })
             }
 
           </tbody>
@@ -206,4 +212,19 @@ const Cart = () => {
   )
 }
 
-export default Cart
+
+const mapStateToProps = (state) => ({
+  products: state.products,
+  carts: state.carts
+});
+
+const mapDispatchToProps = {
+  addProduct,
+  removeProduct,
+  addCart,
+  removeCart,
+  updateCart,
+  clearCart,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

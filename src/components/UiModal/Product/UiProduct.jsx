@@ -83,46 +83,48 @@ const UiModal = ({ data, modal }) => {
                         </div>
                     }
                     {
-                        data.color && <div className={cx('color')}>
+                        data?.color?.length > 0 ? <div className={cx('color')}>
                             <h3 className={cx('title')}>Color</h3>
-
                             {
                                 data.color.map((item, index) => (
-                                    <div onClick={()=>setColor(index)} key={index} style={{ background: `${item.name}` }} className={index===color ?cx(['item-color','active']):cx('item-color')}>
+                                    <div onClick={() => setColor(index)} key={index} style={{ background: `${item.name}` }} className={index === color ? cx(['item-color', 'active']) : cx('item-color')}>
 
                                     </div>
                                 ))
                             }
                         </div>
+                            : null
                     }
                     {
-                        data.size && <div className={cx('box')}>
+                        data?.size?.length > 0 ? <div className={cx('box')}>
                             <h3 className={cx('title')}>Size</h3>
-
                             {
                                 data.size.map((item, index) => (
-                                    <div onClick={()=>setSize(index)} key={index} className={index === size ? cx(['item-box', 'active']) : cx('item-box')}>
+                                    <div onClick={() => setSize(index)} key={index} className={index === size ? cx(['item-box', 'active']) : cx('item-box')}>
                                         {item.name}
                                     </div>
 
                                 ))
                             }
                         </div>
+                            : null
                     }
-                    {data.combo && <div className={cx('box')}>
+                    {data?.combo?.length > 0 ? <div className={cx('box')}>
 
                         <h3 className={cx('title')}>Combo</h3>
                         {
 
                             data.combo && data.combo.map((item, index) => (
-                                <div onClick={()=>setCombo(index)} key={index} className={combo === index ? cx(['item-box', 'active']) : cx('item-box')}>
+                                <div onClick={() => setCombo(index)} key={index} className={combo === index ? cx(['item-box', 'active']) : cx('item-box')}>
                                     {item.name}
                                 </div>
 
                             ))
 
                         }
-                    </div>}
+                    </div>
+                        : null
+                    }
                     <div className={cx('action')}>
                         <input defaultValue={1} min={1} type="number" />
                         <Button rounded className={cx('btn')}>Add to Cart</Button>

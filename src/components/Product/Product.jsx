@@ -8,16 +8,24 @@ import { FaRegHeart } from "react-icons/fa";
 import { FaRandom } from "react-icons/fa";
 import ModalProduct from '../ModalProduct/ModalProduct';
 import { Link } from 'react-router-dom';
-import { addCart, getCart } from '@/services/cartService';
+import { addCart,addCompare,addWhiteList } from '@/redux/action';
+import { connect } from 'react-redux';
 
 const cx = classNames.bind(styles)
-const Product = ({ data, className }) => {
+const Product = ({ data, className ,addCart ,addCompare,addWhiteList}) => {
     const [open, setOpen] = useState(false);
-    const handleAdd = async (id) => {
-        let res = await addCart({
-            idProduct: `${id}`,
-            quantity: 1
-        })
+    const handleAdd = (data) => {
+        addCart({
+            ...data,
+            quantity:1
+        });
+    }
+    let star = 0;
+    if (data.review.length > 0) {
+        star = data.review.reduce((acc, cur) => {
+            return acc + cur.star
+        }, 0)
+        star = star / data.review.length;
     }
     return (
         <div className={cx('container', { [className]: className, })}>
@@ -53,10 +61,10 @@ const Product = ({ data, className }) => {
                     <div onClick={() => setOpen(true)} aria-label='Quick view' className={cx('box')}>
                         <MdOutlineRemoveRedEye className={cx('icon')} />
                     </div>
-                    <a href='/' aria-label='Add to WishList' className={cx('box')}>
+                    <div onClick={()=>addWhiteList(data)} aria-label='Add to WishList' className={cx('box')}>
                         <FaRegHeart className={cx('icon')} />
-                    </a>
-                    <a href='/' aria-label='Compare' className={cx('box')}>
+                    </div>
+                    <a onClick={()=>addCompare(data)} aria-label='Compare' className={cx('box')}>
                         <FaRandom className={cx('icon')} />
                     </a>
                 </div>
@@ -68,36 +76,38 @@ const Product = ({ data, className }) => {
                 <Link to={`/products/${data.id}`} className={cx('name')}>
                     {data.name}
                 </Link>
-                <div className={cx('rating')}>
-                    <div className={cx('star')} style={{ width: `${4 * 100 / 5}%` }}>
+                <div className={cx('review')}>
+                    <div className={cx('rating')}>
+                        <div className={cx('star')} style={{ width: `${star * 100 / 5}%` }}>
 
+                        </div>
                     </div>
+                    <span>({data.review.length})</span>
                 </div>
+
                 <div className={cx('author')}>
                     By <span>{data?.shop?.username}</span>
                 </div>
                 {
-                    data.total ?
+                    data.quantity ?
                         <div className={cx('sale')}>
                             <div className={cx('price')}>
                                 <span className={cx('new-price')}>
-                                    {/* ${Math.round(data.price * (100 - data.sale)) / 100} */}
-                                    {data.newPrice}
+                                    ${Math.round(data.price * (100 - data.sale)) / 100}
                                 </span>
                                 <span className={cx('old-price')}>
-                                    {/* {data.price} */}
-                                    {data.oldPrice}
+                                    {data.price}
                                 </span>
                             </div>
                             <div className={cx('sold')}>
                                 <div className={cx('total')}>
-                                    <div className={cx('remain')} style={{ width: `${(data.remain / data.total) * 100}%` }}>
+                                    <div className={cx('remain')} style={{ width: `${(data.sold / data.quantity) * 100}%` }}>
 
                                     </div>
                                 </div>
-                                <div className={cx('text')}>Sold: {data.remain}/{data.total}</div>
+                                <div className={cx('text')}>Sold: {data.sold}/{data.quantity}</div>
                             </div>
-                            <Button onClick={() => alert(data.remain)} className={data.total > data.remain ? '' : cx('disabled')} primary large leftIcon={<CiShoppingCart />}>Add to Cart</Button>
+                            <Button className={data.quantity > data.sold ? '' : cx('disabled')} primary large leftIcon={<CiShoppingCart />}>Add to Cart</Button>
 
                         </div>
                         :
@@ -108,7 +118,7 @@ const Product = ({ data, className }) => {
                             <span className={cx('old-price')}>
                                 {data.price}
                             </span>
-                            <Button onClick={() => handleAdd(data.id)} rightIcon={<CiShoppingCart />} outline small>Add</Button>
+                            <Button onClick={() => handleAdd(data)} rightIcon={<CiShoppingCart />} outline small>Add</Button>
                         </div>
                 }
             </div>
@@ -117,4 +127,14 @@ const Product = ({ data, className }) => {
     )
 }
 
-export default Product
+const mapStateToProps = (state) => ({
+   
+  });
+  
+  const mapDispatchToProps = {
+    addCart,
+    addWhiteList,
+    addCompare
+  };
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Product);

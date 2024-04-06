@@ -1,11 +1,32 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
+import { createAddress, deleteAddress, getAddress } from '@/services/userService'
+import { connect } from 'react-redux'
 
 const cx = classNames.bind(styles)
-const Address = () => {
-  const [def, setDef] = useState(1);
-
+const Address = ({ user }) => {
+  const [data, setData] = useState([]);
+  const [input, setInput] = useState('');
+  useEffect(() => {
+    const getData = async () => {
+      let res = await getAddress();
+      setData(res.data);
+    }
+    getData();
+  }, [data]);
+  const handleAdd = async () => {
+    if (input !== '') {
+      let res = await createAddress({
+        idUser: `${user.id}`,
+        address: input
+      })
+      setInput('');
+    }
+  }
+  const handleDelete = async (id) => {
+    let res = await deleteAddress(id, user.id)
+  }
   return (
     <div className={cx('container')}>
       <div className={cx('header')}>
@@ -19,46 +40,28 @@ const Address = () => {
               <th>STT</th>
               <th>Address</th>
               <th>Actions</th>
-              <th>Default</th>
             </tr>
           </thead>
           <tbody>
+            {
+              data.length > 0 ? data.map((item, index) => (
+                <tr key={index}>
+                  <th>{index + 1}</th>
+                  <th>{item.address}</th>
+                  <th className={cx('action')}>
+                    <button className={cx('del')} onClick={() => handleDelete(item.id)}>Delete</button>
+                  </th>
+                </tr>
+              )) : null
+            }
             <tr>
-              <th>1</th>
-              <th>K129/60 Phạm Như Xương, phường Hòa Khánh Nam, quận Liên Chiểu, Đà Nẵng</th>
+              <th></th>
+              <th><input value={input} onChange={(e) => setInput(e.target.value)} type="text" placeholder='Add new address' /></th>
               <th className={cx('action')}>
-                <button>Edit</button>
-                <button>Delete</button>
-              </th>
-              <th>
-                <label onClick={()=>setDef(1)} className={def===1 ? cx('active') : ''} htmlFor="check1"></label>
-                <input defaultChecked type="radio" name='default' />
+                <button onClick={() => handleAdd()}>Add</button>
               </th>
             </tr>
-            <tr>
-              <th>1</th>
-              <th>K129/60 Phạm Như Xương, phường Hòa Khánh Nam, quận Liên Chiểu, Đà Nẵng</th>
-              <th className={cx('action')}>
-                <button>Edit</button>
-                <button>Delete</button>
-              </th>
-              <th>
-                <label onClick={()=>setDef(2)} className={def===2 ? cx('active') : ''} htmlFor="check1"></label>
-                <input type="radio" name='default' />
-              </th>
-            </tr>
-            <tr>
-              <th>1</th>
-              <th>K129/60 Phạm Như Xương, phường Hòa Khánh Nam, quận Liên Chiểu, Đà Nẵng</th>
-              <th className={cx('action')}>
-                <button>Edit</button>
-                <button>Delete</button>
-              </th>
-              <th>
-                <label onClick={()=>setDef(3)} className={def===3 ? cx('active') : ''} htmlFor="check1"></label>
-                <input type="radio" name='default' />
-              </th>
-            </tr>
+
           </tbody>
         </table>
       </div>
@@ -66,4 +69,11 @@ const Address = () => {
   )
 }
 
-export default Address
+const mapStateToProps = (state) => ({
+  user: state.user
+})
+
+const mapDispatchToProps = {
+
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Address)

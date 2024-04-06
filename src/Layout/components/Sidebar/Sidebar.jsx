@@ -9,12 +9,16 @@ import {
   AiOutlineSetting,
   AiOutlineUsergroupAdd,
 } from 'react-icons/ai';
+import { TfiLayoutSliderAlt } from "react-icons/tfi";
 import { GrDeliver } from "react-icons/gr";
 import classNames from 'classnames/bind';
 import styles from './styles.module.scss'
 import { BiSolidDiscount } from 'react-icons/bi';
-import { CiShop } from 'react-icons/ci';
-
+import { CiLocationOn, CiShop } from 'react-icons/ci';
+import { TbCategory } from 'react-icons/tb';
+import { ImFontSize } from "react-icons/im";
+import { MdPayment } from 'react-icons/md';
+import { CgNotes } from 'react-icons/cg';
 const cx = classNames.bind(styles)
 const Sidebar = () => {
   return (
@@ -27,8 +31,8 @@ const Sidebar = () => {
           <ul>
             <li>
               <NavLink exact="true" to='/seller/dashboard' >
-                <AiOutlineAppstore />
-                <span className={cx('border')}>Dashboard</span>
+                <AiOutlinePieChart />
+                <span className={cx('border')}>Overview</span>
               </NavLink>
             </li>
             <li>
@@ -44,9 +48,33 @@ const Sidebar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink exact="true" to='/seller/overviews'>
-                <AiOutlinePieChart />
-                <span className={cx('border')}>Overviews</span>
+              <NavLink exact="true" to='/seller/banner'>
+                <TfiLayoutSliderAlt/>
+                <span className={cx('border')}>Banner</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink exact="true" to='/seller/category'>
+                <TbCategory />
+                <span className={cx('border')}>Category</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink exact="true" to='/seller/size'>
+                <ImFontSize />
+                <span className={cx('border')}>Size</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink exact="true" to='/seller/payment'>
+                <MdPayment />
+                <span className={cx('border')}>Payment</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink exact="true" to='/seller/blog'>
+                <CgNotes />
+                <span className={cx('border')}>Blog</span>
               </NavLink>
             </li>
             <li>
@@ -81,12 +109,6 @@ const Sidebar = () => {
             </li>
           </ul>
         </nav>
-      </div>
-      <div className={cx('logout')}>
-        <NavLink to='/'>
-          <AiOutlineLogout />
-          <span>Log Out</span>
-        </NavLink>
       </div>
     </section>
   )

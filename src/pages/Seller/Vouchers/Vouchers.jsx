@@ -25,7 +25,7 @@ const Vouchers = () => {
           <CiSearch className={cx('icon')} />
         </div>
         <div className={cx('right')}>
-          <Button primary large>Add new voucher</Button>
+          <Button to={'/seller/vouchers/add-voucher'} primary large>Add new voucher</Button>
         </div>
       </div>
       {data && data.voucher &&

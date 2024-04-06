@@ -2,11 +2,13 @@
     background-color: var(--bgRound);
     min-height: 100vh;
     height: 100%;
+    overflow-y: auto;
     flex-direction: column;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1.5rem;
+
     .top{
         display: flex;
         flex-direction: column;

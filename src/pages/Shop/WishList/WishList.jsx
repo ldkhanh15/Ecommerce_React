@@ -4,13 +4,14 @@ import styles from './styles.module.scss'
 import { GoTrash } from "react-icons/go";
 import useScrollToTop from '@/hooks/useScrollToTop';
 import { Helmet } from 'react-helmet';
-
+import { addCart, removeWhiteList, clearWhiteList } from '@/redux/action';
+import { connect } from 'react-redux';
 const cx = classNames.bind(styles)
-const WishList = () => {
+const WishList = ({ addCart, whitelists, clearWhiteList,removeWhiteList }) => {
   useScrollToTop()
   return (
     <div className={cx('container')}>
-       <Helmet>
+      <Helmet>
         <title>Wish List</title>
       </Helmet>
       <div className={cx('main')}>
@@ -25,78 +26,57 @@ const WishList = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className={cx('product')}>
-                <div className={cx('detail')}>
-                  <div className={cx('left')}>
-                    <img src="/images/product/product-2-1.jpg" alt="" />
-                  </div>
-                  <div className={cx('right')}>
-                    <div className={cx('name')}>
-                      Angie's Boomchickapop Sweet & Salty
-                    </div>
-                    <div className={cx('rating')}>
-                      <div style={{width:'45%'}} className={cx('star')}></div>
-                    </div>
+            {
+              whitelists.map((whitelist => {
+                let avgStar = 0
+                if (whitelist.review.length) {
+                  avgStar = whitelist.review.reduce((acc, cur) => {
+                    return acc + cur.star
+                  }, 0)
+                  avgStar /= whitelist.review.length
+                }
+                return (
+                  <tr key={whitelist.id}>
+                    <td className={cx('product')}>
+                      <div className={cx('detail')}>
+                        <div className={cx('left')}>
+                          <img src={whitelist.mainImage} alt="" />
+                        </div>
+                        <div className={cx('right')}>
+                          <div className={cx('name')}>
+                            {whitelist.name}
+                          </div>
+                          <div className={cx('rating')}>
+                            <div style={{ width: `${avgStar / 5 * 100}%` }} className={cx('star')}></div>
+                          </div>
 
-                  </div>
-                </div>
-              </td>
-              <td className={cx('price')}>
-                $35
-              </td>
-              <td className={cx('status-stock')}>
-                <div className={cx('in-stock')}>
-                    In Stock
-                </div>
-              </td>
-              <td className={cx('action')}>
-                <div className={cx('add')}>
-                  Add to cart
-                </div>
-              </td>
-              <td className={cx('trash')}>
-                <GoTrash className={cx('icon')}/>
-              </td>
-            </tr>
+                        </div>
+                      </div>
+                    </td>
+                    <td className={cx('price')}>
+                      ${Math.floor(whitelist.price * (100 - whitelist.sale)) / 100}
+                    </td>
+                    <td className={cx('status-stock')}>
+                      <div className={cx('in-stock')}>
+                        In Stock
+                      </div>
+                    </td>
+                    <td className={cx('action')}>
+                      <div onClick={() => addCart(whitelist)} className={cx('add')}>
+                        Add to cart
+                      </div>
+                    </td>
+                    <td onClick={() => removeWhiteList(whitelist.id)} className={cx('trash')}>
+                      <GoTrash className={cx('icon')} />
+                    </td>
+                  </tr>
 
-            <tr>
-              <td className={cx('product')}>
-                <div className={cx('detail')}>
-                  <div className={cx('left')}>
-                    <img src="/images/product/product-4-1.jpg" alt="" />
-                  </div>
-                  <div className={cx('right')}>
-                    <div className={cx('name')}>
-                      Angie's Boomchickapop Sweet & Salty
-                    </div>
-                    <div className={cx('rating')}>
-                      <div className={cx('star')} style={{width:'75%'}}></div>
-                    </div>
-
-                  </div>
-                </div>
-              </td>
-              <td className={cx('price')}>
-                $35
-              </td>
-              <td className={cx('status-stock')}>
-                <div className={cx('out-stock')}>
-                    Out Stock
-                </div>
-              </td>
-              <td className={cx('action')}>
-                <div className={cx('contact')}>
-                  Contact us
-                </div>
-              </td>
-              <td className={cx('trash')}>
-                <GoTrash className={cx('icon')}/>
-              </td>
-            </tr>
+                )
+              }))
+            }
           </tbody>
         </table>
-        <span className={cx('clear')}>
+        <span onClick={() => clearWhiteList()} className={cx('clear')}>
           Clear All
         </span>
       </div>
@@ -104,4 +84,15 @@ const WishList = () => {
   )
 }
 
-export default WishList
+
+const mapStateToProps = (state) => ({
+  whitelists: state.whitelists,
+});
+
+const mapDispatchToProps = {
+  addCart,
+  removeWhiteList,
+  clearWhiteList,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(WishList);

@@ -36,7 +36,6 @@
         width: 100%;
         table{
             width: 100%;
-            text-align: center;
             thead{
                 color: var(--primary);
                 font-weight: 700;
@@ -49,10 +48,27 @@
             }
             td.view{
                 font-weight: 700;
-                cursor: pointer;
                 color: var(--text);
-                &:hover{
-                    color: var(--primary);
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+                .btn{
+                    color: #fff;
+                    font-size: 1.4rem;
+                    padding: 0.5rem 1rem;
+                    border: 0.1rem solid #ececec;
+                    border-radius: 0.5rem;
+                    cursor: pointer;
+                    &:hover{
+                        opacity: 0.6;
+
+                    }
+                }
+                .view{
+                    background-color: var(--primary);
+                }
+                .delete{
+                    background-color: red;
                 }
             }
             td{

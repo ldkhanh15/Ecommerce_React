@@ -10,11 +10,11 @@ const NavBarMobile = () => {
     return (
         <>
             <div className={cx('container')}>
-                <div className={cx('logo')}>
-                    <img src="/images/logo/logo.svg" alt="" />
-                </div>
                 <div onClick={() => setOpen(!open)} className={cx('icon')}>
                     <BsList />
+                </div>
+                <div className={cx('logo')}>
+                    <img src="/images/logo/logo.svg" alt="" />
                 </div>
             </div>
             <Modal open={open} setOpen={setOpen} />

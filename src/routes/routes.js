@@ -36,11 +36,22 @@ import {
     Dashboard,
     SettingSell,
     Vouchers,
-    Delivers,
     AccountDetail,
     VoucherDetail,
     CustomerDetail,
-    ProductDetailSeller
+    OrderDetail,
+    ViewProduct,
+    AddProduct,
+    AddVoucher,
+    Size,
+    Banner,
+    Payment,
+    Category,
+    BlogSeller,
+    AddBlog,
+    BlogSellerDetail,
+    DeliverShop,
+    Deliver
 } from '../pages/pages'
 
 
@@ -87,16 +98,25 @@ const publicRoutes = [
     { path: '/seller/account', component: Account, layout: SellerLayout },
     { path: '/seller/account/:id', component: AccountDetail, layout: SellerLayout },
     { path: '/seller/orders', component: Order, layout: SellerLayout },
+    { path: '/seller/orders/:id', component: OrderDetail, layout: SellerLayout },
     { path: '/seller/overviews', component: Overview, layout: SellerLayout },
     { path: '/seller/products', component: Products, layout: SellerLayout },
-    { path: '/seller/products/:id', component: ProductDetailSeller, layout: SellerLayout },
+    { path: '/seller/products/:id', component: ViewProduct, layout: SellerLayout },
+    { path: '/seller/products/add', component: AddProduct, layout: SellerLayout },
     { path: '/seller/settings', component: SettingSell, layout: SellerLayout },
     { path: '/seller/dashboard', component: Dashboard, layout: SellerLayout },
     { path: '/seller/vouchers', component: Vouchers, layout: SellerLayout },
     { path: '/seller/vouchers/:id', component: VoucherDetail, layout: SellerLayout },
-    { path: '/seller/delivers', component: Delivers, layout: SellerLayout },
-
-
+    { path: '/seller/vouchers/add-voucher', component: AddVoucher, layout: SellerLayout },
+    { path: '/seller/delivers/:id', component: DeliverShop, layout: SellerLayout },
+    { path: '/seller/delivers', component: Deliver, layout: SellerLayout },
+    { path: '/seller/size', component: Size, layout: SellerLayout },
+    { path: '/seller/banner', component: Banner, layout: SellerLayout },
+    { path: '/seller/payment', component: Payment, layout: SellerLayout },
+    { path: '/seller/category', component: Category, layout: SellerLayout },
+    { path: '/seller/blog', component: BlogSeller, layout: SellerLayout },
+    { path: '/seller/blog/add-blog', component: AddBlog, layout: SellerLayout },
+    { path: '/seller/blog/:id', component: BlogSellerDetail, layout: SellerLayout },
 
     //buyer
     { path: '/buyer/login', component: LoginBuy },

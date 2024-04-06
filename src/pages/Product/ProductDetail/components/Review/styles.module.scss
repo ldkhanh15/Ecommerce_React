@@ -4,8 +4,11 @@
         gap: 5rem;
         width: 100%;
         justify-content: space-between;
+        .list-comment{
+            width: 70%;
+        }
         .rating-comment{
-            width: 50%;
+            width: 30%;
             display: flex;
             flex-direction: column;
             gap: 2rem;

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
-import EmojiPicker from 'emoji-picker-react';
 import { BiSend } from 'react-icons/bi';
 const cx = classNames.bind(styles)
 const Comment = ({ data }) => {

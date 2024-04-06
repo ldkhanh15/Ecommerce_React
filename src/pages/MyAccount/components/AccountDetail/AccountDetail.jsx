@@ -1,10 +1,45 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
-
+import { getUser, updateUser } from '@/services/userService';
 const cx = classNames.bind(styles);
 const AccountDetail = () => {
-  const [gender, setGender] = useState('male')
+  const [data, setData] = useState({});
+  useEffect(() => {
+    const getData = async () => {
+      let res = await getUser();
+      let date = res.data.birthday;
+      date = date.split('T');
+      setData({
+        avatar: res.data.avatar,
+        birthday: date[0],
+        email: res.data.email,
+        gender: res.data.gender,
+        phone: res.data.phone,
+        name: res.data.name,
+        username: res.data.username,
+        id:res.data.id
+      })
+    }
+    getData();
+  }, [])
+  const handleChange = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value
+    })
+  }
+  const handleUpdate = async () => {
+    let res = await updateUser({
+      birthday: data.birthday,
+      gender: data.gender,
+      phone: data.phone,
+      name: data.name,
+      username: data.username,
+      id: `${data.id}`
+    })
+    console.log(res);
+  }
   return (
     <div className={cx('container')}>
       <div className={cx('main')}>
@@ -14,44 +49,41 @@ const AccountDetail = () => {
         </div>
         <div className={cx('info')}>
           <div className={cx('input')}>
-            <label htmlFor="firstName">First Name *</label>
-            <input type="text" id='firstName' placeholder='First Name' />
+            <label htmlFor="firstName">Name *</label>
+            <input onChange={(e) => handleChange(e)} name='name' value={data.name} type="text" id='firstName' placeholder='Name' />
           </div>
           <div className={cx('input')}>
-            <label htmlFor="lastName">Last Name *</label>
-            <input type="text" id='lastName' placeholder='Last Name' />
+            <label htmlFor="lastName">UserName *</label>
+            <input onChange={(e) => handleChange(e)} name='username' value={data.username} type="text" id='lastName' placeholder='UserName' />
           </div>
           <div className={cx('input')}>
-            <label htmlFor="displayName">Display Name *</label>
-            <input type="text" id='displayName' placeholder='Display Name' />
+            <label htmlFor="displayName">Email *</label>
+            <input readOnly name='email' value={data.email} type="text" id='displayName' placeholder='Email' />
           </div>
           <div className={cx('input')}>
-            <label htmlFor="email">Email *</label>
-            <input type="text" id='email' placeholder='Email' />
+            <label htmlFor="email">Birthday *</label>
+            <input onChange={(e) => handleChange(e)} name='birthday' type="date" id='email' placeholder='Birthday' value={data.birthday} />
           </div>
           <div className={cx('input')}>
             <label htmlFor="phone">Phone Number *</label>
-            <input type="text" id='phone' placeholder='Phone Number' />
+            <input onChange={(e) => handleChange(e)} name='phone' value={data.phone} type="text" id='phone' placeholder='Phone Number' />
           </div>
           <div className={cx('input')}>
             <label htmlFor="gender">Gender *</label>
             <div className={cx('radio-input')} id='gender'>
               <div className={cx('item')}>
-                <input defaultChecked name='gender' type="radio" id='male' />
-                <label onClick={()=>setGender('male')} className={gender === 'male' ? cx('active') : ''} htmlFor="male">Male *</label>
+                <input defaultChecked={data.gender === "true" ? true : false} name='gender' type="radio" id='male' />
+                <label onClick={() => setData({ ...data, gender: "true" })} className={data.gender === 'true' ? cx('active') : ''} htmlFor="male">Male *</label>
               </div>
               <div className={cx('item')}>
-                <input name='gender' type="radio" id='female' />
-                <label onClick={()=>setGender('female')} className={gender === 'female' ? cx('active') : ''} htmlFor="female">Female *</label>
+                <input defaultChecked={data.gender === "false" ? true : false} name='gender' type="radio" id='female' />
+                <label onClick={() => setData({ ...data, gender: "false" })} className={data.gender === 'false' ? cx('active') : ''} htmlFor="female">Female *</label>
               </div>
-              <div className={cx('item')}>
-                <input name='gender' type="radio" id='other' />
-                <label onClick={()=>setGender('other')} className={gender === 'other' ? cx('active') : ''} htmlFor="other">Others *</label>
-              </div>
+
             </div>
           </div>
           <div className={cx('btn')}>
-            <button type='submit'>Save Change</button>
+            <button onClick={() => handleUpdate()}>Save Change</button>
           </div>
         </div>
       </div>

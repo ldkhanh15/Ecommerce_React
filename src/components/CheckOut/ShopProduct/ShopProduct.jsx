@@ -7,39 +7,40 @@ import { Link } from 'react-router-dom'
 import { voucher } from '../../../pages/Shop/CheckOut/data'
 import ModalVoucher from '@/components/ModalVoucher/ModalVoucher'
 const cx = classNames.bind(styles)
-const ShopProduct = ({order}) => {
+const ShopProduct = ({ order, product }) => {
   const [open, setOpen] = useState(false);
-  const handleClick=()=>{
-    if(!order){
+  const handleClick = () => {
+    if (!order) {
       setOpen(true)
     }
   }
+  console.log(product);
   return (
     <div className={cx('container')}>
       <ModalVoucher data={voucher} open={open} setOpen={setOpen} voucher={true} />
       <div className={cx('shop')}>
         <div className={cx('name-shop')}>
-          Car Toys
+          {product.shop.name}
         </div>
-        <Link to={'/shop/vendors/car-toys'}>View Shop</Link>
+        <Link to={`/shop/vendors/${product.shop.id}`}>View Shop</Link>
       </div>
       <div className={cx('product')}>
         <div className={cx('left')}>
-          <img src="/images/product/product-1-1.jpg" alt="" />
+          <img src={product.mainImage} alt="" />
         </div>
         <div className={cx('right')}>
           <div className={cx('name')}>
-            All Natural Italian-Style Chicken Meatballs
+            {product.name}
           </div>
           <div className={cx('type')}>
             Type: Combo x2
           </div>
           <div className={cx('price-quantity')}>
             <div className={cx('price')}>
-              $238.5
+              ${Math.floor(product.price * (100 - product.sale)) / 100}
             </div>
             <div className={cx('quantity')}>
-              x2
+              x{product.quantity}
             </div>
           </div>
         </div>
@@ -67,7 +68,7 @@ const ShopProduct = ({order}) => {
           Total:
         </div>
         <div className={cx('price')}>
-          300.25$
+          {product.quantity * Math.floor(product.price * (100 - product.sale)) / 100}$
         </div>
       </div>
     </div>

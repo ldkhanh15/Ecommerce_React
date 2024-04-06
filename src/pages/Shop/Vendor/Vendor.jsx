@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import { CiSearch } from 'react-icons/ci'
@@ -7,11 +7,22 @@ import { FaSort } from 'react-icons/fa'
 import data from './data'
 import VendorList from '@/components/VendorList/VendorList'
 import { Helmet } from 'react-helmet'
+import { getAllShop, getShop } from '@/services/shopService'
 const cx = classNames.bind(styles)
 const Vendor = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const getData = async () => {
+      let res = await getAllShop();
+      setData(res.data)
+    }
+    getData();
+  }, [])
+
+  console.log(data);
   return (
     <div className={cx('container')}>
-       <Helmet>
+      <Helmet>
         <title>Vendor</title>
       </Helmet>
       <div className={cx('header')}>

@@ -1,9 +1,9 @@
 import useScrollToTop from '@/hooks/useScrollToTop'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
-import ShopProduct from '../../../components/CheckOut/ShopProduct/ShopProduct'
+import ShopProduct from '@/components/CheckOut/ShopProduct/ShopProduct'
 import { TbBasketDiscount } from "react-icons/tb";
 import { IoIosArrowForward } from 'react-icons/io'
 import { CgNotes } from "react-icons/cg";
@@ -11,12 +11,29 @@ import Button from '@/components/Button'
 import { Link } from 'react-router-dom'
 import ModalVoucher from '@/components/ModalVoucher/ModalVoucher'
 import { voucher, payment } from './data'
+import { connect } from 'react-redux';
+import { getAddress } from '@/services/userService'
 const cx = classNames.bind(styles)
 
-const CheckOut = () => {
+const CheckOut = ({ products }) => {
+  const [address, setAddress] = useState([])
+  useEffect(() => {
+    const getData = async () => {
+      let res = await getAddress();
+      setAddress(res.data)
+    }
+    getData();
+  }, [])
+
   useScrollToTop();
   const [openVoucher, setOpenVoucher] = useState(false)
   const [openPayment, setOpenPayment] = useState(false)
+  let total = 0;
+  if (products) {
+    total = products.reduce((acc, cur) => {
+      return acc + cur.quantity * Math.floor(cur.price * (100 - cur.sale)) / 100
+    }, 0)
+  }
   return (
     <div className={cx('container')}>
       <Helmet>
@@ -25,16 +42,19 @@ const CheckOut = () => {
       <div className={cx('main')}>
         <div className={cx('address')}>
           <select name="" id="">
-            <option value="">Choose a address</option>
-            <option value="">Address1</option>
-            <option value="">Address2</option>
-            <option value="">Address3</option>
+            {
+              address?.map((item,index)=>(
+                <option key={index} value={item.id}>{item.address}</option>
+              ))
+            }
           </select>
         </div>
         <div className={cx('shop-product')}>
-          <ShopProduct />
-          <ShopProduct />
-          <ShopProduct />
+          {
+            products.map((product, index) => (
+              <ShopProduct key={index} product={product} />
+            ))
+          }
         </div>
         <div className={cx('footer')}>
           <div onClick={() => setOpenVoucher(true)} className={cx('item')}>
@@ -71,7 +91,7 @@ const CheckOut = () => {
                 Merchandise Subtotal:
               </div>
               <div className={cx('right')}>
-                $358.24
+                ${total}
               </div>
             </div>
             <div className={cx('item')}>
@@ -116,4 +136,12 @@ const CheckOut = () => {
   )
 }
 
-export default CheckOut
+const mapStateToProps = (state) => ({
+  products: state.products,
+});
+
+const mapDispatchToProps = {
+
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CheckOut);

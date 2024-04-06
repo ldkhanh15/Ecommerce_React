@@ -11,10 +11,13 @@ export const login = (data) => {
     })
 }
 export const getUser = (id) => {
-    return axios.get(`/api/user?id=${id}`);
+    if (id) {
+        return axios.get(`/api/user?id=${id}`);
+    }
+    return axios.get(`/api/user`);
 }
 export const updateUser = (data) => {
-    return axios.put(`/api/user/update`,data);
+    return axios.put(`/api/user/update`, data);
 }
 
 export const getUserOfShop = (id) => {
@@ -22,4 +25,13 @@ export const getUserOfShop = (id) => {
 }
 export const deleteUser = (id) => {
     return axios.delete(`/api/user/delete?id=${id}`);
+}
+export const getAddress = () => {
+    return axios.get(`/api/user/address`);
+}
+export const createAddress = (data) => {
+    return axios.post('/api/user/address/create', data);
+}
+export const deleteAddress = (id, idUser) => {
+    return axios.delete(`/api/user/address/delete?id=${id}&idUser=${idUser}`);
 }

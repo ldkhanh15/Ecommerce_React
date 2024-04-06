@@ -1,5 +1,6 @@
 import axios from '../lib/axios'
-
+axios.defaults.withCredentials = true
+axios.defaults.headers.common = { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
 export const getVoucherProduct = () => {
     return axios.get('/api/voucher')
 }
@@ -14,4 +15,10 @@ export const getVoucherDetails = (id) => {
 }
 export const deleteVoucher = (id) => {
     return axios.get(`/api/voucher/delete?id=${id}`)
+}
+export const updateVoucher = (data) => {
+    return axios.put(`/api/voucher/update`, data)
+}
+export const createVoucher = (data) => {
+    return axios.put(`/api/voucher/create`, data)
 }
