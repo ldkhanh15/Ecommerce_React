@@ -5,9 +5,11 @@ import styles from './styles.module.scss'
 import Button from '@/components/Button';
 import { BiHome } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
+import useScrollToTop from '@/hooks/useScrollToTop';
 
 const cx = classNames.bind(styles);
 const ThankYou = () => {
+  useScrollToTop();
   return (
     <div className={cx('container')}>
       <Helmet>

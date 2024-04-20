@@ -8,7 +8,7 @@ import UiModal from '../UiModal/Product/UiProduct';
 
 Modal.setAppElement('#root');
 const cx = classNames.bind(styles)
-const ModalProduct = ({ open, setOpen, modal }) => {
+const ModalProduct = ({data, open, setOpen, modal }) => {
 
   return (
     <Modal
@@ -31,7 +31,7 @@ const ModalProduct = ({ open, setOpen, modal }) => {
             <LiaTimesSolid />
           </div>
         }
-        <UiModal modal={modal} />
+        <UiModal data={data} modal={modal} />
       </div>
     </Modal>
   );

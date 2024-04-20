@@ -1,8 +1,8 @@
 import axios from '../lib/axios'
 axios.defaults.withCredentials = true
 axios.defaults.headers.common = { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
-export const getProduct = () => {
-    return axios.get('/api/product')
+export const getProduct = (page) => {
+    return axios.get(`/api/product?page=${page}`)
 }
 export const getProductDetail = (id) => {
     return axios.get(`/api/product?id=${id}`)
@@ -62,7 +62,7 @@ export const updateProduct = (data) => {
     data?.size?.forEach((sizeItem) => {
         formData.append('size', sizeItem);
     })
-    console.log(formData);
+
     return axios.put(`/api/product/update`, formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
@@ -86,3 +86,6 @@ export const updateSize = (data) => {
     return axios.put(`/api/size/update`, data)
 }
 
+export const postComment=(data)=>{
+    return axios.post('/api/product/create-comment', data)
+}

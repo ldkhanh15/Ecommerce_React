@@ -4,13 +4,14 @@ import classNames from 'classnames/bind'
 import Button from '@/components/Button'
 import { getShopDetail, updateAvatarShop, updateShop } from '@/services/shopService'
 import { useParams } from 'react-router-dom'
-
+import { toast } from 'react-toastify'
 const cx = classNames.bind(styles)
 const AccountDetail = () => {
   const { id } = useParams();
   const [data, setData] = useState([]);
   const getData = async () => {
     let res = await getShopDetail(id);
+    console.log(res);
     setData(res.data[0])
   }
   useEffect(() => {
@@ -33,7 +34,7 @@ const AccountDetail = () => {
       introduce: data.introduce,
       address: data.address,
     })
-    console.log(res);
+    res.code === 1 ? toast.success(res.message) : toast.error(res.message)
   }
 
   const handleImage = async (e) => {
@@ -42,6 +43,7 @@ const AccountDetail = () => {
       id: `${data.id}`,
       image: file
     })
+    res.code === 1 ? toast.success(res.message) : toast.error(res.message)
     setTimeout(() => {
       getData();
     }, 200)

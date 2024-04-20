@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from '../styles.module.scss'
-import { useParams } from 'react-router-dom'
-
+import { useNavigate, useParams } from 'react-router-dom'
+import {toast} from 'react-toastify'
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 // import style manually
@@ -14,6 +14,7 @@ const cx = classNames.bind(styles)
 
 const mdParser = new MarkdownIt();
 const AddBlog = () => {
+  const navigate=useNavigate();
   const [tag, setTag] = useState('');
   const [data, setData] = useState({});
   const handleEditorChange = ({ html, text }) => {
@@ -49,9 +50,11 @@ const AddBlog = () => {
     setTag('');
   }
   const handleAddBlog = async () => {
-    console.log(data);
     let res = await createBlog(data);
-    console.log(res);
+    res.code === 1 ? toast.success(res.message) : toast.error(res.message)
+    if(res){
+      navigate('/seller/blog')
+    }
   }
   return (
     <div className={cx('container')}>

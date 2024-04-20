@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 import { LiaTimesSolid } from 'react-icons/lia';
 import Button from '@/components/Button';
 import { createCate, updateCate, uploadImage } from '@/services/categoryService';
+import { toast } from 'react-toastify'
 const cx = classNames.bind(styles);
 Modal.setAppElement('#root');
 const UiCate = ({ open, setOpen, dataChildren }) => {
@@ -25,6 +26,7 @@ const UiCate = ({ open, setOpen, dataChildren }) => {
                 id: `${data.id}`,
                 image: file
             })
+            res.code === 1 ? toast.success(res.message) : toast.error(res.message)
             setData({
                 ...data,
                 image: res.image
@@ -44,10 +46,10 @@ const UiCate = ({ open, setOpen, dataChildren }) => {
                 quantity: data.quantity,
                 featured: `${data.featured}`
             })
-            console.log(res);
+            res.code === 1 ? toast.success(res.message) : toast.error(res.message)
         } else {
             let res = await createCate(data)
-            console.log(res);
+            res.code === 1 ? toast.success(res.message) : toast.error(res.message)
         }
 
     }

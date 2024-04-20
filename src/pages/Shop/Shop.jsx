@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
-import { thumbnail, color, condition, cate } from './data'
+import { thumbnail, color } from './data'
 import { BiCategory } from "react-icons/bi";
 import { FaSort } from "react-icons/fa";
 import Product from '@/components/Product/Product'
@@ -11,6 +11,7 @@ import ProductSideBar from '@/components/ProductSideBar/ProductSideBar'
 import { Helmet } from 'react-helmet'
 import { getProduct, getSize } from '@/services/productService';
 import { getCate } from '@/services/categoryService';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles)
 
@@ -19,18 +20,33 @@ const Shop = ({ shop }) => {
   const [data, setData] = useState([])
   const [cate, setCate] = useState([])
   const [size, setSize] = useState([])
+  const [pages, setPages] = useState([]);
+  const [page, setPage] = useState();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const navigate = useNavigate();
 
+
+  const handlePageChange = (newPage) => {
+    const queryParams = new URLSearchParams(location.search);
+    queryParams.set('page', newPage);
+    navigate(`?${queryParams.toString()}`);
+    setPage(newPage);
+  };
   useEffect(() => {
     const getData = async () => {
-      let resProduct = await getProduct();
+      let resProduct = await getProduct(page);
       let resCate = await getCate();
-      let resSize=await getSize();
+      let resSize = await getSize();
       setData(resProduct.data)
       setCate(resCate.data)
       setSize(resSize.data)
-    } 
+      let v = Array.from({ length: resProduct.pages }, (_, index) => index + 1);
+      setPages(v);
+      setPage(searchParams.get('page'));
+    }
     getData()
-  }, [])
+  }, [location.search])
   return (
     <div className={cx('container')}>
       <Helmet>
@@ -43,7 +59,7 @@ const Shop = ({ shop }) => {
       <div className={cx('main')}>
         <div className={cx('header')}>
           <div className={cx('left')}>
-            We found <strong>21</strong> items for you
+            We found <strong>{data.length}</strong> items for you
           </div>
           <div className={cx('right')}>
             <div className={cx('show')}>
@@ -75,18 +91,17 @@ const Shop = ({ shop }) => {
           </div>
         </div>
         <div className={cx('product')}>
-          {data.map((item) => (
+          {data?.map((item) => (
             <Product key={item.id} data={item} />
           ))}
         </div>
         <div className={cx('navigation')}>
-          <ul>
-            <li className={cx('active')}>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>51</li>
-          </ul>
+          <button onClick={() => handlePageChange(page - 1)} disabled={page === '1'}>
+            Previous
+          </button>
+          <button onClick={() => handlePageChange(Number(page) + 1)} disabled={page === `${pages.length}`}>
+            Next
+          </button>
         </div>
       </div>
     </div>

@@ -2,18 +2,18 @@ import React, { useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import Button from '@/components/Button'
-import { addPayment } from '@/redux/action'
+import { addDeliver } from '@/redux/action'
 import { connect } from 'react-redux'
 const cx = classNames.bind(styles)
-const PaymentUi = ({ data, addPayment, payment }) => {
-    const [check, setCheck] = useState(payment || { id: 1 })
+const DeliverUi = ({ data, addDeliver, deliver }) => {
+    const [check, setCheck] = useState(deliver || { id: 1 })
     const handleAdd = () => {
-        addPayment(check)
+        addDeliver(check)
     }
     return (
         <div className={cx('container')}>
             <h3>
-                Choose a payment method
+                Choose a deliver method
             </h3>
             <div className={cx('list-payment')}>
                 {
@@ -33,9 +33,9 @@ const PaymentUi = ({ data, addPayment, payment }) => {
 }
 
 const mapStateToProps = (state) => ({
-    payment: state.payment
+    deliver: state.deliver
 })
 const mapDispatchToProps = {
-    addPayment
+    addDeliver
 }
-export default connect(mapStateToProps, mapDispatchToProps)(PaymentUi)
+export default connect(mapStateToProps, mapDispatchToProps)(DeliverUi)

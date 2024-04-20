@@ -21,13 +21,12 @@ export { default as Vendor } from './Shop/Vendor/Vendor'
 export { default as VendorDetail } from './Shop/Vendor/VendorDetail/VendorDetail'
 export { default as ProductDetail } from './Product/ProductDetail/ProductDetail'
 export { default as HotDeal } from './HotDeal/HotDeal'
+export { default as RateProduct } from './Shop/CheckOut/RateProduct/RateProduct'
 
 //buyer
 export { default as LoginBuy } from './Buyer/LoginBuy/LoginBuy'
 export { default as RegisterBuy } from './Buyer/RegisterBuy/RegisterBuy'
-
 //seller
-export { default as LoginSell } from './Seller/LoginSell/LoginSell'
 export { default as Customer } from './Seller/Customer/Customer'
 export { default as CustomerDetail } from './Seller/Customer/CustomerDetail/CustomerDetail'
 export { default as Dashboard } from './Seller/Dashboard/DashBoard'
@@ -42,7 +41,7 @@ export { default as ViewProduct } from './Seller/Products/ViewProduct/ViewProduc
 export { default as SettingSell } from './Seller/Settings/Settings'
 export { default as RegisterSell } from './Seller/RegisterSell/RegisterSell'
 export { default as DeliverShop } from './Seller/Delivers/Shop/DeliverShop'
-export {default as Deliver} from './Seller/Delivers/Deliver'
+export { default as Deliver } from './Seller/Delivers/Deliver'
 export { default as Vouchers } from './Seller/Vouchers/Vouchers'
 export { default as Banner } from './Seller/Banner/Banner'
 export { default as Size } from './Seller/Size/Size'

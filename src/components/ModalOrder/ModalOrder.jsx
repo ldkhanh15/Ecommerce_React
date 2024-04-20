@@ -9,7 +9,7 @@ import UiOrder from '../UiModal/Order/UiOrder';
 Modal.setAppElement('#root');
 const cx = classNames.bind(styles)
 const ModalOrder = ({ open, setOpen, data }) => {
-
+    
     return (
         <Modal
             isOpen={open}

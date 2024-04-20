@@ -7,11 +7,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import { addCart, addWhiteList, addCompare } from '@/redux/action';
+import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
 const cx = classNames.bind(styles)
-const UiModal = ({ data, modal }) => {
-    const [color, setColor] = useState(0)
-    const [combo, setCombo] = useState(0)
-    const [size, setSize] = useState(0)
+const UiModal = ({ data, modal, addCart, addWhiteList, addCompare }) => {
+    const [color, setColor] = useState(-1)
+    const [combo, setCombo] = useState(-1)
+    const [size, setSize] = useState(-1)
+    const [quantity, setQuantity] = useState(1)
     const slider = React.useRef(null);
     const settings = {
         infinite: false,
@@ -25,6 +29,30 @@ const UiModal = ({ data, modal }) => {
             </div>
         ),
     };
+    const handleAdd = (data) => {
+        console.log({
+            ...data,
+            quantity,
+            type: `${data.color[color]?.name}${data.combo[combo]?.name}${data.size[size]?.name} `
+        });
+        let col = data.color[color].name;
+        let com = data.combo[combo].name;
+        let si = data.size[size].name;
+        addCart({
+            ...data,
+            quantity,
+            type: col || com || si
+        });
+        toast.success("Add product to cart successfully")
+    }
+    const handleAddWhiteList = (data) => {
+        addWhiteList(data);
+        toast.success("Add product to wish-list successfully")
+    }
+    const handleAddCompare = (data) => {
+        addCompare(data);
+        toast.success("Add product to compare successfully")
+    }
     return (
         <div className={cx('content')}>
             {data && <>
@@ -87,7 +115,7 @@ const UiModal = ({ data, modal }) => {
                             <h3 className={cx('title')}>Color</h3>
                             {
                                 data.color.map((item, index) => (
-                                    <div onClick={() => setColor(index)} key={index} style={{ background: `${item.name}` }} className={index === color ? cx(['item-color', 'active']) : cx('item-color')}>
+                                    <div onClick={() => { setColor(index), setSize(-1), setCombo(-1) }} key={index} style={{ background: `${item.name}` }} className={index === color ? cx(['item-color', 'active']) : cx('item-color')}>
 
                                     </div>
                                 ))
@@ -100,7 +128,7 @@ const UiModal = ({ data, modal }) => {
                             <h3 className={cx('title')}>Size</h3>
                             {
                                 data.size.map((item, index) => (
-                                    <div onClick={() => setSize(index)} key={index} className={index === size ? cx(['item-box', 'active']) : cx('item-box')}>
+                                    <div onClick={() => { setSize(index), setColor(-1), setCombo(-1) }} key={index} className={index === size ? cx(['item-box', 'active']) : cx('item-box')}>
                                         {item.name}
                                     </div>
 
@@ -115,7 +143,7 @@ const UiModal = ({ data, modal }) => {
                         {
 
                             data.combo && data.combo.map((item, index) => (
-                                <div onClick={() => setCombo(index)} key={index} className={combo === index ? cx(['item-box', 'active']) : cx('item-box')}>
+                                <div onClick={() => { setCombo(index), setColor(-1), setSize(-1) }} key={index} className={combo === index ? cx(['item-box', 'active']) : cx('item-box')}>
                                     {item.name}
                                 </div>
 
@@ -126,12 +154,12 @@ const UiModal = ({ data, modal }) => {
                         : null
                     }
                     <div className={cx('action')}>
-                        <input defaultValue={1} min={1} type="number" />
-                        <Button rounded className={cx('btn')}>Add to Cart</Button>
-                        <div className={cx('icon')}>
+                        <input value={quantity} onChange={(e) => setQuantity(e.target.value)} defaultValue={1} min={1} type="number" />
+                        <Button onClick={() => handleAdd(data)} rounded className={cx('btn')}>Add to Cart</Button>
+                        <div onClick={() => handleAddWhiteList(data)} className={cx('icon')}>
                             <FaRegHeart />
                         </div>
-                        <div className={cx('icon')}>
+                        <div onClick={() => handleAddCompare(data)} className={cx('icon')}>
                             <FaRandom />
                         </div>
                     </div>
@@ -151,5 +179,12 @@ const UiModal = ({ data, modal }) => {
         </div>
     )
 }
+const mapStateToProps = (state) => ({
 
-export default UiModal
+})
+const mapDispatchToProps = {
+    addCart,
+    addWhiteList,
+    addCompare
+}
+export default connect(mapStateToProps, mapDispatchToProps)(UiModal)

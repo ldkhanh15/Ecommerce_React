@@ -4,8 +4,8 @@ axios.defaults.headers.common = { 'Authorization': `Bearer ${localStorage.getIte
 export const getCate = (data) => {
     return axios.get(`/api/category?featured=${data}`);
 }
-export const getAllCate = () => {
-    return axios.get(`/api/category/all`)
+export const getAllCate = (page) => {
+    return axios.get(`/api/category/all?page=${page}`);
 }
 
 export const updateCate = (data) => {

@@ -5,11 +5,12 @@ import Modal from 'react-modal';
 import { LiaTimesSolid } from 'react-icons/lia';
 import VoucherUi from '../UiModal/Voucher/UiVoucher';
 import PaymentUi from '../UiModal/Payment/PaymentUi';
+import DeliverUi from '../UiModal/Deliver/DeliverUi';
 
 
 Modal.setAppElement('#root');
 const cx = classNames.bind(styles)
-const ModalVoucher = ({ open, setOpen, data, voucher, payment }) => {
+const ModalVoucher = ({id, open, setOpen, data, voucher, payment, deliver,shop}) => {
 
     return (
         <Modal
@@ -31,8 +32,9 @@ const ModalVoucher = ({ open, setOpen, data, voucher, payment }) => {
                     <LiaTimesSolid />
                 </div>
 
-                {voucher && <VoucherUi data={data} />}
+                {voucher && <VoucherUi data={data} shop={shop} id={id}/>}
                 {payment && <PaymentUi data={data} />}
+                {deliver && <DeliverUi data={data} />}
             </div>
         </Modal>
     );

@@ -10,8 +10,8 @@ export const getShop = () => {
 export const getAllShopDetail = (id) => {
     return axios.get(`/api/vendor/all?id=${id}`)
 }
-export const getAllShop = () => {
-    return axios.get(`/api/vendor/all`)
+export const getAllShop = (page) => {
+    return axios.get(`/api/vendor/all?page=${page}`)
 }
 export const deleteShop = (id) => {
     return axios.delete(`/api/vendor/delete?id=${id}`)
@@ -47,9 +47,6 @@ export const updateAvatarShop = (data) => {
         }
     });
 }
-export const getProduct = (id) => {
-    if (id) {
-        return axios.get(`/api/product/get-product-shop?id=${id}`);
-    }
-    return axios.get(`/api/product/get-product-shop`);
+export const getProduct = (page) => {
+    return axios.get(`/api/product/get-product-shop?page=${page}`);
 }

@@ -4,7 +4,7 @@ import { deleteVoucher, getVoucherDetails, updateVoucher } from '@/services/vouc
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import Button from '@/components/Button'
-
+import { toast } from 'react-toastify'
 const cx = classNames.bind(styles)
 const VoucherDetail = () => {
     let { id } = useParams();
@@ -12,11 +12,6 @@ const VoucherDetail = () => {
     useEffect(() => {
         const getData = async () => {
             let res = await getVoucherDetails(id);
-            let arr = res.data.shop;
-            for (let i = 0; i < 5; i++) {
-                console.log(arr);
-                arr = arr.concat(arr);
-            }
             let end = res.data.end;
             end = end?.split('T')[0] + " " + end?.split('T')[1].slice(0, -1)
             let start = res.data.start;
@@ -32,7 +27,7 @@ const VoucherDetail = () => {
                 remain: res.data.remain,
                 salePT: res.data.salePT,
                 salePrice: res.data.salePrice,
-                shop: arr || res.data.shop,
+                shop: res.data.shop || {},
                 start: start,
                 type: res.data.type,
 
@@ -51,11 +46,10 @@ const VoucherDetail = () => {
     const handleDelete = async (id) => {
         if (confirm('Are you sure you want to delete this voucher?')) {
             let res = await deleteVoucher(id)
-            console.log(res);
+            res.code === 1 ? toast.success(res.message) : toast.error(res.message)
         }
     }
     const handleUpdate = async () => {
-        console.log(data);
         let res = await updateVoucher({
             id: `${data.id}`,
             description: data.description,
@@ -70,7 +64,7 @@ const VoucherDetail = () => {
             start: data.start,
             type: data.type,
         });
-        console.log(res);
+        res.code === 1 ? toast.success(res.message) : toast.error(res.message)
     }
     return (
         <div className={cx('container')}>
@@ -78,25 +72,24 @@ const VoucherDetail = () => {
                 data && <>
                     <h1>Voucher Detail</h1>
                     {
-                        data.shop && <div className={cx('list-shop')}>
+                        data.shop !== {} ? <div className={cx('list-shop')}>
                             <h3>Shop</h3>
                             <div className={cx('shop')}>
-                                {
-                                    data.shop.map((item, index) => (
-                                        <Link to={`/shop/vendors/${item.id}`} key={index} className={cx('item')}>
-                                            <div className={cx('top')}>
-                                                <img src={item.avatar} alt="" />
-                                            </div>
-                                            <div className={cx('bottom')}>
-                                                <span>
-                                                    {item.name}
-                                                </span>
-                                            </div>
-                                        </Link>
-                                    ))
-                                }
+
+                                <Link to={`/shop/vendors/${data?.shop?.id}`} className={cx('item')}>
+                                    <div className={cx('top')}>
+                                        <img src={data?.shop?.avatar} alt="" />
+                                    </div>
+                                    <div className={cx('bottom')}>
+                                        <span>
+                                            {data?.shop?.name}
+                                        </span>
+                                    </div>
+                                </Link>
+
+
                             </div>
-                        </div>
+                        </div> : null
                     }
                     <div className={cx('info')}>
                         <div className={cx('input')}>
@@ -133,7 +126,7 @@ const VoucherDetail = () => {
                         </div>
                         <div className={cx('input')}>
                             <label htmlFor="type">Type</label>
-                            <select onChange={(e)=>handleChange(e)} name="type" id="type">
+                            <select onChange={(e) => handleChange(e)} name="type" id="type">
                                 <option defaultChecked={data.type === "V1" ? true : false} value={"V1"}>Discount voucher</option>
                                 <option defaultChecked={data.type === "V2" ? true : false} value={"V2"}>FreeShip voucher</option>
                             </select>

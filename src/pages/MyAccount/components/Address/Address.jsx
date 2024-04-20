@@ -3,7 +3,7 @@ import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import { createAddress, deleteAddress, getAddress } from '@/services/userService'
 import { connect } from 'react-redux'
-
+import { toast } from 'react-toastify'
 const cx = classNames.bind(styles)
 const Address = ({ user }) => {
   const [data, setData] = useState([]);
@@ -14,18 +14,20 @@ const Address = ({ user }) => {
       setData(res.data);
     }
     getData();
-  }, [data]);
+  }, []);
   const handleAdd = async () => {
     if (input !== '') {
       let res = await createAddress({
         idUser: `${user.id}`,
         address: input
       })
+      res.code === 1 ? toast.success(res.message) : toast.error(res.message)
       setInput('');
     }
   }
   const handleDelete = async (id) => {
     let res = await deleteAddress(id, user.id)
+    res.code === 1 ? toast.success(res.message) : toast.error(res.message)
   }
   return (
     <div className={cx('container')}>

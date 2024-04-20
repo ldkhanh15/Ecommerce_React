@@ -5,7 +5,6 @@ import NewProduct from '@/components/NewProduct/NewProduct'
 import InputRange from 'react-input-range'
 import 'react-input-range/lib/css/index.css';
 import VendorList from '../VendorList/VendorList'
-import data from './data'
 const cx = classNames.bind(styles)
 const ProductSideBar = ({ thumbnail, color, condition, cate, shop }) => {
   const [con, setCon] = useState(0);

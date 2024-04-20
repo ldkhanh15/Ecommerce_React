@@ -1,37 +1,42 @@
 import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
+import { toast } from 'react-toastify'
 import { addDeliver, deleteDeliverShop, getDeliver, getDeliverShop } from '@/services/deliverService'
+import { connect } from 'react-redux'
+import { useParams } from 'react-router-dom'
 const cx = classNames.bind(styles)
-const DeliverShop = () => {
-
+const DeliverShop = ({ user }) => {
+  const { id } = useParams();
   const [data, setData] = useState([])
   const [deliver, setDeliver] = useState([])
   const getData = async () => {
-    let res = await getDeliverShop(1);
+    let res = await getDeliverShop(id);
     setData(res.data)
     let resAll = await getDeliver();
     setDeliver(resAll.data)
-    console.log(123);
   }
   useEffect(() => {
     getData();
   }, [])
-
+  console.log(data);
+  console.log(deliver);
   const handleAdd = async (item) => {
     let res = await addDeliver({
       idDeliver: `${item.id}`,
-      idShop: '1'
+      idShop: `${id}`
     })
-    setTimeout(async() => {
+    res.code === 1 ? toast.success(res.message) : toast.error(res.message)
+    setTimeout(() => {
       getData();
-    }, 500)
+    }, 200)
   }
-  const handleDelete = async (item, id) => {
+  const handleDelete = async (item) => {
     let res = await deleteDeliverShop(item.id, id);
-    setTimeout(async() => {
+    res.code === 1 ? toast.success(res.message) : toast.error(res.message)
+    setTimeout(() => {
       getData();
-    }, 500)
+    }, 200)
   }
   return (
     <div className={cx('container')}>
@@ -42,7 +47,7 @@ const DeliverShop = () => {
         <div className={cx('list')}>
           {
             data && data.deliver && data.deliver.map((item, index) => (
-              <div onClick={() => handleDelete(item, data.id)} key={index} className={cx(['item', 'selected'])}>
+              <div onClick={() => handleDelete(item)} key={index} className={cx(['item', 'selected'])}>
                 {item.name}
               </div>
             ))
@@ -66,4 +71,11 @@ const DeliverShop = () => {
   )
 }
 
-export default DeliverShop
+const mapStateToProps = (state) => ({
+  user: state.user
+})
+
+const mapDispatchToProps = {
+
+}
+export default connect(mapStateToProps, mapDispatchToProps)(DeliverShop)

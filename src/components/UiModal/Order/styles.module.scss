@@ -41,6 +41,24 @@
             }
             
         }
+        .status{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .left{
+                font-weight: 600;
+                color: #7e7e7e;
+                
+            }
+            .right{
+                padding: 0.5rem;
+                border: 0.1rem solid var(--primary);
+                background-color: var(--primary);
+                color: #fff;
+                font-weight: 600;
+                border-radius: 0.3rem;
+            }
+        }
         .shop-product{
             display: flex;
             flex-direction: column;
@@ -78,7 +96,14 @@
                     color: #7e7e7e;
                     font-size: 1.5rem;
                     font-weight: 500;
-
+                    .sale{
+                        border: 0.1rem solid #ececec;
+                        border-radius: 0.3rem;
+                        background-color: var(--bgRound);
+                        color: var(--primary);
+                        font-weight: 600;
+                        padding: 0.3rem;
+                    }
                 }
             }
             

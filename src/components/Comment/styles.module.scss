@@ -85,38 +85,41 @@
             }
         }
     }
-    .reply-comment{
-        margin-top: 2rem;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 2rem;
-        border-radius: 2rem;
-        transition: 0.5s;
-        .image{
-            img{
-                max-width: 8rem;
-                border-radius: 50%;
-
+    .box-reply{
+        margin-top: 2.5rem;
+        .reply-comment{
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 2rem;
+            transition: 0.5s;
+            .image{
+                img{
+                    max-width: 8rem;
+                    border-radius: 50%;
+    
+                }
             }
-        }
-        .input{
-           position: relative;
-           
-           width: 100%;
-           input{
+            .input{
+               position: relative;
+               
                width: 100%;
-                border: 0.1rem solid #ececec;
-                padding: 1.5rem;
-                border-radius: 1rem;
-            }
-            .icon{
-                position: absolute;
-                top: 1.5rem;
-                right: 1.5rem;
-                font-size: 2rem;
-                color: var(--primary);
-                z-index: 10;
+               input{
+                   width: 100%;
+                    border: 0.1rem solid #ececec;
+                    padding: 1.5rem;
+                    border-radius: 1rem;
+                }
+                .icon{
+                    position: absolute;
+                    top: 1.5rem;
+                    right: 1.5rem;
+                    font-size: 2rem;
+                    color: var(--primary);
+                    z-index: 10;
+                    cursor: pointer;
+                }
             }
         }
     }
@@ -157,10 +160,12 @@
                 
             }
         }
-        .reply-comment{
-            .image{
-                img{
-                    max-width: 4rem;
+        .box-reply{
+            .reply-comment{
+                .image{
+                    img{
+                        max-width: 4rem;
+                    }
                 }
             }
         }

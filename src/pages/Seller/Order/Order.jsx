@@ -1,22 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
-import { getBill } from '@/services/orderService'
-import { Link } from 'react-router-dom'
-import { deleteBill } from '@/services/billService'
-
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { deleteBill, getBillSeller } from '@/services/billService'
+import { toast } from 'react-toastify'
 
 const cx = classNames.bind(styles)
 const Order = () => {
   const [data, setData] = useState();
-
+  const [pages, setPages] = useState([]);
+  const [page,setPage]=useState();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const navigate = useNavigate();
   useEffect(() => {
     const getData = async () => {
-      let res = await getBill();
-      setData(res.data)
+      let res = await getBillSeller(page);
+      let v = Array.from({ length: res.pages }, (_, index) => index + 1);
+      setPages(v);
+      setData(res.data);
+      setPage(searchParams.get('page'));
     }
     getData();
-  }, [])
+  }, [location.search])
   let all = 0, completed = 0, cancelled = 0, wait = 0;
   if (data) {
     data.map(item => {
@@ -29,9 +35,15 @@ const Order = () => {
   const handleDelete = async (id) => {
     if (confirm('Are you sure you want to delete this order?')) {
       let res = await deleteBill(id);
-      console.log(res);
+      res.code === 1 ? toast.success(res.message) : toast.error(res.message)
     }
   }
+  const handlePageChange = (newPage) => {
+    const queryParams = new URLSearchParams(location.search);
+    queryParams.set('page', newPage);
+    navigate(`?${queryParams.toString()}`);
+    setPage(newPage);
+  };
   return (
     <div className={cx('container')}>
       <h1>Orders</h1>
@@ -106,7 +118,7 @@ const Order = () => {
                     <td>{index + 1}</td>
                     <td>#{item.id}</td>
                     <td>{time[0]}</td>
-                    <td>{item.shop.name}</td>
+                    <td>{item?.shop?.name}</td>
                     <td>{item.totalPrice}$</td>
                     <td><span className={cx(['status', `status_${item.idStatus}`])}>{item.status.status}</span></td>
                     <td className={cx('view')}>
@@ -122,13 +134,12 @@ const Order = () => {
         </table>
       </div>
       <div className={cx('navigation')}>
-        <ul>
-          <li className={cx('active')}>1</li>
-          <li>2</li>
-          <li>3</li>
-          <li>4</li>
-          <li>51</li>
-        </ul>
+        <button onClick={() => handlePageChange(page - 1)} disabled={page === '1'}>
+          Previous
+        </button>
+        <button onClick={() => handlePageChange(Number(page) + 1)} disabled={page === `${pages.length}`}>
+          Next
+        </button>
       </div>
 
     </div>

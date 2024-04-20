@@ -1,23 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import { BiSolidDiscount } from 'react-icons/bi'
 import { IoIosArrowForward } from 'react-icons/io'
 import { Link } from 'react-router-dom'
-import { voucher } from '../../../pages/Shop/CheckOut/data'
 import ModalVoucher from '@/components/ModalVoucher/ModalVoucher'
+import {  getVoucherOfShopOnly } from '@/services/voucherService'
+import { connect } from 'react-redux'
 const cx = classNames.bind(styles)
-const ShopProduct = ({ order, product }) => {
+const ShopProduct = ({ order, product, products }) => {
+  const [voucher, setVoucher] = useState([]);
+  useEffect(() => {
+    const getVoucher = async () => {
+      let res = await getVoucherOfShopOnly(product.shop.id)
+      setVoucher(res.data)
+    }
+    if (product.shop.id) {
+      getVoucher();
+    }
+  }, [product.shop.id])
+
   const [open, setOpen] = useState(false);
   const handleClick = () => {
     if (!order) {
       setOpen(true)
     }
   }
-  console.log(product);
+  let total = product.quantity * Math.floor(product.price * (100 - product.sale)) / 100;
+  if (product.BillProduct && product.BillProduct.discount) {
+    total = total - product.BillProduct.discount > 0 ? total - product.BillProduct.discount : 0
+  }
   return (
     <div className={cx('container')}>
-      <ModalVoucher data={voucher} open={open} setOpen={setOpen} voucher={true} />
+      <ModalVoucher id={product.id} data={voucher?.voucher} shop={voucher} open={open} setOpen={setOpen} voucher={true} />
       <div className={cx('shop')}>
         <div className={cx('name-shop')}>
           {product.shop.name}
@@ -33,7 +48,7 @@ const ShopProduct = ({ order, product }) => {
             {product.name}
           </div>
           <div className={cx('type')}>
-            Type: Combo x2
+            Type: {product.type}
           </div>
           <div className={cx('price-quantity')}>
             <div className={cx('price')}>
@@ -56,7 +71,26 @@ const ShopProduct = ({ order, product }) => {
         </div>
         <div className={cx('right')}>
           <div className={cx('text')}>
-            Select or enter code
+            {
+              products.map((p) => {
+                if (p.id === product.id) {
+                  if (p.voucher) {
+                    if (p.voucher.salePrice) {
+                      return <div className={cx('sale')}>-{p.voucher.salePrice}$</div>
+                    } else if (p.voucher.salePT) {
+                      return <div className={cx('sale')}>Sale off {p.voucher.salePT}%</div>
+                    }
+                  } else {
+                    return <div>Select a voucher</div>
+                  }
+                }
+              })
+            }
+            {
+              product.BillProduct && product.BillProduct.discount && <div className={cx('sale')}>
+                {product.BillProduct.discount}$
+              </div>
+            }
           </div>
           <div className={cx('icon')}>
             <IoIosArrowForward />
@@ -68,11 +102,17 @@ const ShopProduct = ({ order, product }) => {
           Total:
         </div>
         <div className={cx('price')}>
-          {product.quantity * Math.floor(product.price * (100 - product.sale)) / 100}$
+          {total}$
         </div>
       </div>
     </div>
   )
 }
 
-export default ShopProduct
+const mapStateToProps = (state) => ({
+  products: state.products
+})
+const mapDispatchToProps = {
+
+}
+export default connect(mapStateToProps, mapDispatchToProps)(ShopProduct)

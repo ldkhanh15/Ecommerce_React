@@ -5,6 +5,9 @@ axios.defaults.headers.common = { 'Authorization': `Bearer ${localStorage.getIte
 export const getDetailBill = (id) => {
     return axios.get(`/api/bill/detail?id=${id}`)
 }
+export const getProductCommentOfBill = (id) => {
+    return axios.get(`/api/bill/product-comment?id=${id}`)
+}
 export const deleteBill = (id) => {
     return axios.delete(`/api/bill/delete?id=${id}`)
 }
@@ -20,4 +23,10 @@ export const getStatus = () => {
 }
 export const getBill = () => {
     return axios.get(`/api/bill`)
+}
+export const getBillSeller = (page) => {
+    return axios.get(`/api/bill/seller?page=${page} `)
+}
+export const createBill = (data) => {
+    return axios.post('/api/bill/create', data)
 }

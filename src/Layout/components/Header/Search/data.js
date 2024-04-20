@@ -7,32 +7,33 @@ const data = [
     {
         icon: <FiUser />,
         title: 'My Account',
-        path:'/my-account'
+        path: '/my-account'
     },
     {
         icon: <MdOutlineLocationOn />,
         title: 'Order Tracking',
-        path:'/my-account'
+        path: '/my-account'
     },
     {
         icon: <RiHome4Line />,
         title: 'My Voucher',
-        path:'/my-account/my-voucher'
+        path: '/my-account/my-voucher'
     },
     {
         icon: <BiHeart />,
         title: 'My WishList',
-        path:'/shop/wish-list'
+        path: '/shop/wish-list'
     },
     {
         icon: <CiSettings />,
         title: 'Settings',
-        path:'/settings'
+        path: '/settings'
 
     },
     {
         icon: <MdLogout />,
-        title: 'Sign out'
+        title: 'Sign out',
+        onClick: true
     }
 ]
 export default data;

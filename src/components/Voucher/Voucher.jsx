@@ -6,9 +6,8 @@ import { Link } from 'react-router-dom'
 
 const cx = classNames.bind(styles)
 const Voucher = ({ shop,data }) => {
-  console.log(data);
   return (
-    <Link to={`/seller/vouchers/${data.id}`} className={cx('container')}>
+    <div className={cx('container')}>
       {data.limit && <div className={cx('limit')}>
         Limited Redemptions
       </div>
@@ -48,7 +47,7 @@ const Voucher = ({ shop,data }) => {
           </div>
         }
       </div>
-    </Link>
+    </div>
   )
 }
 

@@ -5,6 +5,7 @@ import { TbBasketDiscount } from 'react-icons/tb'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import ShopProduct from '@/components/CheckOut/ShopProduct/ShopProduct'
+import Button from '@/components/Button'
 
 const cx = classNames.bind(styles)
 const UiOrder = ({ data }) => {
@@ -26,6 +27,14 @@ const UiOrder = ({ data }) => {
         <div className={cx('address')}>
           <input type="text" name="" id="" readOnly value={data.address.address} />
         </div>
+        <div className={cx('status')}>
+          <div className={cx('left')}>
+            Status:
+          </div>
+          <div className={cx('right')}>
+            {data.status.status}
+          </div>
+        </div>
         <div className={cx('shop-product')}>
           {
             d.map((item, index) => (
@@ -40,7 +49,8 @@ const UiOrder = ({ data }) => {
               <div className={cx('text')}>Nest Voucher</div>
             </div>
             <div className={cx('right')}>
-              <div className={cx('text')}>Select Voucher</div>
+              {data.discountPrice ? <div className={cx('sale')}>- ${data.discountPrice}</div> : 'No voucher'}
+
               <IoIosArrowForward className={cx('icon')} />
             </div>
           </div>
@@ -50,7 +60,17 @@ const UiOrder = ({ data }) => {
               <div className={cx('text')}>Payment method</div>
             </div>
             <div className={cx('right')}>
-              <div className={cx('text')}>Select Payment method</div>
+              <div className={cx('sale')}>{data.payment.name}</div>
+              <IoIosArrowForward className={cx('icon')} />
+            </div>
+          </div>
+          <div className={cx('item')}>
+            <div className={cx('left')}>
+              <TbBasketDiscount className={cx('icon')} />
+              <div className={cx('text')}>Deliver method</div>
+            </div>
+            <div className={cx('right')}>
+              <div className={cx('sale')}>{data.deliver.name}</div>
               <IoIosArrowForward className={cx('icon')} />
             </div>
           </div>
@@ -79,14 +99,6 @@ const UiOrder = ({ data }) => {
                 $5
               </div>
             </div>
-            <div className={cx('item')}>
-              <div className={cx('left')}>
-                Shipping Discount
-              </div>
-              <div className={cx('right')}>
-                ${data.discountPrice}
-              </div>
-            </div>
             <div className={cx('total')}>
               <div className={cx('left')}>
                 Total:
@@ -97,6 +109,7 @@ const UiOrder = ({ data }) => {
             </div>
           </div>
         </div>
+        {data.idStatus === '5' && <Button to={`/shop/comment-product?id=${data.id}`} large primary>Rate</Button>}
       </div>
 
     </div>

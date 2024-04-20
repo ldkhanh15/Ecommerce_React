@@ -8,17 +8,26 @@ import { FaRegHeart } from "react-icons/fa";
 import { FaRandom } from "react-icons/fa";
 import ModalProduct from '../ModalProduct/ModalProduct';
 import { Link } from 'react-router-dom';
-import { addCart,addCompare,addWhiteList } from '@/redux/action';
+import { addCart, addCompare, addWhiteList } from '@/redux/action';
 import { connect } from 'react-redux';
-
+import { toast } from 'react-toastify'
 const cx = classNames.bind(styles)
-const Product = ({ data, className ,addCart ,addCompare,addWhiteList}) => {
+const Product = ({ data, className, addCart, addCompare, addWhiteList }) => {
     const [open, setOpen] = useState(false);
     const handleAdd = (data) => {
         addCart({
             ...data,
-            quantity:1
+            quantity: 1
         });
+        toast.success("Add product to cart successfully")
+    }
+    const handleAddWhiteList = (data) => {
+        addWhiteList(data);
+        toast.success("Add product to wish-list successfully")
+    }
+    const handleAddCompare = (data) => {
+        addCompare(data);
+        toast.success("Add product to compare successfully")
     }
     let star = 0;
     if (data.review.length > 0) {
@@ -61,10 +70,10 @@ const Product = ({ data, className ,addCart ,addCompare,addWhiteList}) => {
                     <div onClick={() => setOpen(true)} aria-label='Quick view' className={cx('box')}>
                         <MdOutlineRemoveRedEye className={cx('icon')} />
                     </div>
-                    <div onClick={()=>addWhiteList(data)} aria-label='Add to WishList' className={cx('box')}>
+                    <div onClick={() => handleAddWhiteList(data)} aria-label='Add to WishList' className={cx('box')}>
                         <FaRegHeart className={cx('icon')} />
                     </div>
-                    <a onClick={()=>addCompare(data)} aria-label='Compare' className={cx('box')}>
+                    <a onClick={() => handleAddCompare(data)} aria-label='Compare' className={cx('box')}>
                         <FaRandom className={cx('icon')} />
                     </a>
                 </div>
@@ -118,23 +127,23 @@ const Product = ({ data, className ,addCart ,addCompare,addWhiteList}) => {
                             <span className={cx('old-price')}>
                                 {data.price}
                             </span>
-                            <Button onClick={() => handleAdd(data)} rightIcon={<CiShoppingCart />} outline small>Add</Button>
+                            <Button onClick={() => setOpen(true)} rightIcon={<CiShoppingCart />} outline small>Add</Button>
                         </div>
                 }
             </div>
-            <ModalProduct open={open} setOpen={setOpen} modal={true} />
+            <ModalProduct data={data} open={open} setOpen={setOpen} modal={true} />
         </div>
     )
 }
 
 const mapStateToProps = (state) => ({
-   
-  });
-  
-  const mapDispatchToProps = {
+
+});
+
+const mapDispatchToProps = {
     addCart,
     addWhiteList,
     addCompare
-  };
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(Product);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Product);

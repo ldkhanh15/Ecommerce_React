@@ -8,17 +8,35 @@ import { FaSort } from 'react-icons/fa'
 import SideBar from '@/components/Blog/SideBar/SideBar'
 import { Helmet } from 'react-helmet';
 import { getAllBlog } from '@/services/blogService'
+import { useLocation, useNavigate } from 'react-router-dom'
 const cx = classNames.bind(styles)
 const Blog = () => {
   useScrollToTop()
   const [data, setData] = useState([])
+
+  const [pages, setPages] = useState([]);
+  const [page, setPage] = useState();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const navigate = useNavigate();
+
+
+  const handlePageChange = (newPage) => {
+    const queryParams = new URLSearchParams(location.search);
+    queryParams.set('page', newPage);
+    navigate(`?${queryParams.toString()}`);
+    setPage(newPage);
+  };
   useEffect(() => {
     const getData = async () => {
-      let res = await getAllBlog();
-      setData(res.data)
+      let res = await getAllBlog(page);
+      let v = Array.from({ length: res.pages }, (_, index) => index + 1);
+      setPages(v);
+      setData(res.data);
+      setPage(searchParams.get('page'));
     }
     getData();
-  }, [])
+  }, [location.search]);
   return (
     <div className={cx('container')}>
       <Helmet>
@@ -70,13 +88,12 @@ const Blog = () => {
             ))}
           </div>
           <div className={cx('navigation')}>
-            <ul>
-              <li className={cx('active')}>1</li>
-              <li>2</li>
-              <li>3</li>
-              <li>4</li>
-              <li>5</li>
-            </ul>
+            <button onClick={() => handlePageChange(page - 1)} disabled={page === '1'}>
+              Previous
+            </button>
+            <button onClick={() => handlePageChange(Number(page) + 1)} disabled={page === `${pages.length}`}>
+              Next
+            </button>
           </div>
         </div>
 

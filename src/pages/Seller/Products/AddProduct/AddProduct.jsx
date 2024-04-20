@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from './styles.module.scss'
 import classNames from 'classnames/bind'
-
+import {toast} from 'react-toastify'
 const cx = classNames.bind(styles)
 
 import "slick-carousel/slick/slick.css";
@@ -73,21 +73,13 @@ const AddProduct = () => {
         }
     }
     const handleAdd = async () => {
-        console.log({
-            ...data,
-            images: images,
-            combo: [...combo],
-            idCate: 1,
-            color: [...color],
-            size: [...selectedSize]
-        });
         let res = await createProduct({
             ...data,
             images: images,
             combo: [...combo],
             idCate: 1
         })
-        console.log(res);
+        res.code === 1 ? toast.success(res.message) : toast.error(res.message)
     }
     const handleAddSize = (e) => {
         let isExisted = selectedSize.includes(e.target.value);
@@ -101,7 +93,6 @@ const AddProduct = () => {
             ...data,
             [e.target.name]: e.target.value
         })
-        console.log(data);
     }
     const slider = React.useRef(null);
     const settings = {

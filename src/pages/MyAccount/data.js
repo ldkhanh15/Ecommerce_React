@@ -4,30 +4,31 @@ import { BsCartCheck } from "react-icons/bs";
 import { FiUser } from "react-icons/fi";
 import { MdLogout } from "react-icons/md";
 
-const data=[
+const data = [
     {
-        icon:<CiSettings/>,
-        title:'Dashboard'
+        icon: <CiSettings />,
+        title: 'Dashboard'
     },
     {
-        icon:<AiOutlineShopping />,
-        title:'Orders'
+        icon: <AiOutlineShopping />,
+        title: 'Orders'
     },
     {
-        icon:<BsCartCheck/>,
-        title:'Track Your Order'
+        icon: <BsCartCheck />,
+        title: 'Track Your Order'
     },
     {
-        icon:<CiLocationOn/>,
-        title:'My Address'
+        icon: <CiLocationOn />,
+        title: 'My Address'
     },
     {
-        icon:<FiUser/>,
-        title:'Account Details'
+        icon: <FiUser />,
+        title: 'Account Details'
     },
     {
-        icon:<MdLogout/>,
-        title:'Logout'
+        icon: <MdLogout />,
+        title: 'Logout',
+        check: true
     }
 ]
 export default data;

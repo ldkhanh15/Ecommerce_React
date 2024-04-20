@@ -5,7 +5,10 @@ import Modal from 'react-modal';
 import { LiaTimesSolid } from 'react-icons/lia';
 import Button from '@/components/Button';
 import { createBanner, updateBanner, uploadImage } from '@/services/bannerService';
+import { toast } from 'react-toastify'
+
 const cx = classNames.bind(styles);
+
 Modal.setAppElement('#root');
 const UiBanner = ({ open, setOpen, dataChildren = {} }) => {
     const [data, setData] = useState({})
@@ -46,10 +49,10 @@ const UiBanner = ({ open, setOpen, dataChildren = {} }) => {
                 title: data.title,
                 subTitle: data.subTitle
             })
-            console.log(res);
+            res.code === 1 ? toast.success(res.message) : toast.error(res.message)
         } else {
             let res = await createBanner(data)
-            console.log(res);
+            res.code === 1 ? toast.success(res.message) : toast.error(res.message)
         }
 
     }

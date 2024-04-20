@@ -3,7 +3,7 @@ import classNames from 'classnames/bind'
 import styles from '../styles.module.scss'
 import { useParams } from 'react-router-dom'
 import { getDetailBlog, updateBlog } from '@/services/blogService'
-
+import {toast} from 'react-toastify'
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 // import style manually
@@ -69,7 +69,7 @@ const DetailBlog = () => {
       contentHTML: data.contentHTML,
       comment: data.comment
     });
-    console.log(res);
+    res.code === 1 ? toast.success(res.message) : toast.error(res.message)
   }
   const handleChangeImage = async (e) => {
 

@@ -2,8 +2,12 @@ import axios from '../lib/axios'
 axios.defaults.withCredentials = true
 axios.defaults.headers.common = { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
 
-export const getAllBlog = () => {
-    return axios.get('/api/blog')
+export const getAllBlog = (page) => {
+    return axios.get(`/api/blog?page=${page}`)
+}
+
+export const getBlogAdmin = (page) => {
+    return axios.get(`/api/blog/seller?page=${page}`)
 }
 export const getDetailBlog = (id) => {
     return axios.get(`/api/blog/detail?id=${id}`)
@@ -29,4 +33,7 @@ export const deleteBlog = (id) => {
 }
 export const updateBlog = (data) => {
     return axios.put(`/api/blog/update`, data)
+}
+export const createCommentOfBLog = (data) => {
+    return axios.post(`/api/blog/comment/create`, data)
 }

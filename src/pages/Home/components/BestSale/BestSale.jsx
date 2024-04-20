@@ -15,7 +15,7 @@ const BestSale = () => {
     const getData = async () => {
       let res = await getAllProductSales();
       let arr = []
-      
+      console.log(res.data);
       res.data.map((item) => {
         arr.push({
           end: item.end,
@@ -31,7 +31,11 @@ const BestSale = () => {
           brand: item.product.brand,
           shop:item.product.shop,
           review:item.product.review,
-          sale:item.product.sale
+          sale:item.product.sale,
+          color:item.product.color || [],
+          size:item.product.size ||[],
+          combo: item.product.combo || [],
+          image:item.product.image|| []
         })
       })
       setData(arr)

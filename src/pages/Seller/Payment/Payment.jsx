@@ -5,6 +5,7 @@ import { CiSearch } from 'react-icons/ci'
 import UiPayment from './UiPayment/UiPayment'
 import Button from '@/components/Button'
 import { deletePayment, getPayment } from '@/services/paymentService'
+import {toast} from 'react-toastify';
 
 const cx = classNames.bind(styles)
 const Payment = () => {
@@ -18,7 +19,7 @@ const Payment = () => {
     }
     getData();
   }, [])
-  console.log(data);
+
   const handleOpen = (data) => {
     setOpen(true)
     setDataChildren({
@@ -32,7 +33,7 @@ const Payment = () => {
   const handleDelete = async (id) => {
     if (confirm("Are you sure you want to delete this payment?")) {
       let res = await deletePayment(id)
-      console.log(res);
+      res.code === 1 ? toast.success(res.message) : toast.error(res.message)
     }
   }
   return (

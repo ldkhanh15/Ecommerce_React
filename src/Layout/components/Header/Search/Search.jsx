@@ -4,14 +4,17 @@ import styles from './styles.module.scss'
 import { IoSearchOutline } from "react-icons/io5";
 import Modal from '../Mobile/Modal/Modal';
 import { BsList } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import data from './data'
 import { getCate } from '@/services/categoryService';
 import { connect } from 'react-redux';
+import { logout } from '@/services/userService';
+import { removeUser } from '@/redux/action';
 const cx = classNames.bind(styles)
-const Search = ({ carts, whitelists, compares }) => {
+const Search = ({ carts, whitelists, compares, removeUser }) => {
   const [open, setOpen] = useState(false);
   const [cate, setCate] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     const getData = async () => {
       let res = await getCate("true");
@@ -19,6 +22,16 @@ const Search = ({ carts, whitelists, compares }) => {
     }
     getData();
   }, [])
+  const handleSignOut = async () => {
+    let res = await logout();
+    if (res.code) {
+      removeUser();
+      localStorage.removeItem('token')
+    }
+    return (
+      navigate('/')
+    )
+  }
   return (
     <div className={cx('search')}>
       <div className={cx('container')}>
@@ -88,7 +101,7 @@ const Search = ({ carts, whitelists, compares }) => {
               <Link to={'/my-account'} className={cx('main')}>
                 {
                   data.map((item, index) => (
-                    <Link to={item.path} key={index} className={cx('item-modal')}>
+                    <Link onClick={item.onClick ? () => handleSignOut() : null} to={item.path} key={index} className={cx('item-modal')}>
                       <div className={cx('icon')}>
                         {item.icon}
                       </div>
@@ -116,7 +129,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-
+  removeUser
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

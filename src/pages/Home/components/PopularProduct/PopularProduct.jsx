@@ -5,15 +5,14 @@ import Product from '@/components/Product/Product';
 import { getProduct } from '@/services/productService';
 const cx = classNames.bind(styles);
 const PopularProduct = () => {
-  const [data,setData]=useState([])
-  useEffect(()=>{
-    const getData=async()=>{
-      let res=await getProduct();
+  const [data, setData] = useState([])
+  useEffect(() => {
+    const getData = async () => {
+      let res = await getProduct();
       setData(res.data)
     }
     getData()
-  },[])
-  console.log(data)
+  }, [])
   return (
     <div className={cx('container')}>
       <div className={cx('header')}>

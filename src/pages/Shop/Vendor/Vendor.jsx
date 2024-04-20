@@ -4,22 +4,35 @@ import styles from './styles.module.scss'
 import { CiSearch } from 'react-icons/ci'
 import { BiCategory } from 'react-icons/bi'
 import { FaSort } from 'react-icons/fa'
-import data from './data'
 import VendorList from '@/components/VendorList/VendorList'
 import { Helmet } from 'react-helmet'
 import { getAllShop, getShop } from '@/services/shopService'
+import { useLocation, useNavigate } from 'react-router-dom'
 const cx = classNames.bind(styles)
 const Vendor = () => {
   const [data, setData] = useState([]);
+  const [pages, setPages] = useState([]);
+  const [page, setPage] = useState();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const navigate = useNavigate();
+
+  const handlePageChange = (newPage) => {
+    const queryParams = new URLSearchParams(location.search);
+    queryParams.set('page', newPage);
+    navigate(`?${queryParams.toString()}`);
+    setPage(newPage);
+  };
   useEffect(() => {
     const getData = async () => {
-      let res = await getAllShop();
-      setData(res.data)
+      let res = await getAllShop(page);
+      let v = Array.from({ length: res.pages }, (_, index) => index + 1);
+      setPages(v);
+      setData(res);
+      setPage(searchParams.get('page'));
     }
     getData();
-  }, [])
-
-  console.log(data);
+  }, [location.search]);
   return (
     <div className={cx('container')}>
       <Helmet>
@@ -34,7 +47,7 @@ const Vendor = () => {
       </div>
       <div className={cx('action')}>
         <div className={cx('left')}>
-          We have <strong>780</strong> vendors now.
+          We have <strong>{data.count}</strong> vendors now.
         </div>
         <div className={cx('right')}>
           <div className={cx('show')}>
@@ -67,19 +80,18 @@ const Vendor = () => {
       </div>
       <div className={cx('list-vendor')}>
         {
-          data.map((item, index) => (
+          data?.data?.map((item, index) => (
             <VendorList key={index} data={item} />
           ))
         }
       </div>
       <div className={cx('navigation')}>
-        <ul>
-          <li className={cx('active')}>1</li>
-          <li>2</li>
-          <li>3</li>
-          <li>4</li>
-          <li>5</li>
-        </ul>
+        <button onClick={() => handlePageChange(page - 1)} disabled={page === '1'}>
+          Previous
+        </button>
+        <button onClick={() => handlePageChange(Number(page) + 1)} disabled={page === `${pages.length}`}>
+          Next
+        </button>
       </div>
     </div>
   )

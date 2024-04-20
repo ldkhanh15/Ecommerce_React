@@ -14,26 +14,6 @@ import { connect } from 'react-redux';
 const cx = classNames.bind(styles)
 const Cart = ({ clearCart, products, addProduct, removeProduct, carts, addCart, removeCart, updateCart }) => {
   useScrollToTop();
-  const [select, setSelect] = useState(true);
-  const [data, setData] = useState([])
-  const [input, setInput] = useState(true);
-  const options = ["Option 1", "Option 2", "Option 3"];
-  const handleSelectChange = (event) => {
-    if (event.target.value !== '') {
-      setInput(false)
-    } else {
-      setSelect(true)
-      setInput(true)
-    }
-  };
-  const handleInputChange = (event) => {
-    if (event.target.value !== '') {
-      setSelect(false)
-    } else {
-      setSelect(true)
-      setInput(true)
-    }
-  }
   const handleChange = (e, id) => {
     updateCart({
       id,
@@ -113,7 +93,9 @@ const Cart = ({ clearCart, products, addProduct, removeProduct, carts, addCart, 
                           <div className={cx('rating')}>
                             <div style={{ width: `${avgStar / 5 * 100}%` }} className={cx('star')}></div>
                           </div>
-
+                          <div className={cx('type')}>
+                              {item.type}
+                          </div>
                         </div>
                       </div>
                     </td>
@@ -150,57 +132,23 @@ const Cart = ({ clearCart, products, addProduct, removeProduct, carts, addCart, 
         </div>
       </div>
       <div className={cx('check-out')}>
-        <div className={cx('left')}>
-          <div className={cx('shipping')}>
-            <h2>Calculator Shipping</h2>
-            <div className={cx('rate')}>Flat rate: <strong>5%</strong></div>
-            <select name="" id="">
-              <option value="">Choose a address</option>
-              <option value="">Address1</option>
-              <option value="">Address2</option>
-              <option value="">Address3</option>
-            </select>
-          </div>
-          <div className={cx('voucher')}>
-            <h2>Apply Voucher</h2>
-            <label htmlFor="options">Select or Enter code</label>
-            <select className={select ? '' : cx('disabled')} id="options" onChange={handleSelectChange}>
-              <option value="" defaultChecked>Select a voucher</option>
-              {options.map((option, index) => (
-                <option key={index} value={option}>{option}</option>
-              ))}
-            </select>
-
-            <label htmlFor="input">Or</label>
-            <div className={cx('code')}>
-              <input
-                id='input'
-                className={input ? cx('input') : cx(['input', 'disabled'])}
-                type="text"
-                placeholder="Enter code..."
-                onChange={handleInputChange}
-              />
-              <div className={cx('btn')}><Button small primary leftIcon={<BiShoppingBag />}>Apply</Button></div>
-            </div>
-
-          </div>
-        </div>
+       
         <div className={cx('right')}>
           <h2>Cart Totals</h2>
           <table>
             <tr>
               <td>Cart Subtotal</td>
               <td className={cx('price')}>
-                ${total}
+                ${total.toFixed(2)}
               </td>
             </tr>
             <tr>
               <td>Shipping</td>
-              <td>Free Shipping</td>
+              <td>$5</td>
             </tr>
             <tr>
               <td>Total</td>
-              <td className={cx('price')}>${total}</td>
+              <td className={cx('price')}>${(total+5).toFixed(2)}</td>
             </tr>
           </table>
           <Link to={'/shop/checkout'} className={cx('btn')}>

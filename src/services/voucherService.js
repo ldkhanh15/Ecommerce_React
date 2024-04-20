@@ -4,11 +4,11 @@ axios.defaults.headers.common = { 'Authorization': `Bearer ${localStorage.getIte
 export const getVoucherProduct = () => {
     return axios.get('/api/voucher')
 }
-export const getVoucherOfShop = (id) => {
-    if (id) {
-        return axios.get(`/api/voucher/get-voucher-shop?id=${id}`)
-    }
-    return axios.get('/api/voucher/get-voucher-shop')
+export const getVoucherOfShop = (page) => {
+    return axios.get(`/api/voucher/get-voucher-shop?page=${page}`)
+}
+export const getVoucherOfShopOnly=(id)=>{
+    return axios.get(`/api/voucher/get-voucher-shop?id=${id}`)
 }
 export const getVoucherDetails = (id) => {
     return axios.get(`/api/voucher?id=${id}`)
@@ -20,5 +20,8 @@ export const updateVoucher = (data) => {
     return axios.put(`/api/voucher/update`, data)
 }
 export const createVoucher = (data) => {
-    return axios.put(`/api/voucher/create`, data)
+    return axios.post(`/api/voucher/create`, data)
+}
+export const getVoucherOfAll =()=>{
+    return axios.get(`/api/voucher/all`)
 }

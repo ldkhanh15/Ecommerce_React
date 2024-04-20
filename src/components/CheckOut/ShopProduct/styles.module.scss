@@ -59,12 +59,14 @@
         display: flex;
         justify-content: space-between;
         padding: 1rem;
+        line-height: 1.2;
         border: 0.1rem solid #ececec;
         border-radius: 0.5rem;
         font-size: 1.5rem;
         color: #7e7e7e;
         font-weight: 500;
         cursor: pointer;
+        align-items: center;
         .left{
             display: flex;
             gap: 1rem;
@@ -78,8 +80,17 @@
         .right{
             display: flex;
             gap: 1rem;
+            align-items: center;
             .text{
 
+                .sale{
+                    border: 0.1rem solid #ececec;
+                    border-radius: 0.3rem;
+                    background-color: var(--bgRound);
+                    color: var(--primary);
+                    font-weight: 600;
+                    padding: 0.3rem;
+                }
             }
             .icon{
 

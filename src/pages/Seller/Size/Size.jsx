@@ -5,7 +5,7 @@ import { CiSearch } from 'react-icons/ci'
 import Button from '@/components/Button'
 import UiSize from './UiSize/UiSize'
 import { deleteSize, getSize } from '@/services/productService'
-
+import {toast} from 'react-toastify'
 const cx = classNames.bind(styles)
 const Size = () => {
   const [open, setOpen] = useState(false)
@@ -32,7 +32,7 @@ const Size = () => {
   const handleDelete = async (id) => {
     if (confirm("Are you sure you want to delete this size?")) {
       let res = await deleteSize(id)
-      console.log(res);
+      res.code === 1 ? toast.success(res.message) : toast.error(res.message)
     }
   }
   return (

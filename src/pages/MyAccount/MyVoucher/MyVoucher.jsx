@@ -1,13 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import Button from '@/components/Button'
 import data from './data'
 import Voucher from '@/components/Voucher/Voucher'
+import { getVoucherProduct } from '@/services/voucherService'
 const cx = classNames.bind(styles)
 const MyVoucher = () => {
-  const [type,setType]=useState(1)
+  const [data, setData] = useState([])
+  useEffect(() => {
+    const getData = async () => {
+      let res = await getVoucherProduct();
+      setData(res.data)
+    }
+    getData()
+  }, [])
+  const nest = {
+    name: 'Nested',
+    avatar: '/images/logo/logo.svg'
+  }
+
   return (
     <div className={cx('container')}>
       <Helmet>
@@ -25,20 +38,9 @@ const MyVoucher = () => {
           </div>
         </div>
         <div className={cx('voucher')}>
-          <div className={cx('type')}>
-            <div onClick={()=>setType(1)} className={type===1 ? cx(['item','active']) : cx('item')}>
-              All(100)
-            </div>
-            <div onClick={()=>setType(2)} className={type===2 ? cx(['item','active']) : cx('item')}>
-              Nest(80)
-            </div>
-            <div onClick={()=>setType(3)} className={type===3 ? cx(['item','active']) : cx('item')}>
-              Vendor(20)
-            </div>
-          </div>
           <div className={cx('list-voucher')}>
             {data.map((item, index) => (
-              <Voucher key={index} data={item} />
+              <Voucher key={index} data={item} shop={item.shop ? item.shop : nest} />
             ))}
           </div>
         </div>

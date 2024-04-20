@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './styles.module.scss'
 import classNames from 'classnames/bind'
 
-
+import { toast } from 'react-toastify'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
@@ -21,6 +21,13 @@ const ViewProduct = () => {
     const getData = async () => {
       let resSize = await getSize();
       let resProduct = await getProductDetail(id);
+      console.log(resProduct.data);
+      let color = [];
+      resProduct.data.color.map(item => color.push(item['name']))
+      let combo = [];
+      resProduct.data.combo.map(item => combo.push(item['name']))
+      let size = [];
+      resProduct.data.size.map(item => size.push(item['name']))
       let arr = []
       resProduct.data.image.map(item => {
         arr.push(item.link)
@@ -36,18 +43,15 @@ const ViewProduct = () => {
         additional: resProduct.data.detailProduct.additional,
         description: resProduct.data.detailProduct.description,
         quantity: resProduct.data.detailProduct.quantity,
-        color: resProduct.data.color || [],
-        size: resProduct.data.size || [],
-        combo: resProduct.data.combo || [],
+        color: color || [],
+        size: size || [],
+        combo: combo || [],
         images: arr || []
       })
       setSize(resSize.data);
-
     }
     getData();
-    console.log(data);
   }, [])
-
 
   const [item, setItem] = useState([]);
   const handleChange = (e) => {
@@ -65,7 +69,6 @@ const ViewProduct = () => {
         ...data,
         images: []
       })
-      console.log('check', data);
     }
     const files = Array.from(event.target.files);
     let arr = [...data.images]
@@ -91,7 +94,7 @@ const ViewProduct = () => {
   const handleAddCombo = (type) => {
     setData({
       ...data,
-      [type]: [...data.combo, item[type]]
+      [type]: [...data[type], item[type]]
     })
     setItem({
       ...item,
@@ -124,9 +127,11 @@ const ViewProduct = () => {
   }
 
   const handleAdd = async () => {
-    console.log(data);
-    let res = await updateProduct(data)
-    console.log(res);
+    let res = await updateProduct({
+      ...data,
+      id:`${data.id}`
+    })
+    res.code === 1 ? toast.success(res.message) : toast.error(res.message)
   }
 
   const handleAddSize = (e) => {
@@ -151,10 +156,10 @@ const ViewProduct = () => {
     slidesToShow: 1,
     slidesToScroll: 1
   };
-  console.log(data);
+
   return (
     <div className={cx('container')}>
-      <h1>Add Product</h1>
+      <h1>Detail Product</h1>
       <div className={cx('main')}>
         <div className={cx('left')}>
           <div className={cx('input')}>
@@ -234,7 +239,7 @@ const ViewProduct = () => {
               {
                 data?.color?.map((value, index) => (
                   <div className={cx('item-combo')} onClick={() => handleDeleteCombo('color', index)} key={index}>
-                    {value.name}
+                    {value}
                     <span><LiaTimesSolid /></span>
                   </div>
                 ))
@@ -255,7 +260,7 @@ const ViewProduct = () => {
               {
                 data?.size?.map((value, index) => (
                   <div className={cx('item-combo')} onClick={() => handleDeleteCombo('size', index)} key={index}>
-                    {value.name}
+                    {value}
                     <span><LiaTimesSolid /></span>
                   </div>
                 ))
@@ -274,7 +279,7 @@ const ViewProduct = () => {
               {
                 data?.combo?.map((value, index) => (
                   <div className={cx('item-combo')} onClick={() => handleDeleteCombo('combo', index)} key={index}>
-                    {value.name}
+                    {value}
                     <span><LiaTimesSolid /></span>
                   </div>
                 ))

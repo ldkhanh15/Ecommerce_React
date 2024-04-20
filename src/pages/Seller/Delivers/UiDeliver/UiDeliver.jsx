@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 import { LiaTimesSolid } from 'react-icons/lia';
 import Button from '@/components/Button';
 import { createDeliver, updateDeliver } from '@/services/deliverService';
+import { toast } from 'react-toastify'
 const cx = classNames.bind(styles);
 Modal.setAppElement('#root');
 const UiDeliver = ({ open, setOpen, dataChildren }) => {
@@ -25,13 +26,13 @@ const UiDeliver = ({ open, setOpen, dataChildren }) => {
                 name: data.name,
                 price: data.price,
             })
-            console.log(res);
+            res.code === 1 ? toast.success(res.message) : toast.error(res.message)
         } else {
             let res = await createDeliver({
                 name: data.name,
                 price: data.price,
             })
-            console.log(res);
+            res.code === 1 ? toast.success(res.message) : toast.error(res.message)
         }
 
     }

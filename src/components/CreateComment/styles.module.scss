@@ -20,7 +20,7 @@
             background: url('~/public/images/other/rating-star.png');
         }
     }
-    form{
+    .form{
         display: grid;
         grid-template-columns: repeat(1,1fr);
         gap: 3rem;

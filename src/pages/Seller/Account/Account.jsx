@@ -1,100 +1,124 @@
 import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
-import styles from './styles.module.scss'
+import styles from '../styles.module.scss'
 import { CiSearch } from 'react-icons/ci'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { deleteShop, getShop } from '@/services/shopService'
+import { toast } from 'react-toastify'
 
 const cx = classNames.bind(styles)
 const Vendor = () => {
   const [data, setData] = useState([]);
-  const getData = async () => {
-    let res = await getShop();
-    setData(res.data);
-  }
+
+  const [pages, setPages] = useState([]);
+  const [page, setPage] = useState();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const navigate = useNavigate();
+
+
+  const handlePageChange = (newPage) => {
+    const queryParams = new URLSearchParams(location.search);
+    queryParams.set('page', newPage);
+    navigate(`?${queryParams.toString()}`);
+    setPage(newPage);
+  };
   useEffect(() => {
-  
+    const getData = async () => {
+      let res = await getShop(page);
+      let v = Array.from({ length: res.pages }, (_, index) => index + 1);
+      setPages(v);
+      setData(res.data);
+      setPage(searchParams.get('page'));
+    }
     getData();
-  }, [])
+  }, [location.search]);
   const handleDelete = async (id) => {
-    let res = await deleteShop(id);
-    getData();
+    if (confirm('Are you sure you want to delete this vendor?')) {
+      let res = await deleteShop(id);
+      if(res.code) {
+        toast.success(res.message);
+      }else{
+        toast.error(res.message);
+      }
+    }
   }
   return (
     <div className={cx('container')}>
       <h1>Vendors</h1>
-      <div className={cx('vendor')}>
+      <div className={cx('main')}>
         <div className={cx('header')}>
-          <input type="text" placeholder='Search a vendor' />
-          <CiSearch className={cx('icon')} />
+          <div className={cx('search')}>
+            <input type="text" placeholder='Search a vendor' />
+            <CiSearch className={cx('icon')} />
+          </div>
         </div>
-        <div className={cx('list')}>
-          <table>
-            <thead>
-              <tr>
-                <td>
-                  STT
-                </td>
-                <td>
-                  Name
-                </td>
-                <td>
-                  Phone
-                </td>
-                <td>
-                  Address
-                </td>
-                <td>
-                  Number of purchases
-                </td>
-                <td>
-                  Total order
-                </td>
-                <td>
-                  Action
-                </td>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                data && data.map((item, index) => {
-                  let revenue = item.bill.reduce((acc, item) => {
-                    return acc + item.totalPrice;
-                  }, 0)
+        <table>
+          <thead>
+            <tr>
+              <td>
+                STT
+              </td>
+              <td>
+                Name
+              </td>
+              <td>
+                Phone
+              </td>
+              <td>
+                Address
+              </td>
+              <td>
+                Number of purchases
+              </td>
+              <td>
+                Total order
+              </td>
+              <td>
+                Action
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              data && data.map((item, index) => {
+                let revenue = item.bill.reduce((acc, item) => {
+                  return acc + item.totalPrice;
+                }, 0)
 
-                  return (
-                    <tr>
-                      <td>{index + 1}</td>
-                      <td>{item.name}</td>
-                      <td>{item.phone}</td>
-                      <td>{item.address}</td>
-                      <td>{item.bill.length}</td>
-                      <td>{revenue}</td>
-                      <td className={cx('action')}>
+                return (
+                  <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>{item.name}</td>
+                    <td>{item.phone}</td>
+                    <td>{item.address}</td>
+                    <td>{item.bill.length}</td>
+                    <td>{revenue}</td>
+                    <td>
+                      <div className={cx('action')}>
                         <Link to={`/seller/account/${item.id}`} className={cx(['btn', 'view'])}>
                           View
                         </Link>
                         <button onClick={() => handleDelete(item.id)} className={cx(['btn', 'del'])}>
                           Delete
                         </button>
-                      </td>
-                    </tr>
-                  )
+                      </div>
+                    </td>
+                  </tr>
+                )
 
-                })
-              }
+              })
+            }
 
-            </tbody>
-          </table>
-        </div>
+          </tbody>
+        </table>
         <div className={cx('navigation')}>
-          <ul>
-            <li className={cx('active')}>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
-          </ul>
+          <button onClick={() => handlePageChange(page - 1)} disabled={page === '1'}>
+            Previous
+          </button>
+          <button onClick={() => handlePageChange(Number(page) + 1)} disabled={page === `${pages.length}`}>
+            Next
+          </button>
         </div>
       </div>
     </div>

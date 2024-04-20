@@ -5,7 +5,7 @@ import { CiSearch } from 'react-icons/ci'
 import UiDeliver from './UiDeliver/UiDeliver'
 import Button from '@/components/Button'
 import { deleteDeliver, getDeliver } from '@/services/deliverService'
-
+import { toast } from 'react-toastify'
 const cx = classNames.bind(styles)
 const Deliver = () => {
   const [open, setOpen] = useState(false)
@@ -18,7 +18,6 @@ const Deliver = () => {
     }
     getData();
   }, [])
-  console.log(data);
   const handleOpen = (data) => {
     setOpen(true)
     setDataChildren({
@@ -32,7 +31,7 @@ const Deliver = () => {
   const handleDelete = async (id) => {
     if (confirm("Are you sure you want to delete this deliver?")) {
       let res = await deleteDeliver(id)
-      console.log(res);
+      res.code === 1 ? toast.success(res.message) : toast.error(res.message)
     }
   }
   return (

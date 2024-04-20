@@ -51,7 +51,8 @@ import {
     AddBlog,
     BlogSellerDetail,
     DeliverShop,
-    Deliver
+    Deliver,
+    RateProduct
 } from '../pages/pages'
 
 
@@ -78,28 +79,31 @@ const publicRoutes = [
     { path: '/shop/compare', component: Compare },
     { path: '/shop/cart', component: Cart },
     { path: '/shop/wish-list', component: WishList },
-    { path: '/shop/checkout', component: CheckOut },
+
     { path: '/shop/vendors', component: Vendor },
     { path: '/hot-deals', component: HotDeal },
     { path: '/shop/vendors/:id', component: VendorDetail },
     { path: '/shop', component: Shop },
+    { path: '/shop/comment-product', component: RateProduct },
+    //buyer
+    { path: '/login', component: LoginBuy },
+    { path: '/register', component: RegisterBuy },
 
-    //account
+
+]
+const privateRouteR3 = [
     { path: '/my-account', component: MyAccount },
     { path: '/my-account/my-voucher', component: MyVoucher },
-
     { path: '/thank-you', component: ThankYou },
-
-    //seller
-    { path: '/seller/login', component: LoginSell },
-    { path: '/seller/register', component: RegisterSell },
+    { path: '/shop/checkout', component: CheckOut },
+]
+//chỉ khi login
+const privateRoutesSeller = [
     { path: '/seller/customers', component: Customer, layout: SellerLayout },
     { path: '/seller/customers/:id', component: CustomerDetail, layout: SellerLayout },
-    { path: '/seller/account', component: Account, layout: SellerLayout },
     { path: '/seller/account/:id', component: AccountDetail, layout: SellerLayout },
     { path: '/seller/orders', component: Order, layout: SellerLayout },
     { path: '/seller/orders/:id', component: OrderDetail, layout: SellerLayout },
-    { path: '/seller/overviews', component: Overview, layout: SellerLayout },
     { path: '/seller/products', component: Products, layout: SellerLayout },
     { path: '/seller/products/:id', component: ViewProduct, layout: SellerLayout },
     { path: '/seller/products/add', component: AddProduct, layout: SellerLayout },
@@ -109,27 +113,18 @@ const publicRoutes = [
     { path: '/seller/vouchers/:id', component: VoucherDetail, layout: SellerLayout },
     { path: '/seller/vouchers/add-voucher', component: AddVoucher, layout: SellerLayout },
     { path: '/seller/delivers/:id', component: DeliverShop, layout: SellerLayout },
+    { path: '/seller/blog', component: BlogSeller, layout: SellerLayout },
+    { path: '/seller/blog/add-blog', component: AddBlog, layout: SellerLayout },
+    { path: '/seller/blog/:id', component: BlogSellerDetail, layout: SellerLayout },
+]
+const privateRoutesAdmin  = [
+    { path: '/seller/account', component: Account, layout: SellerLayout },
     { path: '/seller/delivers', component: Deliver, layout: SellerLayout },
     { path: '/seller/size', component: Size, layout: SellerLayout },
     { path: '/seller/banner', component: Banner, layout: SellerLayout },
     { path: '/seller/payment', component: Payment, layout: SellerLayout },
     { path: '/seller/category', component: Category, layout: SellerLayout },
-    { path: '/seller/blog', component: BlogSeller, layout: SellerLayout },
-    { path: '/seller/blog/add-blog', component: AddBlog, layout: SellerLayout },
-    { path: '/seller/blog/:id', component: BlogSellerDetail, layout: SellerLayout },
-
-    //buyer
-    { path: '/buyer/login', component: LoginBuy },
-    { path: '/buyer/register', component: RegisterBuy },
-
-
-
-
 ]
 
-//chỉ khi login
-const privateRoutes = [
 
-]
-
-export { publicRoutes, privateRoutes }
+export { publicRoutes, privateRoutesSeller,privateRoutesAdmin, privateRouteR3 }

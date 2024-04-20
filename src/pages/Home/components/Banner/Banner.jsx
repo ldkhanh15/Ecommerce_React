@@ -16,7 +16,6 @@ const Banner = () => {
     }
     getData();
   }, [])
-  console.log(data);
   const settings = {
     dots: true,
     speed: 500,

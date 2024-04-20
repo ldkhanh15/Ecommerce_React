@@ -2,13 +2,19 @@ import axios from '../lib/axios'
 axios.defaults.withCredentials = true
 axios.defaults.headers.common = { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
 
-export const getCustomer = (id) => {
-    return axios.get(`/api/user/customer`)
+export const getCustomer = (page) => {
+    return axios.get(`/api/user/customer?page=${page}`)
 }
 export const login = (data) => {
     return axios.post('/api/login', data, {
         withCredentials: true
     })
+}
+export const logout = () => {
+    return axios.post('/api/logout')
+}
+export const checkLogin = () => {
+    return axios.get('/api/check')
 }
 export const getUser = (id) => {
     if (id) {

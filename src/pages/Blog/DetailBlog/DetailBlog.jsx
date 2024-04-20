@@ -14,6 +14,7 @@ import moment from 'moment';
 const cx = classNames.bind(styles)
 const DetailBlog = () => {
     const { id } = useParams();
+    
     const [data, setData] = useState({});
     useEffect(() => {
         const getData = async () => {
@@ -22,7 +23,7 @@ const DetailBlog = () => {
         }
         getData();
     }, [])
-    console.log(data);
+
     return (
         <div className={cx('container')}>
             <Helmet>
@@ -102,8 +103,8 @@ const DetailBlog = () => {
                     </div>
                 </div>
                 <div className={cx('comment')}>
-                    <CreateComment />
-                    <ListComment data={data?.comment}/>
+                    <CreateComment id={data.id}/>
+                    <ListComment id={data.id} data={data?.comment}/>
                 </div>
             </div>
             <div className={cx('right')}>

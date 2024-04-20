@@ -2,10 +2,9 @@ import useScrollToTop from '@/hooks/useScrollToTop'
 import React, { useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import { login } from '@/services/userService'
-import axios from 'axios'
 import { connect } from 'react-redux'
 import { addUser } from '@/redux/action'
 
@@ -14,6 +13,7 @@ const LoginBuy = ({ addUser,user }) => {
   const [member, setMember] = useState(false)
   const [email, setEmail] = useState('')
   const [pass, setPass] = useState('')
+  const navigate=useNavigate();
   const handleLogin = async () => {
     const res = await login({ email, password: pass })
     localStorage.setItem('token',res.token)
@@ -21,7 +21,7 @@ const LoginBuy = ({ addUser,user }) => {
       addUser({
         ...res.user,
       })
-      console.log(res.user)
+      navigate('/')
     }
   }
   useScrollToTop()

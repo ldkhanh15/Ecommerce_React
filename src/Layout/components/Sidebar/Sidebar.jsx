@@ -19,8 +19,9 @@ import { TbCategory } from 'react-icons/tb';
 import { ImFontSize } from "react-icons/im";
 import { MdPayment } from 'react-icons/md';
 import { CgNotes } from 'react-icons/cg';
+import { connect } from 'react-redux';
 const cx = classNames.bind(styles)
-const Sidebar = () => {
+const Sidebar = ({ user }) => {
   return (
     <section className={cx('container')}>
       <div className={cx('top')}>
@@ -47,30 +48,36 @@ const Sidebar = () => {
                 <span className={cx('border')}>Products</span>
               </NavLink>
             </li>
-            <li>
-              <NavLink exact="true" to='/seller/banner'>
-                <TfiLayoutSliderAlt/>
-                <span className={cx('border')}>Banner</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink exact="true" to='/seller/category'>
-                <TbCategory />
-                <span className={cx('border')}>Category</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink exact="true" to='/seller/size'>
-                <ImFontSize />
-                <span className={cx('border')}>Size</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink exact="true" to='/seller/payment'>
-                <MdPayment />
-                <span className={cx('border')}>Payment</span>
-              </NavLink>
-            </li>
+            {
+              user.role === "R1" ?
+                <>
+                  <li>
+                    <NavLink exact="true" to='/seller/banner'>
+                      <TfiLayoutSliderAlt />
+                      <span className={cx('border')}>Banner</span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink exact="true" to='/seller/category'>
+                      <TbCategory />
+                      <span className={cx('border')}>Category</span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink exact="true" to='/seller/size'>
+                      <ImFontSize />
+                      <span className={cx('border')}>Size</span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink exact="true" to='/seller/payment'>
+                      <MdPayment />
+                      <span className={cx('border')}>Payment</span>
+                    </NavLink>
+                  </li>
+                </>
+                : null
+            }
             <li>
               <NavLink exact="true" to='/seller/blog'>
                 <CgNotes />
@@ -84,7 +91,7 @@ const Sidebar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink exact="true" to='/seller/account'>
+              <NavLink exact="true" to={user.role === 'R1' ? '/seller/account' : `/seller/account/${user.id}`}>
                 <CiShop />
                 <span className={cx('border')}>Account</span>
               </NavLink>
@@ -96,7 +103,7 @@ const Sidebar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink exact="true" to='/seller/delivers'>
+              <NavLink exact="true" to={user.role === 'R1' ? '/seller/delivers' : `/seller/delivers/${user.id}`}>
                 <GrDeliver />
                 <span className={cx('border')}>Delivers</span>
               </NavLink>
@@ -114,5 +121,10 @@ const Sidebar = () => {
   )
 }
 
+const mapStateToProps = (state) => ({
+  user: state.user
+})
+const mapDispatchToProps = {
 
-export default Sidebar
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)

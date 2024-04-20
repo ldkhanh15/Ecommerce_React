@@ -5,20 +5,35 @@ import { CiSearch } from 'react-icons/ci'
 import UiCate from './UiCate/UiCate'
 import Button from '@/components/Button'
 import { deleteCate, getAllCate } from '@/services/categoryService'
-
+import { toast } from 'react-toastify'
+import { useLocation, useNavigate } from 'react-router-dom'
 const cx = classNames.bind(styles)
 const Category = () => {
   const [open, setOpen] = useState(false)
   const [data, setData] = useState([])
   const [dataChildren, setDataChildren] = useState({})
+  const [pages, setPages] = useState([]);
+  const [page, setPage] = useState();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const navigate = useNavigate();
+  const handlePageChange = (newPage) => {
+    const queryParams = new URLSearchParams(location.search);
+    queryParams.set('page', newPage);
+    navigate(`?${queryParams.toString()}`);
+    setPage(newPage);
+  };
   useEffect(() => {
     const getData = async () => {
-      let res = await getAllCate();
-      setData(res.data)
+      let res = await getAllCate(page);
+      let v = Array.from({ length: res.pages }, (_, index) => index + 1);
+      setPages(v);
+      setData(res.data);
+      setPage(searchParams.get('page'));
+      console.log(res);
     }
     getData();
-  }, [])
-  console.log(data);
+  }, [location.search])
   const handleOpen = (data) => {
     setOpen(true)
     setDataChildren({
@@ -32,7 +47,7 @@ const Category = () => {
   const handleDelete = async (id) => {
     if (confirm("Are you sure you want to delete this category?")) {
       let res = await deleteCate(id)
-      console.log(res);
+      res.code === 1 ? toast.success(res.message) : toast.error(res.message)
     }
   }
   return (
@@ -75,7 +90,7 @@ const Category = () => {
             {
               data && data.map((item, index) => (
                 <tr key={index}>
-                  <td className={cx('stt')}>{index+1}</td>
+                  <td className={cx('stt')}>{index + 1}</td>
                   <td>{item.name}</td>
                   <td>
                     <img src={item.image} alt="" />
@@ -87,7 +102,7 @@ const Category = () => {
                       <div onClick={() => handleOpen(item)} className={cx(['btn', 'view'])}>
                         View
                       </div>
-                      <div onClick={()=>handleDelete(item.id)} className={cx(['btn', 'delete'])}>
+                      <div onClick={() => handleDelete(item.id)} className={cx(['btn', 'delete'])}>
                         Delete
                       </div>
                     </div>
@@ -99,13 +114,12 @@ const Category = () => {
           </tbody>
         </table>
         <div className={cx('navigation')}>
-          <ul>
-            <li className={cx('active')}>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>51</li>
-          </ul>
+          <button onClick={() => handlePageChange(page - 1)} disabled={page === '1'}>
+            Previous
+          </button>
+          <button onClick={() => handlePageChange(Number(page) + 1)} disabled={page === `${pages.length}`}>
+            Next
+          </button>
         </div>
       </div>
       <UiCate open={open} dataChildren={dataChildren} setOpen={setOpen} />

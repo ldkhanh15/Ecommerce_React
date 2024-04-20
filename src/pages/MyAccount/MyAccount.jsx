@@ -9,10 +9,26 @@ import TrackOrder from './components/TrackOrder/TrackOrder';
 import Address from './components/Address/Address';
 import AccountDetail from './components/AccountDetail/AccountDetail';
 import { Helmet } from 'react-helmet';
+import { logout } from '@/services/userService';
+import { connect } from 'react-redux';
+import { removeUser } from '@/redux/action';
+import { useNavigate } from 'react-router-dom';
 const cx = classNames.bind(styles);
-const MyAccount = () => {
+const MyAccount = ({ removeUser }) => {
   useScrollToTop();
   const [page, setPage] = useState(0);
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    let res = await logout();
+    if (res.code) {
+      removeUser();
+      localStorage.removeItem('token');
+      return (
+        navigate('/')
+      )
+    }
+
+  }
   return (
     <div className={cx('container')}>
       <Helmet>
@@ -21,7 +37,7 @@ const MyAccount = () => {
       <div className={cx('side-bar')}>
         {
           data.map((item, index) => (
-            <div key={index} onClick={()=>setPage(index)} className={page === index ? cx('item', 'active') : cx('item')}>
+            <div key={index} onClick={() => item.check ? handleLogout() : setPage(index)} className={page === index ? cx('item', 'active') : cx('item')}>
               <div className={cx('icon')}>
                 {item.icon}
               </div>
@@ -33,14 +49,20 @@ const MyAccount = () => {
         }
       </div>
       <div className={cx('main')}>
-        {page===0 && <Dashboard/>}
-        {page===1 && <Orders/>}
-        {page===2 && <TrackOrder/>}
-        {page===3 && <Address/>}
-        {page===4 && <AccountDetail/>}
+        {page === 0 && <Dashboard />}
+        {page === 1 && <Orders />}
+        {page === 2 && <TrackOrder />}
+        {page === 3 && <Address />}
+        {page === 4 && <AccountDetail />}
       </div>
     </div>
   )
 }
 
-export default MyAccount
+const mapStateToProps = (state) => ({
+
+})
+const mapDispatchToProps = {
+  removeUser
+}
+export default connect(mapStateToProps, mapDispatchToProps)(MyAccount)

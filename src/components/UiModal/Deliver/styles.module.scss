@@ -1,0 +1,59 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    height: 100vh;
+    h3{
+        font-size: 2.3rem;
+        color: var(--text);
+        font-weight: 700;
+    }
+    .list-payment{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        gap: 1rem;
+        .box{
+            padding: 2rem 1.5rem;
+            border: 0.1rem solid #ececec;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            input{
+                display: none;
+            }
+            label{
+                padding-left: 2rem;
+                position: relative;
+                color: #7e7e7e;
+                font-weight: 700;
+                font-size: 1.5rem;
+                &::before,
+                &::after{
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 1rem;
+                    height: 1rem;
+                    border-radius: 50%;
+                    border: 0.1rem solid var(--primary);
+                }
+                &:after{
+                    transform: scale(0.75);
+                    opacity: 0;
+                    background-color: var(--primary);
+                }
+            }
+
+        }
+        .box.active{
+            border-color: var(--primary);
+            label{
+                &:after{
+                    opacity: 1;
+                }
+            }
+        }   
+    }
+}

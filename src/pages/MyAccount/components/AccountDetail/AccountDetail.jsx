@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import { getUser, updateUser } from '@/services/userService';
+import { toast } from 'react-toastify'
 const cx = classNames.bind(styles);
 const AccountDetail = () => {
   const [data, setData] = useState({});
   useEffect(() => {
     const getData = async () => {
       let res = await getUser();
+      
       let date = res.data.birthday;
       date = date.split('T');
       setData({
@@ -18,8 +20,9 @@ const AccountDetail = () => {
         phone: res.data.phone,
         name: res.data.name,
         username: res.data.username,
-        id:res.data.id
+        id: res.data.id
       })
+      console.log(data);
     }
     getData();
   }, [])
@@ -38,7 +41,7 @@ const AccountDetail = () => {
       username: data.username,
       id: `${data.id}`
     })
-    console.log(res);
+    res.code === 1 ? toast.success(res.message) : toast.error(res.message)
   }
   return (
     <div className={cx('container')}>
@@ -90,5 +93,4 @@ const AccountDetail = () => {
     </div>
   )
 }
-
 export default AccountDetail

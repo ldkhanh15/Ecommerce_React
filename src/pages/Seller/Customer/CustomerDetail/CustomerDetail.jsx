@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import classNames from 'classnames/bind';
 import styles from './styles.module.scss'
 import Button from '@/components/Button';
-
+import {toast} from 'react-toastify'
 
 const cx = classNames.bind(styles)
 const CustomerDetail = () => {
@@ -17,7 +17,7 @@ const CustomerDetail = () => {
         }
         getData()
     }, [])
-    console.log(data);
+
     const handleChange = (e) => {
         setData({
             ...data,
@@ -25,7 +25,7 @@ const CustomerDetail = () => {
         })
     }
     const handleUpdate = async () => {
-        console.log(data);
+
         let res = await updateUser({
             birthday: data.birthday,
             gender: data.gender,
@@ -34,7 +34,7 @@ const CustomerDetail = () => {
             username: data.username,
             phone: data.phone
         });
-        console.log(res);
+        res.code === 1 ? toast.success(res.message) : toast.error(res.message)
     }
     return (
         <div className={cx('container')}>

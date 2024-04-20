@@ -6,6 +6,7 @@ import { getDetailBill, updateBill } from '@/services/billService'
 import { CgNotes } from 'react-icons/cg'
 import Button from '@/components/Button'
 import UiInfo from './UiInfo/UiInfo'
+import { toast } from 'react-toastify'
 const cx = classNames.bind(styles)
 const OrderDetail = () => {
     let { id } = useParams();
@@ -35,7 +36,7 @@ const OrderDetail = () => {
         }
         getData();
     }, [])
-    console.log(data);
+
     const handleChange = (e, index) => {
         let arr = [...data.product]
         arr[index].quantity = e.target.value;
@@ -67,7 +68,7 @@ const OrderDetail = () => {
             totalPrice: price,
             products: product
         })
-        console.log(res);
+        res.code === 1 ? toast.success(res.message) : toast.error(res.message)
     }
     return (
         <div className={cx('container')}>
@@ -226,7 +227,7 @@ const OrderDetail = () => {
                                                             </div>
                                                         </div>
                                                         <div className={cx('number')}>
-                                                            <input onChange={(e) => handleChange(e, index)} type="number" value={item.quantity} />
+                                                            <input min={1} onChange={(e) => handleChange(e, index)} type="number" value={item.quantity} />
                                                         </div>
                                                     </div>
                                                 </div>

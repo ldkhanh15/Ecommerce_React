@@ -42,6 +42,24 @@
         grid-template-columns: repeat(2,1fr);
         gap: 3rem;
     }
+    .navigation{
+        margin-bottom: 5rem;
+        button{
+            padding: 1rem;
+            min-width: 4rem;
+            line-height: 1;
+            border: 0.1rem solid #f2f3f4;
+            text-align: center;
+            font-weight: 600;
+            color: #7e7e7e;
+            cursor: pointer;
+            margin-right: 1rem;
+            border-radius: 0.5rem;
+            &:hover{
+                color: var(--primary);
+            }
+        }
+    }   
 }
 @media (width < 576px){
     .container{

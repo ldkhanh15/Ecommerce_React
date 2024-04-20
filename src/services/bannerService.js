@@ -4,8 +4,8 @@ axios.defaults.headers.common = { 'Authorization': `Bearer ${localStorage.getIte
 export const getBanner = (data) => {
     return axios.get(`/api/banner?main=${data}`)
 }
-export const getAllBanner = () => {
-    return axios.get(`/api/banner/all`)
+export const getAllBanner = (page) => {
+    return axios.get(`/api/banner/all?page=${page}`)
 }
 
 export const updateBanner = (data) => {

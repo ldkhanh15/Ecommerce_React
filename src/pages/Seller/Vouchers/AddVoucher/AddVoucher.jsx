@@ -1,13 +1,12 @@
-import React, {  useState } from 'react'
+import React, { useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import Button from '@/components/Button'
-
+import { toast } from 'react-toastify'
+import { createVoucher } from '@/services/voucherService'
 const cx = classNames.bind(styles)
 const AddVoucher = () => {
     const [data, setData] = useState({})
-
-    console.log(data);
     const handleChange = (e) => {
 
         setData({
@@ -17,7 +16,15 @@ const AddVoucher = () => {
     }
 
     const handleAdd = async () => {
-        console.log(data);
+        let res = await createVoucher({
+            ...data,
+            idShop: `1`
+        })
+        if (res.code) {
+            toast.success(res.message)
+        } else {
+            toast.error(res.message)
+        }
     }
     return (
         <div className={cx('container')}>
@@ -67,23 +74,12 @@ const AddVoucher = () => {
                             <input onChange={(e) => handleChange(e)} name='quantity' type="number" id='quantity' value={data.quantity} />
                         </div>
                         <div className={cx('input')}>
-                            <label htmlFor="minBill">Min Bill</label>
-                            <input onChange={(e) => handleChange(e)} name='minBill' type="number" id='minBill' value={data.minBill} />
-                        </div>
-                        <div className={cx('input')}>
                             <label htmlFor="salePT">Discount (%)</label>
                             <input onChange={(e) => handleChange(e)} name='salePT' type="number" id='salePT' value={data.salePT} />
                         </div>
                         <div className={cx('input')}>
                             <label htmlFor="salePrice">Discount</label>
                             <input onChange={(e) => handleChange(e)} name='salePrice' type="number" id='salePrice' value={data.salePrice} />
-                        </div>
-                        <div className={cx('input')}>
-                            <label htmlFor="type">Type</label>
-                            <select onChange={(e)=>handleChange(e)} name="type" id="type">
-                                <option defaultChecked={data.type === "V1" ? true : false} value={"V1"}>Discount voucher</option>
-                                <option defaultChecked={data.type === "V2" ? true : false} value={"V2"}>FreeShip voucher</option>
-                            </select>
                         </div>
                         <div className={cx('btn')}>
                             <div className={cx('item')}>

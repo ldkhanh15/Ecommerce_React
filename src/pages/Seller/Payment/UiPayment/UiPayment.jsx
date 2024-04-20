@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 import { LiaTimesSolid } from 'react-icons/lia';
 import Button from '@/components/Button';
 import { createPayment, updatePayment } from '@/services/paymentService';
+import {toast} from 'react-toastify'
 const cx = classNames.bind(styles);
 Modal.setAppElement('#root');
 const UiPayment = ({ open, setOpen, dataChildren }) => {
@@ -24,12 +25,12 @@ const UiPayment = ({ open, setOpen, dataChildren }) => {
                 id: `${data.id}`,
                 name: data.name,
             })
-            console.log(res);
+            res.code === 1 ? toast.success(res.message) : toast.error(res.message)
         } else {
             let res = await createPayment({
                 name:data.name,
             })
-            console.log(res);
+            res.code === 1 ? toast.success(res.message) : toast.error(res.message)
         }
 
     }
