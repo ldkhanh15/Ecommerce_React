@@ -9,15 +9,15 @@ export const getAllCate = (page) => {
 }
 
 export const updateCate = (data) => {
-    return axios.put(`/api/category/update`,data)
+    return axios.put(`/api/category/update`, data)
 }
 export const deleteCate = (id) => {
     return axios.delete(`/api/category/delete?id=${id}`)
 }
 export const createCate = (data) => {
     const formData = new FormData();
-    for(const key in data){
-        formData.append(key,data[key]);
+    for (const key in data) {
+        formData.append(key, data[key]);
     }
     return axios.post(`/api/category/create`, formData, {
         headers: {
@@ -37,4 +37,7 @@ export const uploadImage = (data) => {
             'Content-Type': 'multipart/form-data'
         }
     })
+}
+export const searchCategory = (query) => {
+    return axios.get(`/api/category/search?q=${query}`)
 }

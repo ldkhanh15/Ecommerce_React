@@ -10,6 +10,9 @@ export const login = (data) => {
         withCredentials: true
     })
 }
+export const register = (data) => {
+    return axios.post('/api/user/create', data)
+}
 export const logout = () => {
     return axios.post('/api/logout')
 }
@@ -40,4 +43,7 @@ export const createAddress = (data) => {
 }
 export const deleteAddress = (id, idUser) => {
     return axios.delete(`/api/user/address/delete?id=${id}&idUser=${idUser}`);
+}
+export const searchUser = (query) => {
+    return axios.get(`/api/user/search?q=${query}`)
 }

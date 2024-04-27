@@ -5,10 +5,11 @@ import Button from '@/components/Button'
 import { addDeliver } from '@/redux/action'
 import { connect } from 'react-redux'
 const cx = classNames.bind(styles)
-const DeliverUi = ({ data, addDeliver, deliver }) => {
+const DeliverUi = ({ setOpen,data, addDeliver, deliver }) => {
     const [check, setCheck] = useState(deliver || { id: 1 })
     const handleAdd = () => {
         addDeliver(check)
+        setOpen(false)
     }
     return (
         <div className={cx('container')}>

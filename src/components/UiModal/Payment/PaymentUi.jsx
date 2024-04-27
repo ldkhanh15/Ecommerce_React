@@ -5,10 +5,11 @@ import Button from '@/components/Button'
 import { addPayment } from '@/redux/action'
 import { connect } from 'react-redux'
 const cx = classNames.bind(styles)
-const PaymentUi = ({ data, addPayment, payment }) => {
+const PaymentUi = ({ setOpen, data, addPayment, payment }) => {
     const [check, setCheck] = useState(payment || { id: 1 })
     const handleAdd = () => {
         addPayment(check)
+        setOpen(false)
     }
     return (
         <div className={cx('container')}>

@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from '../styles.module.scss'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { getDetailBlog, updateBlog } from '@/services/blogService'
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify'
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 // import style manually
 import 'react-markdown-editor-lite/lib/index.css';
 import { LiaTimesSolid } from 'react-icons/lia'
 import Button from '@/components/Button'
+import Loading from '@/components/Loading/Loading'
 const cx = classNames.bind(styles)
 
 const mdParser = new MarkdownIt();
@@ -18,6 +19,8 @@ const DetailBlog = () => {
   const [tag, setTag] = useState('');
   const [data, setData] = useState({});
   const [upload, setUpload] = useState();
+  const [loading, setLoading] = useState(false)
+  const navigate=useNavigate()
   useEffect(() => {
     const getData = async () => {
       let res = await getDetailBlog(id);
@@ -32,7 +35,9 @@ const DetailBlog = () => {
         comment: res.data.detail.comment
       })
     }
+    setLoading(true)
     getData()
+    setLoading(false)
   }, [])
 
   const handleEditorChange = ({ html, text }) => {
@@ -60,6 +65,7 @@ const DetailBlog = () => {
     setTag('');
   }
   const handleUpdate = async () => {
+    setLoading(true);
     let res = await updateBlog({
       id: `${data.id}`,
       field: data.field,
@@ -70,6 +76,8 @@ const DetailBlog = () => {
       comment: data.comment
     });
     res.code === 1 ? toast.success(res.message) : toast.error(res.message)
+    setLoading(false)
+    navigate('/seller/blog')
   }
   const handleChangeImage = async (e) => {
 
@@ -78,76 +86,80 @@ const DetailBlog = () => {
 
   }
   return (
-    <div className={cx('container')}>
-      <h1>Blog Detail</h1>
-      <div className={cx('main')}>
-        <div className={cx('info')}>
-          <div className={cx('left')}>
-            <div className={cx('input')}>
-              <label htmlFor="title">Title</label>
-              <input value={data.name} onChange={e => handleChange(e)} id='title' type="text" placeholder='Title' name="name" />
-            </div>
-            <div className={cx('input')}>
-              <label htmlFor="">Field</label>
-              <input value={data.field} onChange={e => handleChange(e)} type="text" placeholder='Field' name='field' />
-            </div>
+    <>
+      {
+        loading ? <Loading /> : <div className={cx('container')}>
+          <h1>Blog Detail</h1>
+          <div className={cx('main')}>
+            <div className={cx('info')}>
+              <div className={cx('left')}>
+                <div className={cx('input')}>
+                  <label htmlFor="title">Title</label>
+                  <input value={data.name} onChange={e => handleChange(e)} id='title' type="text" placeholder='Title' name="name" />
+                </div>
+                <div className={cx('input')}>
+                  <label htmlFor="">Field</label>
+                  <input value={data.field} onChange={e => handleChange(e)} type="text" placeholder='Field' name='field' />
+                </div>
 
-            <div className={cx('input')}>
-              <label htmlFor="tag">Hashtag</label>
-              <div className={cx('tag')} >
-                <button onClick={() => handleAdd()} className={cx('add-tag')}>
-                  Add
-                </button>
-                <input value={tag} onChange={e => setTag(e.target.value)} id="tag" type="text" name='tag' placeholder='Hashtag' />
-              </div>
-              <div className={cx('list-tag')}>
-                {
-                  data?.tag?.map((value, index) => (
-                    <div className={cx('item-tag')} key={index}>
-                      {value.name}
-                      <span><LiaTimesSolid /></span>
+                <div className={cx('input')}>
+                  <label htmlFor="tag">Hashtag</label>
+                  <div className={cx('tag')} >
+                    <button onClick={() => handleAdd()} className={cx('add-tag')}>
+                      Add
+                    </button>
+                    <input value={tag} onChange={e => setTag(e.target.value)} id="tag" type="text" name='tag' placeholder='Hashtag' />
+                  </div>
+                  <div className={cx('list-tag')}>
+                    {
+                      data?.tag?.map((value, index) => (
+                        <div className={cx('item-tag')} key={index}>
+                          {value.name}
+                          <span><LiaTimesSolid /></span>
+                        </div>
+                      ))
+                    }
+                  </div>
+
+                </div>
+                <div className={cx('input')}>
+                  <label htmlFor="">Comment</label>
+                  <input value={data.comment} onChange={e => handleChange(e)} type="text" placeholder='Comment' name='comment' />
+                </div>
+                <div className={cx('upload')}>
+                  <label htmlFor="convert">Convert image to link</label>
+                  <div className={cx('input-upload')}>
+                    <input onChange={(e) => setUpload(e.target.files[0])} type="file" />
+                    <div className={cx('btn')}>
+                      <Button onClick={() => handleConvert()} primary large>Convert</Button>
                     </div>
-                  ))
-                }
-              </div>
-
-            </div>
-            <div className={cx('input')}>
-              <label htmlFor="">Comment</label>
-              <input value={data.comment} onChange={e => handleChange(e)} type="text" placeholder='Comment' name='comment' />
-            </div>
-            <div className={cx('upload')}>
-              <label htmlFor="convert">Convert image to link</label>
-              <div className={cx('input-upload')}>
-                <input onChange={(e) => setUpload(e.target.files[0])} type="file" />
-                <div className={cx('btn')}>
-                  <Button onClick={() => handleConvert()} primary large>Convert</Button>
+                  </div>
+                  <div className={cx('image')}>
+                    <input type="text" readOnly />
+                    <img src={upload ? URL.createObjectURL(upload) : ''} alt="" />
+                  </div>
                 </div>
               </div>
-              <div className={cx('image')}>
-                <input type="text" readOnly />
-                <img src={upload ? URL.createObjectURL(upload) : ''} alt="" />
+              <div className={cx('right')}>
+                <img src={data.image} alt="" />
+                <input type="file" onChange={(e) => handleChangeImage(e)} />
               </div>
             </div>
+            <div className='content'>
+              <MdEditor
+                style={{ height: '500px' }}
+                renderHTML={(text) => mdParser.render(text)}
+                onChange={handleEditorChange}
+                value={data.content}
+              />
+            </div>
+            <div className={cx('btn')}>
+              <Button onClick={() => handleUpdate()} primary large>Update</Button>
+            </div>
           </div>
-          <div className={cx('right')}>
-            <img src={data.image} alt="" />
-            <input type="file" onChange={(e) => handleChangeImage(e)} />
-          </div>
         </div>
-        <div className='content'>
-          <MdEditor
-            style={{ height: '500px' }}
-            renderHTML={(text) => mdParser.render(text)}
-            onChange={handleEditorChange}
-            value={data.content}
-          />
-        </div>
-        <div className={cx('btn')}>
-          <Button onClick={() => handleUpdate()} primary large>Update</Button>
-        </div>
-      </div>
-    </div>
+      }
+    </>
   )
 }
 

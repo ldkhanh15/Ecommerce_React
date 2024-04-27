@@ -1,0 +1,20 @@
+.image-loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .image-item {
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0; /* Ẩn hình ảnh mặc định */
+  }
+  
+  .image-item.active {
+    opacity: 1; /* Hiển thị hình ảnh khi active */
+  }
+  

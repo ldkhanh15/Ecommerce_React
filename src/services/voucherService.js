@@ -25,3 +25,6 @@ export const createVoucher = (data) => {
 export const getVoucherOfAll =()=>{
     return axios.get(`/api/voucher/all`)
 }
+export const searchVoucher=(query)=>{
+    return axios.get(`/api/voucher/search?q=${query}`)
+}

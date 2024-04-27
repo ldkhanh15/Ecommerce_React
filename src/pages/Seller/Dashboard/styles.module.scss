@@ -1,20 +1,81 @@
 .container {
     padding: 1rem 0rem;
-    .main{
-        display: flex;
-        gap: 3rem;
-        margin-top: 2rem;
-        .left,
-        .right{
+    .overview{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        
+        .item{
             display: flex;
-            flex-direction: column;
-            gap: 3rem;
+            gap: 1rem;
+            padding: 1.5rem 3rem;
+            border: 0.1rem solid #ececec;
+            border-radius: 0.4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .left{
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+                .total{
+                    color: var(--text);
+                    font-size: 2rem;
+                    font-weight: 600;
+                }
+                p{
+                    color: #7e7e7e;
+                    font-weight: 500;
+                    font-size: 1.5rem;
+                }
+            }   
+            .right{
+                .icon{
+                    font-size: 3rem;
+                    
+                }
+            } 
         }
+        .bill{
+            border-left: 0.7rem rgb(98 0 234) solid;
+        }
+        .product{
+            border-left: 0.7rem rgb(206, 204, 57) solid;
+        }
+        .customer{
+            border-left: 0.7rem rgb(190, 121, 68) solid;
+        }
+        .revenue{
+            border-left: 0.7rem rgb(54, 199, 54) solid;
+        }
+    }
+    .char{
+        margin-top: 2rem;
+        display: flex;
+        gap: 4rem;
         .left{
             width: 70%;
         }
         .right{
             width: 30%;
+        }
+    }
+    .top-product{
+        margin-top: 3rem;
+        table{
+            width: 100%;
+            thead{
+                background-color: var(--bgRound);
+                color: var(--primary);
+                font-weight: 600;
+                text-align: center;
+            }
+            tr,td{
+                text-align: center;
+                padding: 1rem;
+                border: 0.1rem solid #ececec;
+            }
         }
     }
 }

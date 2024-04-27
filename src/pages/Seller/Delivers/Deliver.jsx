@@ -4,8 +4,9 @@ import styles from '../styles.module.scss'
 import { CiSearch } from 'react-icons/ci'
 import UiDeliver from './UiDeliver/UiDeliver'
 import Button from '@/components/Button'
-import { deleteDeliver, getDeliver } from '@/services/deliverService'
+import { deleteDeliver, getDeliver, searchDeliver } from '@/services/deliverService'
 import { toast } from 'react-toastify'
+import Search from '@/components/Search/Search'
 const cx = classNames.bind(styles)
 const Deliver = () => {
   const [open, setOpen] = useState(false)
@@ -40,8 +41,7 @@ const Deliver = () => {
       <div className={cx('main')}>
         <div className={cx('header')}>
           <div className={cx('search')}>
-            <input type="text" placeholder='Search a deliver' />
-            <CiSearch className={cx('icon')} />
+            <Search onSearch={searchDeliver} setData={setData} />
           </div>
           <div className={cx('btn-add')}>
             <Button onClick={() => handleAdd()} primary large>Add new Deliver</Button>

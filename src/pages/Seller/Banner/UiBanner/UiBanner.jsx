@@ -10,8 +10,9 @@ import { toast } from 'react-toastify'
 const cx = classNames.bind(styles);
 
 Modal.setAppElement('#root');
-const UiBanner = ({ open, setOpen, dataChildren = {} }) => {
+const UiBanner = ({ setLoading, open, setOpen, dataChildren = {} }) => {
     const [data, setData] = useState({})
+
     useEffect(() => {
         setData(dataChildren)
     }, [dataChildren])
@@ -40,6 +41,7 @@ const UiBanner = ({ open, setOpen, dataChildren = {} }) => {
         }
     }
     const handleAdd = async () => {
+        setLoading(true)
         if (Object.keys(dataChildren).length > 0) {
             let res = await updateBanner({
                 id: `${data.id}`,
@@ -54,7 +56,8 @@ const UiBanner = ({ open, setOpen, dataChildren = {} }) => {
             let res = await createBanner(data)
             res.code === 1 ? toast.success(res.message) : toast.error(res.message)
         }
-
+        setLoading(false)
+        setOpen(false)
     }
 
     return (
@@ -140,6 +143,7 @@ const UiBanner = ({ open, setOpen, dataChildren = {} }) => {
 
             </div>
         </Modal>
+
     )
 }
 

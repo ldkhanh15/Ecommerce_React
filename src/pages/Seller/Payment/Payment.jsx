@@ -4,8 +4,9 @@ import styles from '../styles.module.scss'
 import { CiSearch } from 'react-icons/ci'
 import UiPayment from './UiPayment/UiPayment'
 import Button from '@/components/Button'
-import { deletePayment, getPayment } from '@/services/paymentService'
-import {toast} from 'react-toastify';
+import { deletePayment, getPayment, searchPayment } from '@/services/paymentService'
+import { toast } from 'react-toastify';
+import Search from '@/components/Search/Search'
 
 const cx = classNames.bind(styles)
 const Payment = () => {
@@ -42,8 +43,7 @@ const Payment = () => {
       <div className={cx('main')}>
         <div className={cx('header')}>
           <div className={cx('search')}>
-            <input type="text" placeholder='Search a payment' />
-            <CiSearch className={cx('icon')} />
+            <Search onSearch={searchPayment} setData={setData} />
           </div>
           <div className={cx('btn-add')}>
             <Button onClick={() => handleAdd()} primary large>Add new Payment</Button>

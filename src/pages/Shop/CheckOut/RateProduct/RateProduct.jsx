@@ -5,6 +5,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { getDetailBill, getProductCommentOfBill } from '@/services/billService'
 import FormRate from './FormRate/FormRate'
 import Button from '@/components/Button'
+import Loading from '@/components/Loading/Loading'
 
 const cx = classNames.bind(styles)
 const RateProduct = () => {
@@ -13,31 +14,38 @@ const RateProduct = () => {
     const id = searchParams.get('id');
     const [data, setData] = useState({});
     const [active, setActive] = useState(-1);
+    const [loading, setLoading] = useState(false)
     useEffect(() => {
         const getData = async () => {
             let res = await getProductCommentOfBill(id);
             setData(res.data)
         }
+        setLoading(true)
         getData();
+        setLoading(false)
     }, [])
     return (
-        <div className={cx('container')}>
+        <>
             {
-                data?.product?.length ===0 && <div className={cx('no-product')}>
-                    <div className={cx('content')}>You reviewed all product in this bill !</div>
-                    <div className={cx('btn')}><Button to={'/'} large primary>Back To Home</Button></div>
+                loading ? <Loading /> : <div className={cx('container')}>
+                    {
+                        data?.product?.length === 0 && <div className={cx('no-product')}>
+                            <div className={cx('content')}>You reviewed all product in this bill !</div>
+                            <div className={cx('btn')}><Button to={'/'} large primary>Back To Home</Button></div>
+                        </div>
+                    }
+                    {
+                        data?.product?.map((product, index) => {
+                            return (
+                                <div onClick={() => setActive(index)} key={index} className={index === active ? cx(['review', 'active']) : cx('review')}>
+                                    <FormRate product={product} bill={data} />
+                                </div>
+                            )
+                        })
+                    }
                 </div>
             }
-            {
-                data?.product?.map((product, index) => {
-                    return (
-                        <div onClick={() => setActive(index)} key={index} className={index === active ? cx(['review', 'active']) : cx('review')}>
-                            <FormRate product={product} bill={data} />
-                        </div>
-                    )
-                })
-            }
-        </div>
+        </>
     )
 }
 

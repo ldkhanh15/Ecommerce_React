@@ -10,8 +10,8 @@ const AccountDetail = () => {
     const getData = async () => {
       let res = await getUser();
       
-      let date = res.data.birthday;
-      date = date.split('T');
+      let date = res?.data?.birthday;
+      date = date?.split('T');
       setData({
         avatar: res.data.avatar,
         birthday: date[0],

@@ -14,3 +14,6 @@ export const deletePayment = (id) => {
 export const updatePayment = (data) => {
     return axios.put(`/api/payment/update`, data)
 }
+export const searchPayment=(query)=>{
+    return axios.get(`/api/payment/search?q=${query}`)
+}

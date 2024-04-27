@@ -25,3 +25,6 @@ export const addDeliver = (data) => {
 export const deleteDeliverShop = (idDeliver, idShop) => {
     return axios.delete(`/api/vendor/delete-deliver?idShop=${idShop}&idDeliver=${idDeliver}`);
 }
+export const searchDeliver=(query)=>{
+    return axios.get(`/api/deliver/search?q=${query}`)
+}

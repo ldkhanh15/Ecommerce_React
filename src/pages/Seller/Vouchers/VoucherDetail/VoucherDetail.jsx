@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { deleteVoucher, getVoucherDetails, updateVoucher } from '@/services/voucherService'
 import classNames from 'classnames/bind'
 import styles from './styles.module.scss'
 import Button from '@/components/Button'
 import { toast } from 'react-toastify'
+import Loading from '@/components/Loading/Loading'
 const cx = classNames.bind(styles)
 const VoucherDetail = () => {
     let { id } = useParams();
     const [data, setData] = useState({})
+    const [loading, setLoading] = useState(false)
+    const navigate = useNavigate()
     useEffect(() => {
         const getData = async () => {
             let res = await getVoucherDetails(id);
@@ -33,9 +36,11 @@ const VoucherDetail = () => {
 
             })
         }
+        setLoading(true)
         getData()
+        setLoading(false)
     }, [])
-    console.log(data);
+
     const handleChange = (e) => {
 
         setData({
@@ -45,11 +50,14 @@ const VoucherDetail = () => {
     }
     const handleDelete = async (id) => {
         if (confirm('Are you sure you want to delete this voucher?')) {
+            setLoading(true)
             let res = await deleteVoucher(id)
             res.code === 1 ? toast.success(res.message) : toast.error(res.message)
+            setLoading(false)
         }
     }
     const handleUpdate = async () => {
+        setLoading(true)
         let res = await updateVoucher({
             id: `${data.id}`,
             description: data.description,
@@ -65,88 +73,94 @@ const VoucherDetail = () => {
             type: data.type,
         });
         res.code === 1 ? toast.success(res.message) : toast.error(res.message)
+        setLoading(false);
+        navigate('/seller/vouchers')
     }
     return (
-        <div className={cx('container')}>
+        <>
             {
-                data && <>
-                    <h1>Voucher Detail</h1>
+                loading ? <Loading /> : <div className={cx('container')}>
                     {
-                        data.shop !== {} ? <div className={cx('list-shop')}>
-                            <h3>Shop</h3>
-                            <div className={cx('shop')}>
+                        data && <>
+                            <h1>Voucher Detail</h1>
+                            {
+                                data.shop !== {} ? <div className={cx('list-shop')}>
+                                    <h3>Shop</h3>
+                                    <div className={cx('shop')}>
 
-                                <Link to={`/shop/vendors/${data?.shop?.id}`} className={cx('item')}>
-                                    <div className={cx('top')}>
-                                        <img src={data?.shop?.avatar} alt="" />
-                                    </div>
-                                    <div className={cx('bottom')}>
-                                        <span>
-                                            {data?.shop?.name}
-                                        </span>
-                                    </div>
-                                </Link>
+                                        <Link to={`/shop/vendors/${data?.shop?.id}`} className={cx('item')}>
+                                            <div className={cx('top')}>
+                                                <img src={data?.shop?.avatar} alt="" />
+                                            </div>
+                                            <div className={cx('bottom')}>
+                                                <span>
+                                                    {data?.shop?.name}
+                                                </span>
+                                            </div>
+                                        </Link>
 
+
+                                    </div>
+                                </div> : null
+                            }
+                            <div className={cx('info')}>
+                                <div className={cx('input')}>
+                                    <label htmlFor="maVoucher">Voucher code</label>
+                                    <input onChange={(e) => handleChange(e)} name='maVoucher' type="text" id='maVoucher' value={data.maVoucher} />
+                                </div>
+                                <div className={cx('input')}>
+                                    <label htmlFor="description">Description</label>
+                                    <input onChange={(e) => handleChange(e)} name='description' type="text" id='description' value={data.description} />
+                                </div>
+                                <div className={cx('input')}>
+                                    <label htmlFor="dataStart">Date Start</label>
+                                    <input name='start' onChange={(e) => handleChange(e)} type="datetime-local" id='dataStart' value={data.start} />
+                                </div>
+                                <div className={cx('input')}>
+                                    <label htmlFor="dataEnd">Date End</label>
+                                    <input name='end' onChange={(e) => handleChange(e)} type="datetime-local" id='dataEnd' value={data.end} />
+                                </div>
+                                <div className={cx('input')}>
+                                    <label htmlFor="quantity">Quantity voucher</label>
+                                    <input onChange={(e) => handleChange(e)} name='quantity' type="number" id='quantity' value={data.quantity} />
+                                </div>
+                                <div className={cx('input')}>
+                                    <label htmlFor="minBill">Min Bill</label>
+                                    <input onChange={(e) => handleChange(e)} name='minBill' type="number" id='minBill' value={data.minBill} />
+                                </div>
+                                <div className={cx('input')}>
+                                    <label htmlFor="salePT">Discount (%)</label>
+                                    <input onChange={(e) => handleChange(e)} name='salePT' type="number" id='salePT' value={data.salePT} />
+                                </div>
+                                <div className={cx('input')}>
+                                    <label htmlFor="salePrice">Discount</label>
+                                    <input onChange={(e) => handleChange(e)} name='salePrice' type="number" id='salePrice' value={data.salePrice} />
+                                </div>
+                                <div className={cx('input')}>
+                                    <label htmlFor="type">Type</label>
+                                    <select onChange={(e) => handleChange(e)} name="type" id="type">
+                                        <option defaultChecked={data.type === "V1" ? true : false} value={"V1"}>Discount voucher</option>
+                                        <option defaultChecked={data.type === "V2" ? true : false} value={"V2"}>FreeShip voucher</option>
+                                    </select>
+                                </div>
+                                <div className={cx('btn')}>
+                                    <div className={cx('item')}>
+                                        <Button onClick={() => handleUpdate()} primary large>Update</Button>
+                                    </div>
+                                    <div className={cx('item')}>
+                                        <button onClick={() => handleDelete(data.id)} className={cx('del')}>
+                                            Delete
+                                        </button>
+                                    </div>
+                                </div>
 
                             </div>
-                        </div> : null
+
+                        </>
                     }
-                    <div className={cx('info')}>
-                        <div className={cx('input')}>
-                            <label htmlFor="maVoucher">Voucher code</label>
-                            <input onChange={(e) => handleChange(e)} name='maVoucher' type="text" id='maVoucher' value={data.maVoucher} />
-                        </div>
-                        <div className={cx('input')}>
-                            <label htmlFor="description">Description</label>
-                            <input onChange={(e) => handleChange(e)} name='description' type="text" id='description' value={data.description} />
-                        </div>
-                        <div className={cx('input')}>
-                            <label htmlFor="dataStart">Date Start</label>
-                            <input name='start' onChange={(e) => handleChange(e)} type="datetime-local" id='dataStart' value={data.start} />
-                        </div>
-                        <div className={cx('input')}>
-                            <label htmlFor="dataEnd">Date End</label>
-                            <input name='end' onChange={(e) => handleChange(e)} type="datetime-local" id='dataEnd' value={data.end} />
-                        </div>
-                        <div className={cx('input')}>
-                            <label htmlFor="quantity">Quantity voucher</label>
-                            <input onChange={(e) => handleChange(e)} name='quantity' type="number" id='quantity' value={data.quantity} />
-                        </div>
-                        <div className={cx('input')}>
-                            <label htmlFor="minBill">Min Bill</label>
-                            <input onChange={(e) => handleChange(e)} name='minBill' type="number" id='minBill' value={data.minBill} />
-                        </div>
-                        <div className={cx('input')}>
-                            <label htmlFor="salePT">Discount (%)</label>
-                            <input onChange={(e) => handleChange(e)} name='salePT' type="number" id='salePT' value={data.salePT} />
-                        </div>
-                        <div className={cx('input')}>
-                            <label htmlFor="salePrice">Discount</label>
-                            <input onChange={(e) => handleChange(e)} name='salePrice' type="number" id='salePrice' value={data.salePrice} />
-                        </div>
-                        <div className={cx('input')}>
-                            <label htmlFor="type">Type</label>
-                            <select onChange={(e) => handleChange(e)} name="type" id="type">
-                                <option defaultChecked={data.type === "V1" ? true : false} value={"V1"}>Discount voucher</option>
-                                <option defaultChecked={data.type === "V2" ? true : false} value={"V2"}>FreeShip voucher</option>
-                            </select>
-                        </div>
-                        <div className={cx('btn')}>
-                            <div className={cx('item')}>
-                                <Button onClick={() => handleUpdate()} primary large>Update</Button>
-                            </div>
-                            <div className={cx('item')}>
-                                <button onClick={() => handleDelete(data.id)} className={cx('del')}>
-                                    Delete
-                                </button>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </>
+                </div>
             }
-        </div>
+        </>
     )
 }
 

@@ -37,3 +37,6 @@ export const updateBlog = (data) => {
 export const createCommentOfBLog = (data) => {
     return axios.post(`/api/blog/comment/create`, data)
 }
+export const searchBlog=(query)=>{
+    return axios.get(`/api/blog/search?q=${query}`)
+}

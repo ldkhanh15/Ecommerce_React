@@ -9,11 +9,12 @@ import SideBar from '@/components/Blog/SideBar/SideBar'
 import { Helmet } from 'react-helmet';
 import { getAllBlog } from '@/services/blogService'
 import { useLocation, useNavigate } from 'react-router-dom'
+import Loading from '@/components/Loading/Loading'
 const cx = classNames.bind(styles)
 const Blog = () => {
   useScrollToTop()
   const [data, setData] = useState([])
-
+  const [loading, setLoading] = useState(false)
   const [pages, setPages] = useState([]);
   const [page, setPage] = useState();
   const location = useLocation();
@@ -35,72 +36,78 @@ const Blog = () => {
       setData(res.data);
       setPage(searchParams.get('page'));
     }
+    setLoading(true);
     getData();
+    setTimeout(()=>{
+      setLoading(false);
+    },1000)
   }, [location.search]);
   return (
     <div className={cx('container')}>
       <Helmet>
         <title>Blog</title>
       </Helmet>
-      <div className={cx('main')}>
-        <div className={cx('left')}>
-          <div className={cx('header')}>
-            <div className={cx('h-left')}>
-              <div className={cx('image')}>
-                <img src="/images/cate/category-1.svg" alt="" />
-              </div>
-              <div className={cx('text')}>
-                Recipes Articles
-              </div>
-            </div>
-            <div className={cx('h-right')}>
-              <div className={cx('show')}>
-                <div className={cx('content')}>
-                  <BiCategory className={cx('icon')} />
-                  <div className={cx('text')}>
-                    Show:
-                  </div>
+      {
+        loading ? <Loading /> : <div className={cx('main')}>
+          <div className={cx('left')}>
+            <div className={cx('header')}>
+              <div className={cx('h-left')}>
+                <div className={cx('image')}>
+                  <img src="/images/cate/category-1.svg" alt="" />
                 </div>
-                <select name="show" id="">
-                  <option value="">5</option>
-                  <option value="">10</option>
-                  <option value="">15</option>
-                </select>
+                <div className={cx('text')}>
+                  Recipes Articles
+                </div>
               </div>
-              <div className={cx('show')}>
-                <div className={cx('content')}>
-                  <FaSort className={cx('icon')} />
-                  <div className={cx('text')}>
-                    Sort by:
+              <div className={cx('h-right')}>
+                <div className={cx('show')}>
+                  <div className={cx('content')}>
+                    <BiCategory className={cx('icon')} />
+                    <div className={cx('text')}>
+                      Show:
+                    </div>
                   </div>
-                  <select name="sort" id="">
-                    <option value="">Default</option>
-                    <option value="">Ascending</option>
-                    <option value="">Descending</option>
+                  <select name="show" id="">
+                    <option value="">5</option>
+                    <option value="">10</option>
+                    <option value="">15</option>
                   </select>
                 </div>
+                <div className={cx('show')}>
+                  <div className={cx('content')}>
+                    <FaSort className={cx('icon')} />
+                    <div className={cx('text')}>
+                      Sort by:
+                    </div>
+                    <select name="sort" id="">
+                      <option value="">Default</option>
+                      <option value="">Ascending</option>
+                      <option value="">Descending</option>
+                    </select>
+                  </div>
+                </div>
               </div>
             </div>
+            <div className={cx('footer')}>
+              {data && data.map((value, index) => (
+                <BlogLayout data={value} key={index} />
+              ))}
+            </div>
+            <div className={cx('navigation')}>
+              <button onClick={() => handlePageChange(page - 1)} disabled={page === '1'}>
+                Previous
+              </button>
+              <button onClick={() => handlePageChange(Number(page) + 1)} disabled={page === `${pages.length}`}>
+                Next
+              </button>
+            </div>
           </div>
-          <div className={cx('footer')}>
-            {data && data.map((value, index) => (
-              <BlogLayout data={value} key={index} />
-            ))}
-          </div>
-          <div className={cx('navigation')}>
-            <button onClick={() => handlePageChange(page - 1)} disabled={page === '1'}>
-              Previous
-            </button>
-            <button onClick={() => handlePageChange(Number(page) + 1)} disabled={page === `${pages.length}`}>
-              Next
-            </button>
-          </div>
-        </div>
 
-        <div className={cx('right')}>
-          <SideBar />
+          <div className={cx('right')}>
+            <SideBar />
+          </div>
         </div>
-      </div>
+      }
     </div>
   )
 }

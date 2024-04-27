@@ -4,8 +4,9 @@ import styles from '../styles.module.scss'
 import { CiSearch } from 'react-icons/ci'
 import Button from '@/components/Button'
 import UiSize from './UiSize/UiSize'
-import { deleteSize, getSize } from '@/services/productService'
-import {toast} from 'react-toastify'
+import { deleteSize, getSize, searchSize } from '@/services/productService'
+import { toast } from 'react-toastify'
+import Search from '@/components/Search/Search'
 const cx = classNames.bind(styles)
 const Size = () => {
   const [open, setOpen] = useState(false)
@@ -18,7 +19,6 @@ const Size = () => {
     }
     getData();
   }, [])
-  console.log(data);
   const handleOpen = (data) => {
     setOpen(true)
     setDataChildren({
@@ -41,8 +41,7 @@ const Size = () => {
       <div className={cx('main')}>
         <div className={cx('header')}>
           <div className={cx('search')}>
-            <input type="text" placeholder='Search a size' />
-            <CiSearch className={cx('icon')} />
+            <Search onSearch={searchSize} setData={setData} />
           </div>
           <div className={cx('btn-add')}>
             <Button onClick={() => handleAdd()} primary large>Add new Size</Button>
@@ -66,7 +65,7 @@ const Size = () => {
             {
               data && data.map((item, index) => (
                 <tr key={index}>
-                  <td className={cx('stt')}>{index+1}</td>
+                  <td className={cx('stt')}>{index + 1}</td>
                   <td>{item.name}</td>
                   <td>
                     <div className={cx('action')}>

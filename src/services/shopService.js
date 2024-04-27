@@ -50,3 +50,6 @@ export const updateAvatarShop = (data) => {
 export const getProduct = (page) => {
     return axios.get(`/api/product/get-product-shop?page=${page}`);
 }
+export const searchVendor=(query)=>{
+    return axios.get(`/api/vendor/search?q=${query}`)
+}

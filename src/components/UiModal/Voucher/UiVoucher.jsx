@@ -6,7 +6,7 @@ import Button from '@/components/Button'
 import { connect } from 'react-redux'
 import { addVoucher, removeVoucher, addVoucherProduct } from '@/redux/action'
 const cx = classNames.bind(styles)
-const UiVoucher = ({ id, shop, data, addVoucher, voucher, addVoucherProduct, products }) => {
+const UiVoucher = ({open, setOpen, id, shop, data, addVoucher, voucher, addVoucherProduct, products }) => {
     const nest = {
         name: 'Nested',
         avatar: '/images/logo/logo.svg'
@@ -17,6 +17,7 @@ const UiVoucher = ({ id, shop, data, addVoucher, voucher, addVoucherProduct, pro
         } else {
             addVoucher(data)
         }
+        setOpen(false)
     }
     return (
         <div className={cx('container')}>

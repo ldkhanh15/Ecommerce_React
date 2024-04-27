@@ -16,16 +16,21 @@ import { useNavigate } from 'react-router-dom';
 const cx = classNames.bind(styles);
 const MyAccount = ({ removeUser }) => {
   useScrollToTop();
+  const [loading, setLoading] = useState(false)
   const [page, setPage] = useState(0);
   const navigate = useNavigate();
   const handleLogout = async () => {
+    setLoading(true);
     let res = await logout();
     if (res.code) {
       removeUser();
       localStorage.removeItem('token');
-      return (
+
+      setTimeout(() => {
+        setLoading(false);
         navigate('/')
-      )
+      }, 1000)
+
     }
 
   }

@@ -12,6 +12,7 @@ import { Helmet } from 'react-helmet'
 import { getProduct, getSize } from '@/services/productService';
 import { getCate } from '@/services/categoryService';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Loading from '@/components/Loading/Loading';
 
 const cx = classNames.bind(styles)
 
@@ -22,6 +23,7 @@ const Shop = ({ shop }) => {
   const [size, setSize] = useState([])
   const [pages, setPages] = useState([]);
   const [page, setPage] = useState();
+  const [loading, setLoading] = useState(false);
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const navigate = useNavigate();
@@ -45,66 +47,74 @@ const Shop = ({ shop }) => {
       setPages(v);
       setPage(searchParams.get('page'));
     }
+    setLoading(true);
     getData()
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000)
   }, [location.search])
   return (
-    <div className={cx('container')}>
-      <Helmet>
-        <title>Product</title>
-      </Helmet>
-      <div className={cx('side-bar')}>
-        <ProductSideBar shop={shop} color={color} thumbnail={thumbnail} cate={cate} condition={size} />
-      </div>
+    <>
+      {
+        loading ? <Loading /> : <div className={cx('container')}>
+          <Helmet>
+            <title>Product</title>
+          </Helmet>
+          <div className={cx('side-bar')}>
+            <ProductSideBar shop={shop} color={color} thumbnail={thumbnail} cate={cate} condition={size} />
+          </div>
 
-      <div className={cx('main')}>
-        <div className={cx('header')}>
-          <div className={cx('left')}>
-            We found <strong>{data.length}</strong> items for you
-          </div>
-          <div className={cx('right')}>
-            <div className={cx('show')}>
-              <div className={cx('content')}>
-                <BiCategory className={cx('icon')} />
-                <div className={cx('text')}>
-                  Show:
+          <div className={cx('main')}>
+            <div className={cx('header')}>
+              <div className={cx('left')}>
+                We found <strong>{data.length}</strong> items for you
+              </div>
+              <div className={cx('right')}>
+                <div className={cx('show')}>
+                  <div className={cx('content')}>
+                    <BiCategory className={cx('icon')} />
+                    <div className={cx('text')}>
+                      Show:
+                    </div>
+                  </div>
+                  <select name="show" id="">
+                    <option value="">5</option>
+                    <option value="">10</option>
+                    <option value="">15</option>
+                  </select>
+                </div>
+                <div className={cx('show')}>
+                  <div className={cx('content')}>
+                    <FaSort className={cx('icon')} />
+                    <div className={cx('text')}>
+                      Sort by:
+                    </div>
+                    <select name="sort" id="">
+                      <option value="">Default</option>
+                      <option value="">Ascending</option>
+                      <option value="">Descending</option>
+                    </select>
+                  </div>
                 </div>
               </div>
-              <select name="show" id="">
-                <option value="">5</option>
-                <option value="">10</option>
-                <option value="">15</option>
-              </select>
             </div>
-            <div className={cx('show')}>
-              <div className={cx('content')}>
-                <FaSort className={cx('icon')} />
-                <div className={cx('text')}>
-                  Sort by:
-                </div>
-                <select name="sort" id="">
-                  <option value="">Default</option>
-                  <option value="">Ascending</option>
-                  <option value="">Descending</option>
-                </select>
-              </div>
+            <div className={cx('product')}>
+              {data?.map((item) => (
+                <Product key={item.id} data={item} />
+              ))}
+            </div>
+            <div className={cx('navigation')}>
+              <button onClick={() => handlePageChange(page - 1)} disabled={page === '1'}>
+                Previous
+              </button>
+              <button onClick={() => handlePageChange(Number(page) + 1)} disabled={page === `${pages.length}`}>
+                Next
+              </button>
             </div>
           </div>
         </div>
-        <div className={cx('product')}>
-          {data?.map((item) => (
-            <Product key={item.id} data={item} />
-          ))}
-        </div>
-        <div className={cx('navigation')}>
-          <button onClick={() => handlePageChange(page - 1)} disabled={page === '1'}>
-            Previous
-          </button>
-          <button onClick={() => handlePageChange(Number(page) + 1)} disabled={page === `${pages.length}`}>
-            Next
-          </button>
-        </div>
-      </div>
-    </div>
+      }
+    </>
   )
 }
 

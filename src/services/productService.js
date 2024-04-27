@@ -85,7 +85,13 @@ export const deleteSize = (id) => {
 export const updateSize = (data) => {
     return axios.put(`/api/size/update`, data)
 }
+export const searchSize = (query) => {
+    return axios.get(`/api/size/search?q=${query}`)
+}
 
-export const postComment=(data)=>{
+export const postComment = (data) => {
     return axios.post('/api/product/create-comment', data)
+}
+export const searchProduct = (query) => {
+    return axios.get(`/api/product/search?q=${query}`)
 }

@@ -10,18 +10,22 @@ import { LiaTimesSolid } from 'react-icons/lia';
 import Button from '@/components/Button';
 import { IoIosArrowRoundBack, IoIosArrowRoundForward } from 'react-icons/io';
 import { getProductDetail, getSize, updateProduct } from '@/services/productService';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import Loading from '@/components/Loading/Loading';
 
 const cx = classNames.bind(styles)
 const ViewProduct = () => {
+  const [item, setItem] = useState([]);
   const { id } = useParams();
   const [size, setSize] = useState([]);
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false)
+  const navigate=useNavigate()
   useEffect(() => {
     const getData = async () => {
       let resSize = await getSize();
       let resProduct = await getProductDetail(id);
-      console.log(resProduct.data);
+
       let color = [];
       resProduct.data.color.map(item => color.push(item['name']))
       let combo = [];
@@ -50,10 +54,11 @@ const ViewProduct = () => {
       })
       setSize(resSize.data);
     }
+    setLoading(true)
     getData();
+    setLoading(false);
   }, [])
 
-  const [item, setItem] = useState([]);
   const handleChange = (e) => {
     setItem({
       ...item,
@@ -127,11 +132,14 @@ const ViewProduct = () => {
   }
 
   const handleAdd = async () => {
+    setLoading(true)
     let res = await updateProduct({
       ...data,
-      id:`${data.id}`
+      id: `${data.id}`
     })
     res.code === 1 ? toast.success(res.message) : toast.error(res.message)
+    setLoading(false)
+    navigate('/seller/products')
   }
 
   const handleAddSize = (e) => {
@@ -158,139 +166,143 @@ const ViewProduct = () => {
   };
 
   return (
-    <div className={cx('container')}>
-      <h1>Detail Product</h1>
-      <div className={cx('main')}>
-        <div className={cx('left')}>
-          <div className={cx('input')}>
-            <label htmlFor='images'>Choose product images</label>
-            <input
-              id='images'
-              type="file"
-              accept="image/*"
-              multiple
-              onChange={handleImageChange}
-            />
-          </div>
-          <div className={cx('review')}>
-            {
-              data?.images?.length > 0 && <div className={cx('slick-page')}>
-                <button className={cx('btn')} onClick={() => slider?.current?.slickPrev()}>
-                  <IoIosArrowRoundBack className={cx('prev')} />
-                </button>
-                <button className={cx('btn')} onClick={() => slider?.current?.slickNext()}>
-                  <IoIosArrowRoundForward className={cx('next')} />
-                </button>
+    <>
+      {
+        loading ? <Loading /> : <div className={cx('container')}>
+          <h1>Detail Product</h1>
+          <div className={cx('main')}>
+            <div className={cx('left')}>
+              <div className={cx('input')}>
+                <label htmlFor='images'>Choose product images</label>
+                <input
+                  id='images'
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  onChange={handleImageChange}
+                />
               </div>
-            }
-            <Slider ref={slider} {...settings}>
-              {data?.images?.map((image, index) => (
-                <div className={cx('item-slider')} key={index}>
-                  <img key={index} src={image} alt={`Image ${index}`} />
-                  <div className={cx('del')} onClick={() => handleRemoveImage(index)}><LiaTimesSolid /></div>
+              <div className={cx('review')}>
+                {
+                  data?.images?.length > 0 && <div className={cx('slick-page')}>
+                    <button className={cx('btn')} onClick={() => slider?.current?.slickPrev()}>
+                      <IoIosArrowRoundBack className={cx('prev')} />
+                    </button>
+                    <button className={cx('btn')} onClick={() => slider?.current?.slickNext()}>
+                      <IoIosArrowRoundForward className={cx('next')} />
+                    </button>
+                  </div>
+                }
+                <Slider ref={slider} {...settings}>
+                  {data?.images?.map((image, index) => (
+                    <div className={cx('item-slider')} key={index}>
+                      <img key={index} src={image} alt={`Image ${index}`} />
+                      <div className={cx('del')} onClick={() => handleRemoveImage(index)}><LiaTimesSolid /></div>
+                    </div>
+                  ))}
+
+                </Slider>
+              </div>
+            </div>
+            <div className={cx('right')}>
+              <div className={cx('input')}>
+                <label htmlFor="name">Name</label>
+                <input value={data.nameProduct} onChange={(e) => handleChangeInput(e)} id='name' type="text" name='nameProduct' placeholder='Name of product' />
+              </div>
+              <div className={cx('input')}>
+                <label htmlFor="Price">Price</label>
+                <input value={data.price} onChange={(e) => handleChangeInput(e)} id='Price' type="number" min={0} name='price' placeholder='Price of product' />
+              </div>
+              <div className={cx('input')}>
+                <label htmlFor="quantity">Quantity</label>
+                <input value={data.quantity} onChange={(e) => handleChangeInput(e)} id='quantity' type="text" name='quantity' placeholder='Quantity product' />
+              </div>
+              <div className={cx('input')}>
+                <label htmlFor="sale">Sale</label>
+                <input value={data.sale} onChange={(e) => handleChangeInput(e)} id='sale' type="number" min={0} name='sale' placeholder='Quantity product' />
+              </div>
+              <div className={cx('input')}>
+                <label htmlFor="Brand">Brand</label>
+                <input value={data.brand} onChange={(e) => handleChangeInput(e)} id='Brand' type="text" min={0} name='brand' placeholder='Quantity product' />
+              </div>
+              <div className={cx('input')}>
+                <label htmlFor="introduce">Introduce</label>
+                <textarea value={data.introduce} onChange={(e) => handleChangeInput(e)} id='introduce' name='introduce' cols={50} rows={5}></textarea>
+              </div>
+              <div className={cx('input')}>
+                <label htmlFor="Description">Description</label>
+                <textarea value={data.description} onChange={(e) => handleChangeInput(e)} id='Description' name='description' cols={50} rows={5}></textarea>
+              </div>
+              <div className={cx('input')}>
+                <label htmlFor="additional">Additional</label>
+                <textarea value={data.additional} onChange={(e) => handleChangeInput(e)} id='additional' name='additional' cols={50} rows={5}></textarea>
+              </div>
+              <div className={cx('input')}>
+                <label htmlFor="color">Color</label>
+                <div className={cx('combo')} id="color">
+                  <button disabled={data?.combo?.length > 0 || data?.size?.length > 0 ? true : false} onClick={() => handleAddCombo('color')} className={cx('add-combo')}>
+                    Add
+                  </button>
+                  <input value={item['color']} onChange={(e) => handleChange(e)} type="text" name='color' placeholder='Color item' />
                 </div>
-              ))}
+                <div className={cx('list-combo')}>
+                  {
+                    data?.color?.map((value, index) => (
+                      <div className={cx('item-combo')} onClick={() => handleDeleteCombo('color', index)} key={index}>
+                        {value}
+                        <span><LiaTimesSolid /></span>
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+              <div className={cx('input')}>
+                <label htmlFor="size">Sizes</label>
+                <select disabled={data?.color?.length > 0 || data?.combo?.length > 0 ? true : false} onChange={(e) => handleAddSize(e)} name='size' id='size'>
+                  <option defaultChecked value=''>Choose color</option>
+                  {
+                    size && size.map((item, index) => (
+                      <option key={index} value={item.name}>{item.name}</option>
+                    ))
+                  }
+                </select>
+                <div className={cx('list-combo')}>
+                  {
+                    data?.size?.map((value, index) => (
+                      <div className={cx('item-combo')} onClick={() => handleDeleteCombo('size', index)} key={index}>
+                        {value}
+                        <span><LiaTimesSolid /></span>
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+              <div className={cx('input')}>
+                <label htmlFor="combo">Combo</label>
+                <div className={cx('combo')} id="combo">
+                  <button disabled={data?.color?.length > 0 || data?.size?.length > 0 ? true : false} onClick={() => handleAddCombo('combo')} className={cx('add-combo')}>
+                    Add
+                  </button>
+                  <input value={item['combo']} onChange={(e) => handleChange(e)} type="text" name='combo' placeholder='Combo item' />
+                </div>
+                <div className={cx('list-combo')}>
+                  {
+                    data?.combo?.map((value, index) => (
+                      <div className={cx('item-combo')} onClick={() => handleDeleteCombo('combo', index)} key={index}>
+                        {value}
+                        <span><LiaTimesSolid /></span>
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+              <Button onClick={() => handleAdd()} large primary>Update product</Button>
+            </div>
+          </div>
 
-            </Slider>
-          </div>
         </div>
-        <div className={cx('right')}>
-          <div className={cx('input')}>
-            <label htmlFor="name">Name</label>
-            <input value={data.nameProduct} onChange={(e) => handleChangeInput(e)} id='name' type="text" name='nameProduct' placeholder='Name of product' />
-          </div>
-          <div className={cx('input')}>
-            <label htmlFor="Price">Price</label>
-            <input value={data.price} onChange={(e) => handleChangeInput(e)} id='Price' type="number" min={0} name='price' placeholder='Price of product' />
-          </div>
-          <div className={cx('input')}>
-            <label htmlFor="quantity">Quantity</label>
-            <input value={data.quantity} onChange={(e) => handleChangeInput(e)} id='quantity' type="text" name='quantity' placeholder='Quantity product' />
-          </div>
-          <div className={cx('input')}>
-            <label htmlFor="sale">Sale</label>
-            <input value={data.sale} onChange={(e) => handleChangeInput(e)} id='sale' type="number" min={0} name='sale' placeholder='Quantity product' />
-          </div>
-          <div className={cx('input')}>
-            <label htmlFor="Brand">Brand</label>
-            <input value={data.brand} onChange={(e) => handleChangeInput(e)} id='Brand' type="text" min={0} name='brand' placeholder='Quantity product' />
-          </div>
-          <div className={cx('input')}>
-            <label htmlFor="introduce">Introduce</label>
-            <textarea value={data.introduce} onChange={(e) => handleChangeInput(e)} id='introduce' name='introduce' cols={50} rows={5}></textarea>
-          </div>
-          <div className={cx('input')}>
-            <label htmlFor="Description">Description</label>
-            <textarea value={data.description} onChange={(e) => handleChangeInput(e)} id='Description' name='description' cols={50} rows={5}></textarea>
-          </div>
-          <div className={cx('input')}>
-            <label htmlFor="additional">Additional</label>
-            <textarea value={data.additional} onChange={(e) => handleChangeInput(e)} id='additional' name='additional' cols={50} rows={5}></textarea>
-          </div>
-          <div className={cx('input')}>
-            <label htmlFor="color">Color</label>
-            <div className={cx('combo')} id="color">
-              <button disabled={data?.combo?.length > 0 || data?.size?.length > 0 ? true : false} onClick={() => handleAddCombo('color')} className={cx('add-combo')}>
-                Add
-              </button>
-              <input value={item['color']} onChange={(e) => handleChange(e)} type="text" name='color' placeholder='Color item' />
-            </div>
-            <div className={cx('list-combo')}>
-              {
-                data?.color?.map((value, index) => (
-                  <div className={cx('item-combo')} onClick={() => handleDeleteCombo('color', index)} key={index}>
-                    {value}
-                    <span><LiaTimesSolid /></span>
-                  </div>
-                ))
-              }
-            </div>
-          </div>
-          <div className={cx('input')}>
-            <label htmlFor="size">Sizes</label>
-            <select disabled={data?.color?.length > 0 || data?.combo?.length > 0 ? true : false} onChange={(e) => handleAddSize(e)} name='size' id='size'>
-              <option defaultChecked value=''>Choose color</option>
-              {
-                size && size.map((item, index) => (
-                  <option key={index} value={item.name}>{item.name}</option>
-                ))
-              }
-            </select>
-            <div className={cx('list-combo')}>
-              {
-                data?.size?.map((value, index) => (
-                  <div className={cx('item-combo')} onClick={() => handleDeleteCombo('size', index)} key={index}>
-                    {value}
-                    <span><LiaTimesSolid /></span>
-                  </div>
-                ))
-              }
-            </div>
-          </div>
-          <div className={cx('input')}>
-            <label htmlFor="combo">Combo</label>
-            <div className={cx('combo')} id="combo">
-              <button disabled={data?.color?.length > 0 || data?.size?.length > 0 ? true : false} onClick={() => handleAddCombo('combo')} className={cx('add-combo')}>
-                Add
-              </button>
-              <input value={item['combo']} onChange={(e) => handleChange(e)} type="text" name='combo' placeholder='Combo item' />
-            </div>
-            <div className={cx('list-combo')}>
-              {
-                data?.combo?.map((value, index) => (
-                  <div className={cx('item-combo')} onClick={() => handleDeleteCombo('combo', index)} key={index}>
-                    {value}
-                    <span><LiaTimesSolid /></span>
-                  </div>
-                ))
-              }
-            </div>
-          </div>
-          <Button onClick={() => handleAdd()} large primary>Update product</Button>
-        </div>
-      </div>
-
-    </div>
+      }
+    </>
   );
 };
 

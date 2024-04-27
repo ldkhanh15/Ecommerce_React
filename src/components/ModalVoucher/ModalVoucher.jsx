@@ -32,9 +32,9 @@ const ModalVoucher = ({id, open, setOpen, data, voucher, payment, deliver,shop})
                     <LiaTimesSolid />
                 </div>
 
-                {voucher && <VoucherUi data={data} shop={shop} id={id}/>}
-                {payment && <PaymentUi data={data} />}
-                {deliver && <DeliverUi data={data} />}
+                {voucher && <VoucherUi setOpen={setOpen} data={data} shop={shop} id={id}/>}
+                {payment && <PaymentUi setOpen={setOpen} data={data} />}
+                {deliver && <DeliverUi setOpen={setOpen} data={data} />}
             </div>
         </Modal>
     );

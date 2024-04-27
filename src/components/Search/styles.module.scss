@@ -1,0 +1,19 @@
+.search{
+    position: relative;
+    width: fit-content;
+     input{
+         padding: 1.2rem;
+         border-radius: 0.5rem;
+         border: 0.1rem solid #7e7e7e;
+         &:focus{
+             border-color: var(--primary);
+         }
+     }
+     .icon{
+         position: absolute;
+         right: 1rem;
+         top: 1rem;
+         font-size: 2rem;
+         cursor: pointer;
+     }
+ }

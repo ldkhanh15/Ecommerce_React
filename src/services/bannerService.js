@@ -39,3 +39,6 @@ export const uploadImage = (data) => {
         }
     })
 }
+export const searchBanner=(query)=>{
+    return axios.get(`/api/banner/search?q=${query}`)
+}

@@ -30,3 +30,6 @@ export const getBillSeller = (page) => {
 export const createBill = (data) => {
     return axios.post('/api/bill/create', data)
 }
+export const searchBill=(query)=>{
+    return axios.get(`/api/bill/search?q=${query}`)
+}

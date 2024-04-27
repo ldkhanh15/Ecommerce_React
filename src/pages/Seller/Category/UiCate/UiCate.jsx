@@ -8,7 +8,7 @@ import { createCate, updateCate, uploadImage } from '@/services/categoryService'
 import { toast } from 'react-toastify'
 const cx = classNames.bind(styles);
 Modal.setAppElement('#root');
-const UiCate = ({ open, setOpen, dataChildren }) => {
+const UiCate = ({ setLoading, open, setOpen, dataChildren }) => {
     const [data, setData] = useState({})
     useEffect(() => {
         setData(dataChildren)
@@ -39,6 +39,7 @@ const UiCate = ({ open, setOpen, dataChildren }) => {
         }
     }
     const handleAdd = async () => {
+        setLoading(true)
         if (Object.keys(dataChildren).length > 0) {
             let res = await updateCate({
                 id: `${data.id}`,
@@ -51,6 +52,8 @@ const UiCate = ({ open, setOpen, dataChildren }) => {
             let res = await createCate(data)
             res.code === 1 ? toast.success(res.message) : toast.error(res.message)
         }
+        setLoading(false)
+        setOpen(false)
 
     }
 
